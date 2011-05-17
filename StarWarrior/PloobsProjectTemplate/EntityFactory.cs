@@ -1,4 +1,6 @@
 using System;
+using StarWarrior.Components;
+using Artemis;
 namespace StarWarrior
 {
 	public class EntityFactory {
@@ -28,7 +30,7 @@ namespace StarWarrior
 			return e;
 		}
 		
-		public static Entity CreateBulletExplosion(World world, float x, float y) {
+		public static Entity CreateBulletExplosion(World world, double x, double y) {
 			Entity e = world.CreateEntity();
 			
 			e.SetGroup("EFFECTS");
@@ -40,7 +42,7 @@ namespace StarWarrior
 			return e;
 		}
 		
-		public static Entity CreateShipExplosion(World world, float x, float y) {
+		public static Entity CreateShipExplosion(World world, double x, double y) {
 			Entity e = world.CreateEntity();
 			
 			e.SetGroup("EFFECTS");

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Artemis;
 using StarWarrior.Components;
+using Microsoft.Xna.Framework;
 
 namespace StarWarrior.Spatials
 {
@@ -20,7 +21,7 @@ namespace StarWarrior.Spatials
 	    }
 
 	    public override void Render(Graphics g) {
-		    g.SetColor(Color.white);
+		    g.SetColor(Color.White);
 		    g.SetAntiAlias(true);
 		    g.FillRect(transform.GetX() - 1, transform.GetY() - 3, 2, 6);
 	    }

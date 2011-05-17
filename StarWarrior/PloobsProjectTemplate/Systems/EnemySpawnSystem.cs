@@ -1,4 +1,6 @@
 using System;
+using Artemis;
+using StarWarrior.Components;
 namespace StarWarrior
 {
 	public class EnemySpawnSystem : IntervalEntitySystem {
@@ -23,9 +25,9 @@ namespace StarWarrior
 		public override void ProcessEntities(Bag<Entity> entities) {
 			Entity e = EntityFactory.CreateEnemyShip(world);
 			
-			e.getComponent(typeof(Transform)).SetLocation(r.Next(container.GetWidth()), r.Next(400)+50);
-			e.getComponent(typeof(Velocity)).SetVelocity(0.05f);
-			e.getComponent(typeof(Velocity)).setAngle(r.nextBoolean() ? 0 : 180);
+			e.GetComponent<Transform>(typeof(Transform)).SetLocation(r.Next(container.GetWidth()), r.Next(400)+50);
+			e.GetComponent<Velocity>(typeof(Velocity)).SetVelocity(0.05f);
+			e.GetComponent<Velocity>(typeof(Velocity)).SetAngle(r.Next() % 2  == 0 ? 0 : 180);
 			
 			e.Refresh();
 		}

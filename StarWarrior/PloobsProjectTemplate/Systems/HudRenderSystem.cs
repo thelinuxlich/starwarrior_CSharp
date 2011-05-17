@@ -1,4 +1,7 @@
 using System;
+using Artemis;
+using StarWarrior.Components;
+using Microsoft.Xna.Framework;
 namespace StarWarrior
 {
 	public class HudRenderSystem : EntityProcessingSystem {
@@ -16,8 +19,8 @@ namespace StarWarrior
 		}
 	
 		public override void Process(Entity e) {
-			Health health = healthMapper.Get(e);
-			g.SetColor(Color.white);
+			Health health = healthMapper.Get<Health>(e);
+			g.SetColor(Color.White);
 			g.DrawString("Health: " + health.GetHealthPercentage() + "%", 20, container.GetHeight() - 40);
 		}
 	

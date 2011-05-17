@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Artemis;
 using StarWarrior.Components;
+using Microsoft.Xna.Framework;
 
 namespace StarWarrior.Spatials
 {
@@ -27,14 +28,14 @@ namespace StarWarrior.Spatials
 		    expires = expiresMapper.Get<Expires>(owner);
 		    initialLifeTime = expires.GetLifeTime();
 		
-		    color = new Color(Color.yellow);
+		    color = new Color();
 	    }
 
 	    public override void Render(Graphics g) {
-		    color.a = (float)expires.GetLifeTime()/(float)initialLifeTime;
-		    g.setColor(color);
-		    g.setAntiAlias(true);
-		    g.fillOval(transform.GetX() - radius, transform.GetY() - radius, radius*2, radius*2);
+		    color.A = (byte)(expires.GetLifeTime()/initialLifeTime);
+		    g.SetColor(color);
+		    g.SetAntiAlias(true);
+		    g.FillOval(transform.GetX() - radius, transform.GetY() - radius, radius*2, radius*2);
 	    }
     }
 }

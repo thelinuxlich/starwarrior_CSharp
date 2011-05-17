@@ -1,4 +1,6 @@
 using System;
+using Artemis;
+using StarWarrior.Components;
 namespace StarWarrior
 {
 	public class EnemyShooterSystem : EntityProcessingSystem {
@@ -7,7 +9,7 @@ namespace StarWarrior
 		private long now;
 		private ComponentMapper transformMapper;
 	
-		public EnemyShooterSystem() : base(Transform.GetType(), Weapon.GetType(), Enemy.GetType()) {
+		public EnemyShooterSystem() : base(typeof(Transform), typeof(Weapon), typeof(Enemy)) {
 		}
 	
 		public override void Initialize() {
@@ -20,15 +22,15 @@ namespace StarWarrior
 		}
 	
 		public override void Process(Entity e) {
-			Weapon weapon = weaponMapper.Get(e);
+			Weapon weapon = weaponMapper.Get<Weapon>(e);
 	
 			if (weapon.GetShotAt() + 2000 < now) {
-				Transform transform = transformMapper.Get(e);
+				Transform transform = transformMapper.Get<Transform>(e);
 	
 				Entity missile = EntityFactory.CreateMissile(world);
-				missile.GetComponent(typeof(Transform)).SetLocation(transform.GetX(), transform.GetY() + 20);
-				missile.GetComponent(typeof(Velocity)).SetVelocity(-0.5f);
-				missile.GetComponent(typeof(Velocity)).SetAngle(270);
+				missile.GetComponent<Transform>(typeof(Transform)).SetLocation(transform.GetX(), transform.GetY() + 20);
+				missile.GetComponent<Velocity>(typeof(Velocity)).SetVelocity(-0.5f);
+				missile.GetComponent<Velocity>(typeof(Velocity)).SetAngle(270);
 				missile.Refresh();
 	
 				weapon.SetShotAt(now);

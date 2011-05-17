@@ -1,4 +1,6 @@
 using System;
+using Artemis;
+using StarWarrior.Components;
 namespace StarWarrior
 {
 	public class MovementSystem : EntityProcessingSystem {
@@ -17,15 +19,15 @@ namespace StarWarrior
 		}
 	
 		public override void Process(Entity e) {
-			Velocity velocity = velocityMapper.Get(e);
+			Velocity velocity = velocityMapper.Get<Velocity>(e);
 			float v = velocity.GetVelocity();
 	
-			Transform transform = transformMapper.Get(e);
+			Transform transform = transformMapper.Get<Transform>(e);
 	
-			float r = velocity.GetAngleAsRadians();
+			double r = velocity.GetAngleAsRadians();
 	
-			float xn = transform.GetX() + (TrigLUT.Cos(r) * v * world.GetDelta());
-			float yn = transform.GetY() + (TrigLUT.Sin(r) * v * world.GetDelta());
+			double xn = transform.GetX() + (TrigLUT.Cos(r) * v * world.GetDelta());
+			double yn = transform.GetY() + (TrigLUT.Sin(r) * v * world.GetDelta());
 	
 			transform.SetLocation(xn, yn);
 		}

@@ -114,12 +114,30 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\Enemy.cs" />
+    <Compile Include="Components\Expires.cs" />
+    <Compile Include="Components\Health.cs" />
+    <Compile Include="Components\Player.cs" />
+    <Compile Include="Components\SpatialForm.cs" />
     <Compile Include="Components\Transform.cs" />
+    <Compile Include="Components\Velocity.cs" />
+    <Compile Include="Components\Weapon.cs" />
+    <Compile Include="EntityFactory.cs" />
     <Compile Include="Spatials\EnemyShip.cs" />
     <Compile Include="Spatials\Explosion.cs" />
     <Compile Include="Spatials\Missile.cs" />
     <Compile Include="Spatials\PlayerShip.cs" />
     <Compile Include="Spatials\Spatial.cs" />
+    <Compile Include="Systems\CollisionSystem.cs" />
+    <Compile Include="Systems\EnemyShipMovementSystem.cs" />
+    <Compile Include="Systems\EnemyShooterSystem.cs" />
+    <Compile Include="Systems\EnemySpawnSystem.cs" />
+    <Compile Include="Systems\ExpirationSystem.cs" />
+    <Compile Include="Systems\HealthBarRenderSystem.cs" />
+    <Compile Include="Systems\HudRenderSystem.cs" />
+    <Compile Include="Systems\MovementSystem.cs" />
+    <Compile Include="Systems\PlayerShipControlSystem.cs" />
+    <Compile Include="Systems\RenderSystem.cs" />
     <Compile Include="TemplateScreens\TemplateDeferredScreen.cs" />
     <Compile Include="TemplateScreens\TemplateForwardScreen.cs" />
     <Compile Include="EngineSetup.cs" />
@@ -167,9 +185,7 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Systems\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />
   <!--

@@ -8,62 +8,62 @@ namespace StarWarrior.Components
 {
     class Transform : Component
     {
-        private float x;
-	    private float y;
-	    private float rotation;
+        private double x;
+	    private double y;
+	    private double rotation;
 
 	    public Transform() {
 	    }
 
-	    public Transform(float x, float y) {
+	    public Transform(double x, double y) {
 		    this.x = x;
 		    this.y = y;
 	    }
 
-	    public Transform(float x, float y, float rotation) {
+	    public Transform(double x, double y, double rotation) {
 		    this.x = x;
             this.y = y;
 		    this.rotation = rotation;
 	    }
 
-	    public void AddX(float x) {
+	    public void AddX(double x) {
 		    this.x += x;
 	    }
 
-	    public void AddY(float y) {
+	    public void AddY(double y) {
 		    this.y += y;
 	    }
 
-	    public float GetX() {
+	    public double GetX() {
 		    return x;
 	    }
 
-	    public void SetX(float x) {
+	    public void SetX(double x) {
 		    this.x = x;
 	    }
 
-	    public float GetY() {
+	    public double GetY() {
 		    return y;
 	    }
 
-	    public void SetY(float y) {
+	    public void SetY(double y) {
 		    this.y = y;
 	    }
 
-	    public void SetLocation(float x, float y) {
+	    public void SetLocation(double x, double y) {
 		    this.x = x;
 		    this.y = y;
 	    }
 
-	    public float GetRotation() {
+	    public double GetRotation() {
 		    return rotation;
 	    }
 
-	    public void SetRotation(float rotation) {
+	    public void SetRotation(double rotation) {
 		    this.rotation = rotation;
 	    }
 
-	    public void AddRotation(float angle) {
+	    public void AddRotation(double angle) {
 		    rotation = (rotation + angle) % 360;
 	    }
 
@@ -71,7 +71,7 @@ namespace StarWarrior.Components
             return Math.PI * rotation / 180.0;
 	    }
 	
-	    public float GetDistanceTo(Transform t) {
+	    public double GetDistanceTo(Transform t) {
 		    return Artemis.Utils.Distance(t.GetX(), t.GetY(), x, y);
 	    }
     }

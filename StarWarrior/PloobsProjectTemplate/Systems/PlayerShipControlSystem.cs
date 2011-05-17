@@ -1,11 +1,13 @@
 using System;
+using Artemis;
+using StarWarrior.Components;
 namespace StarWarrior
 {
 	public class PlayerShipControlSystem : EntityProcessingSystem {
 		private GameContainer container;
-		private boolean moveRight;
-		private boolean moveLeft;
-		private boolean shoot;
+		private bool moveRight;
+		private bool moveLeft;
+		private bool shoot;
 		private ComponentMapper transformMapper;
 	
 		public PlayerShipControlSystem(GameContainer container) : base(typeof(Transform), typeof(Player)) {
@@ -18,7 +20,7 @@ namespace StarWarrior
 		}
 	
 		public override void Process(Entity e) {
-			Transform transform = transformMapper.Get(e);
+			Transform transform = transformMapper.Get<Transform>(e);
 	
 			if (moveLeft) {
 				transform.AddX(world.GetDelta() * -0.3f);
@@ -29,9 +31,9 @@ namespace StarWarrior
 			
 			if (shoot) {
 				Entity missile = EntityFactory.CreateMissile(world);
-				missile.GetComponent(typeof(Transform)).SetLocation(transform.GetX(), transform.GetY() - 20);
-				missile.GetComponent(typeof(Velocity)).SetVelocity(-0.5f);
-				missile.GetComponent(typeof(Velocity)).SetAngle(90);
+				missile.GetComponent<Transform>(typeof(Transform)).SetLocation(transform.GetX(), transform.GetY() - 20);
+				missile.GetComponent<Velocity>(typeof(Velocity)).SetVelocity(-0.5f);
+				missile.GetComponent<Velocity>(typeof(Velocity)).SetAngle(90);
 				missile.Refresh();
 	
 				shoot = false;

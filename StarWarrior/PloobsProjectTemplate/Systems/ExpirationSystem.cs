@@ -1,4 +1,6 @@
 using System;
+using Artemis;
+using StarWarrior.Components;
 namespace StarWarrior
 {
 	public class ExpirationSystem : EntityProcessingSystem {
@@ -13,7 +15,7 @@ namespace StarWarrior
 		}
 	
 		public override void Process(Entity e) {
-			Expires expires = expiresMapper.Get(e);
+			Expires expires = expiresMapper.Get<Expires>(e);
 			expires.ReduceLifeTime(world.GetDelta());
 	
 			if (expires.IsExpired()) {

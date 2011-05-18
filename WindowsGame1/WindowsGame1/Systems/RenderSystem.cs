@@ -10,9 +10,11 @@ namespace StarWarrior.Systems
 		private ComponentMapper spatialFormMapper;
 		private ComponentMapper transformMapper;
 		private SpriteBatch spriteBatch;
+        GraphicsDevice device;
 	
-		public RenderSystem(SpriteBatch spriteBatch) : base(typeof(Transform), typeof(SpatialForm)) {
-			this.spriteBatch = spriteBatch;
+		public RenderSystem(GraphicsDevice device) : base(typeof(Transform), typeof(SpatialForm)) {
+            this.spriteBatch = new SpriteBatch(device);
+            this.device = device;
 			spatials = new Bag<Spatial>();
 		}
 	
@@ -47,7 +49,7 @@ namespace StarWarrior.Systems
 			String spatialFormFile = spatialForm.GetSpatialFormFile();
 	
 			if (String.Compare("PlayerShip",spatialFormFile,true) == 0) {
-				return new PlayerShip(world, e);
+                return new PlayerShip(world, e, device);
 			} else if (String.Compare("Missile",spatialFormFile,true) == 0) {
 				return new Missile(world, e);
 			} else if (String.Compare("EnemyShip",spatialFormFile,true) == 0) {

@@ -17,7 +17,7 @@ namespace StarWarrior.Systems
 			transformMapper = new ComponentMapper(typeof(Transform), world.GetEntityManager());
 		}
 	
-		override void Begin() {
+		public override void Begin() {
 			now = DateTime.Now.Ticks;
 		}
 	

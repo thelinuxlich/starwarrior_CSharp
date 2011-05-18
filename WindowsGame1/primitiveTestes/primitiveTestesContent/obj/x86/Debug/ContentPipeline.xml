@@ -7,10 +7,10 @@
       <TargetProfile>HiDef</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>C:\Users\tpastor\Desktop\Artemis\teste\WindowsGame1\WindowsGame1Content\</RootDirectory>
-      <LoggerRootDirectory>C:\Users\tpastor\Desktop\Artemis\teste\WindowsGame1\WindowsGame1\</LoggerRootDirectory>
-      <IntermediateDirectory>C:\Users\tpastor\Desktop\Artemis\teste\WindowsGame1\WindowsGame1Content\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>C:\Users\tpastor\Desktop\Artemis\teste\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>C:\Users\tpastor\Desktop\Artemis\teste\WindowsGame1\primitiveTestes\primitiveTestesContent\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\tpastor\Desktop\Artemis\teste\WindowsGame1\primitiveTestes\primitiveTestes\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\tpastor\Desktop\Artemis\teste\WindowsGame1\primitiveTestes\primitiveTestesContent\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\tpastor\Desktop\Artemis\teste\WindowsGame1\primitiveTestes\primitiveTestes\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>

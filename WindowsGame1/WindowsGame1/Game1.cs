@@ -48,26 +48,8 @@ namespace StarWarrior
         /// and initialize them as well.
         /// </summary>
         protected override void Initialize()
-        {
-            // TODO: Add your initialization logic here
-            world = new World();
-
-            SystemManager systemManager = world.GetSystemManager();
-            renderSystem = systemManager.SetSystem(new RenderSystem(spriteBatch));
-            hudRenderSystem = systemManager.SetSystem(new HudRenderSystem(spriteBatch));
-            controlSystem = systemManager.SetSystem(new MovementSystem(spriteBatch));
-            movementSystem = systemManager.SetSystem(new PlayerShipControlSystem(spriteBatch));
-            enemyShooterSystem = systemManager.SetSystem(new EnemyShipMovementSystem(spriteBatch));
-            enemyShipMovementSystem = systemManager.SetSystem(new EnemyShooterSystem());
-            collisionSystem = systemManager.SetSystem(new CollisionSystem());
-            healthBarRenderSystem = systemManager.SetSystem(new HealthBarRenderSystem(spriteBatch));
-            enemySpawnSystem = systemManager.SetSystem(new EnemySpawnSystem(500, spriteBatch));
-            expirationSystem = systemManager.SetSystem(new ExpirationSystem());
-
-            systemManager.InitializeAll();
-
-            InitPlayerShip();
-            InitEnemyShips();
+        {            
+            
             base.Initialize();
         }
 
@@ -104,6 +86,26 @@ namespace StarWarrior
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+
+            world = new World();
+
+            SystemManager systemManager = world.GetSystemManager();
+            renderSystem = systemManager.SetSystem(new RenderSystem(GraphicsDevice));
+            hudRenderSystem = systemManager.SetSystem(new HudRenderSystem(spriteBatch));
+            controlSystem = systemManager.SetSystem(new MovementSystem(spriteBatch));
+            movementSystem = systemManager.SetSystem(new PlayerShipControlSystem(spriteBatch));
+            enemyShooterSystem = systemManager.SetSystem(new EnemyShipMovementSystem(spriteBatch));
+            enemyShipMovementSystem = systemManager.SetSystem(new EnemyShooterSystem());
+            collisionSystem = systemManager.SetSystem(new CollisionSystem());
+            healthBarRenderSystem = systemManager.SetSystem(new HealthBarRenderSystem(spriteBatch));
+            enemySpawnSystem = systemManager.SetSystem(new EnemySpawnSystem(500, spriteBatch));
+            expirationSystem = systemManager.SetSystem(new ExpirationSystem());
+
+            systemManager.InitializeAll();
+
+            InitPlayerShip();
+            InitEnemyShips();
+
 
             // TODO: use this.Content to load your game content here
         }

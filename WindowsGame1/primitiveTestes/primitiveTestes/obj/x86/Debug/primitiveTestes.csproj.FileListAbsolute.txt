@@ -1,0 +1,6 @@
+C:\Users\tpastor\Desktop\Artemis\teste\WindowsGame1\primitiveTestes\primitiveTestes\bin\x86\Debug\primitiveTestes.exe
+C:\Users\tpastor\Desktop\Artemis\teste\WindowsGame1\primitiveTestes\primitiveTestes\bin\x86\Debug\primitiveTestes.pdb
+C:\Users\tpastor\Desktop\Artemis\teste\WindowsGame1\primitiveTestes\primitiveTestes\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\tpastor\Desktop\Artemis\teste\WindowsGame1\primitiveTestes\primitiveTestes\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\tpastor\Desktop\Artemis\teste\WindowsGame1\primitiveTestes\primitiveTestes\obj\x86\Debug\primitiveTestes.exe
+C:\Users\tpastor\Desktop\Artemis\teste\WindowsGame1\primitiveTestes\primitiveTestes\obj\x86\Debug\primitiveTestes.pdb

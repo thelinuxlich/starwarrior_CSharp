@@ -6,33 +6,32 @@ using Artemis;
 using StarWarrior.Components;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using StarWarrior.Primitives;
 
 namespace StarWarrior.Spatials
 {
     class PlayerShip : Spatial
     {
         private Transform transform;
-	    private Polygon ship;
+        private Triangle ship;
+        GraphicsDevice device;
 
-	    public PlayerShip(World world, Entity owner) : base(world, owner) {
+	    public PlayerShip(World world, Entity owner,GraphicsDevice device) : base(world, owner) {
+            this.device = device;
 	    }
 
 	    public override void Initalize() {
 		    ComponentMapper transformMapper = new ComponentMapper(typeof(Transform), world.GetEntityManager());
 		    transform = transformMapper.Get<Transform>(owner);
-
-		    ship = new Polygon();
-		    ship.AddPoint(0, -10);
-		    ship.AddPoint(10, 10);
-		    ship.AddPoint(-10, 10);
-		    ship.SetClosed(true);
+            ship = new Triangle(device);
+		    ship.AddTriangle(0, -10,10,10,-10,10);		    
+            ship.SetColor(Color.White);
 	    }
 
 	    public override void Render(SpriteBatch spriteBatch) {
-		    g.SetColor(Color.White);
-		    g.SetAntiAlias(true);
-		    ship.SetLocation(transform.GetX(), transform.GetY());
-		    g.Fill(ship);
+
+            ship.Draw( new Vector2((float)transform.GetX(), (float)transform.GetY()));
+            
 	    }
     }
 }

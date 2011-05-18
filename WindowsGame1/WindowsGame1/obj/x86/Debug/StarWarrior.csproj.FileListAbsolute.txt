@@ -1,6 +1,2 @@
-D:\WindowsGame1\WindowsGame1\WindowsGame1\obj\x86\Debug\ResolveAssemblyReference.cache
-D:\WindowsGame1\WindowsGame1\WindowsGame1\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
-D:\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\StarWarrior.exe
-D:\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\StarWarrior.pdb
-D:\WindowsGame1\WindowsGame1\WindowsGame1\obj\x86\Debug\StarWarrior.exe
-D:\WindowsGame1\WindowsGame1\WindowsGame1\obj\x86\Debug\StarWarrior.pdb
+C:\Users\tpastor\Desktop\Artemis\teste\WindowsGame1\WindowsGame1\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\tpastor\Desktop\Artemis\teste\WindowsGame1\WindowsGame1\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt

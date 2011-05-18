@@ -1,1 +1,0 @@
-D:\starwarrior_CSharp\StarWarrior\PloobsProjectTemplateContent\obj\x86\Debug\ResolveAssemblyReference.cache

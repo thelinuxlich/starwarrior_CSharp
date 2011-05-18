@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual C# Express 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarWarrior", "StarWarrior\PloobsProjectTemplate\StarWarrior.csproj", "{111ED9FB-355D-4378-A316-E122080652B4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarWarrior", "WindowsGame1\WindowsGame1\StarWarrior.csproj", "{2812F1D6-08A4-442A-9593-DC389EA9FB32}"
 EndProject
-Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "PloobsProjectTemplateContent", "StarWarrior\PloobsProjectTemplateContent\PloobsProjectTemplateContent.contentproj", "{1848855D-6629-4E24-B8C3-89E51D7F2E0E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarWarriorContent", "WindowsGame1\WindowsGame1Content\StarWarriorContent.contentproj", "{E0469A42-C861-4E3B-8874-521FCB5C2B8F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,12 +11,12 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{111ED9FB-355D-4378-A316-E122080652B4}.Debug|x86.ActiveCfg = Debug|x86
-		{111ED9FB-355D-4378-A316-E122080652B4}.Debug|x86.Build.0 = Debug|x86
-		{111ED9FB-355D-4378-A316-E122080652B4}.Release|x86.ActiveCfg = Release|x86
-		{111ED9FB-355D-4378-A316-E122080652B4}.Release|x86.Build.0 = Release|x86
-		{1848855D-6629-4E24-B8C3-89E51D7F2E0E}.Debug|x86.ActiveCfg = Debug|x86
-		{1848855D-6629-4E24-B8C3-89E51D7F2E0E}.Release|x86.ActiveCfg = Release|x86
+		{2812F1D6-08A4-442A-9593-DC389EA9FB32}.Debug|x86.ActiveCfg = Debug|x86
+		{2812F1D6-08A4-442A-9593-DC389EA9FB32}.Debug|x86.Build.0 = Debug|x86
+		{2812F1D6-08A4-442A-9593-DC389EA9FB32}.Release|x86.ActiveCfg = Release|x86
+		{2812F1D6-08A4-442A-9593-DC389EA9FB32}.Release|x86.Build.0 = Release|x86
+		{E0469A42-C861-4E3B-8874-521FCB5C2B8F}.Debug|x86.ActiveCfg = Debug|x86
+		{E0469A42-C861-4E3B-8874-521FCB5C2B8F}.Release|x86.ActiveCfg = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

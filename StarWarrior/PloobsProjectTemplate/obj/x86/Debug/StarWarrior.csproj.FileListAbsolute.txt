@@ -1,2 +1,0 @@
-D:\starwarrior_CSharp\StarWarrior\PloobsProjectTemplate\obj\x86\Debug\ResolveAssemblyReference.cache
-D:\starwarrior_CSharp\StarWarrior\PloobsProjectTemplate\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt

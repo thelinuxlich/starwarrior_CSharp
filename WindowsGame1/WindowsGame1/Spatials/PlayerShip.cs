@@ -29,9 +29,7 @@ namespace StarWarrior.Spatials
 	    }
 
 	    public override void Render(SpriteBatch spriteBatch) {
-
-            ship.Draw( new Vector2((float)transform.GetX(), (float)transform.GetY()));
-            
+            ship.Draw(new Vector2(transform.GetX(), transform.GetY()));
 	    }
     }
 }

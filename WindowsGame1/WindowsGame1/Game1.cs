@@ -142,6 +142,10 @@ namespace StarWarrior
             collisionSystem.Process();
             enemySpawnSystem.Process();
             expirationSystem.Process();
+
+            renderSystem.Process();
+            healthBarRenderSystem.Process();
+            hudRenderSystem.Process();
             base.Update(gameTime);
         }
 
@@ -152,10 +156,7 @@ namespace StarWarrior
         protected override void Draw(GameTime gameTime)
         {
             spriteBatch.Begin();
-            //GraphicsDevice.Clear(Color.CornflowerBlue);
-            renderSystem.Process();
-            healthBarRenderSystem.Process();
-            hudRenderSystem.Process();
+            //GraphicsDevice.Clear(Color.Black);  
             // TODO: Add your drawing code here
             base.Draw(gameTime);
             spriteBatch.End();

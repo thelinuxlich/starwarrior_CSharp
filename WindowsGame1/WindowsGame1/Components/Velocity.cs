@@ -51,9 +51,9 @@ namespace StarWarrior.Components
             angle = (angle + a) % 360;
         }
 
-        public double GetAngleAsRadians()
+        public float GetAngleAsRadians()
         {
-            return Math.PI * angle / 180.0; ;
+            return (float)Math.PI * angle / 180.0f; ;
         }
     }
 }

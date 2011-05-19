@@ -1,1 +1,2 @@
 C:\Users\tpastor\Desktop\Artemis\teste\WindowsGame1\WindowsGame1Content\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\starwarrior_CSharp\WindowsGame1\WindowsGame1Content\obj\x86\Debug\ResolveAssemblyReference.cache

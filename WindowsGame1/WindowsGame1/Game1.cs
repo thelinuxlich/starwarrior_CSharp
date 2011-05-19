@@ -48,8 +48,32 @@ namespace StarWarrior
         /// and initialize them as well.
         /// </summary>
         protected override void Initialize()
-        {            
-            
+        {
+            // Create a new SpriteBatch, which can be used to draw textures.
+            spriteBatch = new SpriteBatch(GraphicsDevice);
+
+            world = new World();
+
+            SpriteFont font = Content.Load<SpriteFont>("myFont");
+            SystemManager systemManager = world.GetSystemManager();
+            renderSystem = systemManager.SetSystem(new RenderSystem(GraphicsDevice));
+            hudRenderSystem = systemManager.SetSystem(new HudRenderSystem(spriteBatch,font));
+            controlSystem = systemManager.SetSystem(new MovementSystem(spriteBatch));
+            movementSystem = systemManager.SetSystem(new PlayerShipControlSystem(spriteBatch));
+            enemyShooterSystem = systemManager.SetSystem(new EnemyShipMovementSystem(spriteBatch));
+            enemyShipMovementSystem = systemManager.SetSystem(new EnemyShooterSystem());
+            collisionSystem = systemManager.SetSystem(new CollisionSystem());
+            healthBarRenderSystem = systemManager.SetSystem(new HealthBarRenderSystem(spriteBatch,font));
+            enemySpawnSystem = systemManager.SetSystem(new EnemySpawnSystem(500, spriteBatch));
+            expirationSystem = systemManager.SetSystem(new ExpirationSystem());
+
+            systemManager.InitializeAll();
+
+            InitPlayerShip();
+            InitEnemyShips();
+
+
+            // TODO: use this.Content to load your game content here   
             base.Initialize();
         }
 
@@ -70,7 +94,7 @@ namespace StarWarrior
 		    Entity e = world.CreateEntity();
 		    e.SetGroup("SHIPS");
 
-            e.AddComponent(new Transform(GraphicsDevice.Viewport.Width / 2, GraphicsDevice.Viewport.Height - 40));
+            e.AddComponent(new Transform(new Vector3(GraphicsDevice.Viewport.Width / 2, GraphicsDevice.Viewport.Height - 40,0)));
 		    e.AddComponent(new SpatialForm("PlayerShip"));
 		    e.AddComponent(new Health(30));
 		    e.AddComponent(new Player());
@@ -84,30 +108,6 @@ namespace StarWarrior
         /// </summary>
         protected override void LoadContent()
         {
-            // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(GraphicsDevice);
-
-            world = new World();
-
-            SystemManager systemManager = world.GetSystemManager();
-            renderSystem = systemManager.SetSystem(new RenderSystem(GraphicsDevice));
-            hudRenderSystem = systemManager.SetSystem(new HudRenderSystem(spriteBatch));
-            controlSystem = systemManager.SetSystem(new MovementSystem(spriteBatch));
-            movementSystem = systemManager.SetSystem(new PlayerShipControlSystem(spriteBatch));
-            enemyShooterSystem = systemManager.SetSystem(new EnemyShipMovementSystem(spriteBatch));
-            enemyShipMovementSystem = systemManager.SetSystem(new EnemyShooterSystem());
-            collisionSystem = systemManager.SetSystem(new CollisionSystem());
-            healthBarRenderSystem = systemManager.SetSystem(new HealthBarRenderSystem(spriteBatch));
-            enemySpawnSystem = systemManager.SetSystem(new EnemySpawnSystem(500, spriteBatch));
-            expirationSystem = systemManager.SetSystem(new ExpirationSystem());
-
-            systemManager.InitializeAll();
-
-            InitPlayerShip();
-            InitEnemyShips();
-
-
-            // TODO: use this.Content to load your game content here
         }
 
         /// <summary>
@@ -151,13 +151,14 @@ namespace StarWarrior
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
+            spriteBatch.Begin();
             //GraphicsDevice.Clear(Color.CornflowerBlue);
             renderSystem.Process();
             healthBarRenderSystem.Process();
             hudRenderSystem.Process();
             // TODO: Add your drawing code here
-
             base.Draw(gameTime);
+            spriteBatch.End();
         }
     }
 }

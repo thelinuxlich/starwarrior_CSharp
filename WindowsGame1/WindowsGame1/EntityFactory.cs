@@ -1,6 +1,7 @@
 using System;
 using StarWarrior.Components;
 using Artemis;
+using Microsoft.Xna.Framework;
 namespace StarWarrior
 {
 	public class EntityFactory {
@@ -30,24 +31,24 @@ namespace StarWarrior
 			return e;
 		}
 		
-		public static Entity CreateBulletExplosion(World world, double x, double y) {
+		public static Entity CreateBulletExplosion(World world, float x, float y) {
 			Entity e = world.CreateEntity();
 			
 			e.SetGroup("EFFECTS");
 			
-			e.AddComponent(new Transform(x, y));
+			e.AddComponent(new Transform(new Vector3(x,y,0)));
 			e.AddComponent(new SpatialForm("BulletExplosion"));
 			e.AddComponent(new Expires(1000));
 			
 			return e;
 		}
 		
-		public static Entity CreateShipExplosion(World world, double x, double y) {
+		public static Entity CreateShipExplosion(World world, float x, float y) {
 			Entity e = world.CreateEntity();
 			
 			e.SetGroup("EFFECTS");
 			
-			e.AddComponent(new Transform(x, y));
+			e.AddComponent(new Transform(new Vector3(x, y,0)));
 			e.AddComponent(new SpatialForm("ShipExplosion"));
 			e.AddComponent(new Expires(1000));
 			

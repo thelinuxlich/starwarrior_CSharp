@@ -70,5 +70,5 @@ namespace StarWarrior.Systems
             }
             oldState = ks;
 		}
-	}
+    }
 }

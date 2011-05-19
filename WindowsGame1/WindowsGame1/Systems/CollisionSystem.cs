@@ -16,7 +16,7 @@ namespace StarWarrior.Systems
 	    public CollisionSystem() : base(typeof(Transform)){
 	    }
 
-	    public override void initialize() {
+	    public override void Initialize() {
 		    transformMapper = new ComponentMapper(typeof(Transform), world.GetEntityManager());
 		    velocityMapper = new ComponentMapper(typeof(Velocity), world.GetEntityManager());
 		    healthMapper = new ComponentMapper(typeof(Health), world.GetEntityManager());
@@ -65,10 +65,5 @@ namespace StarWarrior.Systems
 		    Transform t2 = transformMapper.Get<Transform>(e2);
 		    return t1.GetDistanceTo(t2) < 15;
 	    }
-
-	    protected bool checkProcessing() {
-		    return true;
-	    }
-
     }
 }

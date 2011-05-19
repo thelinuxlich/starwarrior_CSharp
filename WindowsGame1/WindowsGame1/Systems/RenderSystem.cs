@@ -53,7 +53,7 @@ namespace StarWarrior.Systems
 			} else if (String.Compare("Missile",spatialFormFile,true) == 0) {
 				return new Missile(world, e);
 			} else if (String.Compare("EnemyShip",spatialFormFile,true) == 0) {
-				return new EnemyShip(world, e);
+				return new EnemyShip(world, e,device);
 			} else if (String.Compare("BulletExplosion",spatialFormFile,true) == 0) {
 				return new Explosion(world, e, 10);
 			} else if (String.Compare("ShipExplosion",spatialFormFile,true) == 0) {
@@ -62,6 +62,5 @@ namespace StarWarrior.Systems
 	
 			return null;
 		}
-	
-	}
+    }
 }

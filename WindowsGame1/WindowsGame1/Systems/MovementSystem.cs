@@ -24,14 +24,13 @@ namespace StarWarrior.Systems
 	
 			Transform transform = transformMapper.Get<Transform>(e);
 	
-			double r = velocity.GetAngleAsRadians();
+			float r = velocity.GetAngleAsRadians();
 	
-			double xn = transform.GetX() + (TrigLUT.Cos(r) * v * world.GetDelta());
-			double yn = transform.GetY() + (TrigLUT.Sin(r) * v * world.GetDelta());
+			float xn = transform.GetX() + (TrigLUT.Cos(r) * v * world.GetDelta());
+			float yn = transform.GetY() + (TrigLUT.Sin(r) * v * world.GetDelta());
 	
 			transform.SetLocation(xn, yn);
 		}
-	
-	}
+    }
 }
 

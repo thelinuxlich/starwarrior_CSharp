@@ -3,76 +3,69 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Artemis;
+using Microsoft.Xna.Framework;
 
 namespace StarWarrior.Components
 {
     class Transform : Component
     {
-        private double x;
-	    private double y;
-	    private double rotation;
+        private Vector3 coords;
 
-	    public Transform() {
+        public Transform()
+        {
+        }
+
+	    public Transform(Vector3 coords) {
+		    this.coords = coords;
 	    }
 
-	    public Transform(double x, double y) {
-		    this.x = x;
-		    this.y = y;
+	    public void AddX(float x) {
+		    this.coords.X += x;
 	    }
 
-	    public Transform(double x, double y, double rotation) {
-		    this.x = x;
-            this.y = y;
-		    this.rotation = rotation;
+	    public void AddY(float y) {
+		    this.coords.Y += y;
 	    }
 
-	    public void AddX(double x) {
-		    this.x += x;
+	    public float GetX() {
+		    return this.coords.X;
 	    }
 
-	    public void AddY(double y) {
-		    this.y += y;
+	    public void SetX(float x) {
+		    this.coords.X = x;
 	    }
 
-	    public double GetX() {
-		    return x;
+	    public float GetY() {
+		    return this.coords.Y;
 	    }
 
-	    public void SetX(double x) {
-		    this.x = x;
+	    public void SetY(float y) {
+		    this.coords.Y = y;
 	    }
 
-	    public double GetY() {
-		    return y;
+	    public void SetLocation(float x, float y) {
+		    this.coords.X = x;
+		    this.coords.Y = y;
 	    }
 
-	    public void SetY(double y) {
-		    this.y = y;
+	    public float GetRotation() {
+		    return this.coords.Z;
 	    }
 
-	    public void SetLocation(double x, double y) {
-		    this.x = x;
-		    this.y = y;
+	    public void SetRotation(float rotation) {
+		    this.coords.Z = rotation;
 	    }
 
-	    public double GetRotation() {
-		    return rotation;
+	    public void AddRotation(float angle) {
+		    this.coords.Z = (this.coords.Z + angle) % 360;
 	    }
 
-	    public void SetRotation(double rotation) {
-		    this.rotation = rotation;
-	    }
-
-	    public void AddRotation(double angle) {
-		    rotation = (rotation + angle) % 360;
-	    }
-
-	    public double GetRotationAsRadians() {
-            return Math.PI * rotation / 180.0;
+	    public float GetRotationAsRadians() {
+            return (float)Math.PI * this.coords.Z / 180.0f;
 	    }
 	
-	    public double GetDistanceTo(Transform t) {
-		    return Artemis.Utils.Distance(t.GetX(), t.GetY(), x, y);
+	    public float GetDistanceTo(Transform t) {
+		    return Artemis.Utils.Distance(t.GetX(), t.GetY(), GetX(), GetY());
 	    }
     }
 }

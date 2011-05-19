@@ -18,12 +18,12 @@ namespace StarWarrior.Systems
 		    this.spriteBatch = spriteBatch;
 	    }
 
-	    public override void initialize() {
+	    public override void Initialize() {
 		    transformMapper = new ComponentMapper(typeof(Transform), world.GetEntityManager());
 		    velocityMapper = new ComponentMapper(typeof(Velocity), world.GetEntityManager());
 	    }
 
-	    protected override void process(Entity e) {
+	    public override void Process(Entity e) {
 		    Transform transform = transformMapper.Get<Transform>(e);
 		    Velocity velocity = velocityMapper.Get<Velocity>(e);
 

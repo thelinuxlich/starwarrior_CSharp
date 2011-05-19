@@ -32,7 +32,6 @@ namespace StarWarrior.Systems
 			
 			e.Refresh();
 		}
-		
-	}
+    }
 }
 

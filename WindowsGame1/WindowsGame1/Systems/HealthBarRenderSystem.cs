@@ -9,9 +9,11 @@ namespace StarWarrior.Systems
 		private SpriteBatch spriteBatch;
 		private ComponentMapper healthMapper;
 		private ComponentMapper transformMapper;
+        private SpriteFont font;
 	
-		public HealthBarRenderSystem(SpriteBatch spriteBatch) : base(typeof(Health), typeof(Transform)) {
+		public HealthBarRenderSystem(SpriteBatch spriteBatch,SpriteFont font) : base(typeof(Health), typeof(Transform)) {
 			this.spriteBatch = spriteBatch;
+            this.font = font;
 		}
 	
 		public override void Initialize() {
@@ -22,11 +24,9 @@ namespace StarWarrior.Systems
 		public override void Process(Entity e) {
 			Health health = healthMapper.Get<Health>(e);
 			Transform transform = transformMapper.Get<Transform>(e);
-			SpriteFont font = new SpriteFont();
-            Vector2 textPosition = new Vector2((float)transform.GetX()-10, (float)transform.GetY()-30);
+			Vector2 textPosition = new Vector2((float)transform.GetX()-10, (float)transform.GetY()-30);
 			spriteBatch.DrawString(font,health.GetHealthPercentage() + "%",textPosition,Color.White);
 		}
-	
-	}
+    }
 }
 

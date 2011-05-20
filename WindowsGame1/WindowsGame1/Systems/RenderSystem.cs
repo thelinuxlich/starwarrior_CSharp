@@ -12,8 +12,8 @@ namespace StarWarrior.Systems
 		private SpriteBatch spriteBatch;
         GraphicsDevice device;
 	
-		public RenderSystem(GraphicsDevice device) : base(typeof(Transform), typeof(SpatialForm)) {
-            this.spriteBatch = new SpriteBatch(device);
+		public RenderSystem(GraphicsDevice device,SpriteBatch spriteBatch) : base(typeof(Transform), typeof(SpatialForm)) {
+            this.spriteBatch = spriteBatch;
             this.device = device;
 			spatials = new Bag<Spatial>();
 		}
@@ -28,9 +28,9 @@ namespace StarWarrior.Systems
 			Transform transform = transformMapper.Get<Transform>(e);
 	
 			if (transform.GetX() >= 0 && transform.GetY() >= 0 && transform.GetX() < spriteBatch.GraphicsDevice.Viewport.Width && transform.GetY() < spriteBatch.GraphicsDevice.Viewport.Height && spatial != null) {
-                spriteBatch.Begin();
+               // spriteBatch.Begin();
 				spatial.Render(spriteBatch);
-                spriteBatch.End();
+                //spriteBatch.End();
 			}
 		}
 	

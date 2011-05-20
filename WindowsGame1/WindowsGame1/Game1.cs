@@ -34,6 +34,7 @@ namespace StarWarrior
         private EntitySystem healthBarRenderSystem;
         private EntitySystem enemySpawnSystem;
         private EntitySystem expirationSystem;
+        int delta = 0;
 
         public Game1()
         {
@@ -56,7 +57,7 @@ namespace StarWarrior
 
             SpriteFont font = Content.Load<SpriteFont>("myFont");
             SystemManager systemManager = world.GetSystemManager();
-            renderSystem = systemManager.SetSystem(new RenderSystem(GraphicsDevice));
+            renderSystem = systemManager.SetSystem(new RenderSystem(GraphicsDevice,spriteBatch));
             hudRenderSystem = systemManager.SetSystem(new HudRenderSystem(spriteBatch,font));
             controlSystem = systemManager.SetSystem(new MovementSystem(spriteBatch));
             movementSystem = systemManager.SetSystem(new PlayerShipControlSystem(spriteBatch));
@@ -127,7 +128,8 @@ namespace StarWarrior
         protected override void Update(GameTime gameTime)
         {
             world.LoopStart();
-            world.SetDelta(gameTime.TotalGameTime.Milliseconds);
+            //delta++;
+            world.SetDelta(gameTime.ElapsedGameTime.Milliseconds);
 
             controlSystem.Process();
             movementSystem.Process();
@@ -145,6 +147,7 @@ namespace StarWarrior
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
+
             GraphicsDevice.Clear(Color.Black);  
             spriteBatch.Begin();
             renderSystem.Process();

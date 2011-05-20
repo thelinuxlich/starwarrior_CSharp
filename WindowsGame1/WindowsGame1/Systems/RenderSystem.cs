@@ -28,7 +28,9 @@ namespace StarWarrior.Systems
 			Transform transform = transformMapper.Get<Transform>(e);
 	
 			if (transform.GetX() >= 0 && transform.GetY() >= 0 && transform.GetX() < spriteBatch.GraphicsDevice.Viewport.Width && transform.GetY() < spriteBatch.GraphicsDevice.Viewport.Height && spatial != null) {
+                spriteBatch.Begin();
 				spatial.Render(spriteBatch);
+                spriteBatch.End();
 			}
 		}
 	

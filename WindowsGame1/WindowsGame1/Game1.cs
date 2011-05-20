@@ -82,9 +82,9 @@ namespace StarWarrior
 		    for (int i = 0; 10 > i; i++) {
 			    Entity e = EntityFactory.CreateEnemyShip(world);
 
-			    e.GetComponent<Transform>(typeof(Transform)).SetLocation(r.Next(GraphicsDevice.Viewport.Width), r.Next(400)+50);
-			    e.GetComponent<Velocity>(typeof(Velocity)).SetVelocity(0.05f);
-			    e.GetComponent<Velocity>(typeof(Velocity)).SetAngle(r.Next() % 2 == 0 ? 0 : 180);
+			    e.GetComponent<Transform>().SetLocation(r.Next(GraphicsDevice.Viewport.Width), r.Next(400)+50);
+			    e.GetComponent<Velocity>().SetVelocity(0.05f);
+			    e.GetComponent<Velocity>().SetAngle(r.Next() % 2 == 0 ? 0 : 180);
 			
 			    e.Refresh();
 		    }
@@ -126,13 +126,7 @@ namespace StarWarrior
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            // Allows the game to exit
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
-                this.Exit();
-
-            // TODO: Add your update logic here
             world.LoopStart();
-
             world.SetDelta(gameTime.TotalGameTime.Milliseconds);
 
             controlSystem.Process();
@@ -142,10 +136,6 @@ namespace StarWarrior
             collisionSystem.Process();
             enemySpawnSystem.Process();
             expirationSystem.Process();
-
-            renderSystem.Process();
-            healthBarRenderSystem.Process();
-            hudRenderSystem.Process();
             base.Update(gameTime);
         }
 
@@ -155,9 +145,11 @@ namespace StarWarrior
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
+            GraphicsDevice.Clear(Color.Black);  
             spriteBatch.Begin();
-            //GraphicsDevice.Clear(Color.Black);  
-            // TODO: Add your drawing code here
+            renderSystem.Process();
+            healthBarRenderSystem.Process();
+            hudRenderSystem.Process();
             base.Draw(gameTime);
             spriteBatch.End();
         }

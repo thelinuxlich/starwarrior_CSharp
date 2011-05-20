@@ -28,9 +28,9 @@ namespace StarWarrior.Systems
 				Transform transform = transformMapper.Get<Transform>(e);
 	
 				Entity missile = EntityFactory.CreateMissile(world);
-				missile.GetComponent<Transform>(typeof(Transform)).SetLocation(transform.GetX(), transform.GetY() + 20);
-				missile.GetComponent<Velocity>(typeof(Velocity)).SetVelocity(-0.5f);
-				missile.GetComponent<Velocity>(typeof(Velocity)).SetAngle(270);
+				missile.GetComponent<Transform>().SetLocation(transform.GetX(), transform.GetY() + 20);
+				missile.GetComponent<Velocity>().SetVelocity(-0.5f);
+				missile.GetComponent<Velocity>().SetAngle(270);
 				missile.Refresh();
 	
 				weapon.SetShotAt(now);

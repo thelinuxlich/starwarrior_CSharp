@@ -26,9 +26,9 @@ namespace StarWarrior.Systems
 		public override void ProcessEntities(Bag<Entity> entities) {
 			Entity e = EntityFactory.CreateEnemyShip(world);
 			
-			e.GetComponent<Transform>(typeof(Transform)).SetLocation(r.Next(spriteBatch.GraphicsDevice.Viewport.Width), r.Next(400)+50);
-			e.GetComponent<Velocity>(typeof(Velocity)).SetVelocity(0.05f);
-			e.GetComponent<Velocity>(typeof(Velocity)).SetAngle(r.Next() % 2  == 0 ? 0 : 180);
+			e.GetComponent<Transform>().SetLocation(r.Next(spriteBatch.GraphicsDevice.Viewport.Width), r.Next(400)+50);
+			e.GetComponent<Velocity>().SetVelocity(0.05f);
+			e.GetComponent<Velocity>().SetAngle(r.Next() % 2  == 0 ? 0 : 180);
 			
 			e.Refresh();
 		}

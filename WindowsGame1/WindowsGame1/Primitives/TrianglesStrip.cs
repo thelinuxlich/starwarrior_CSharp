@@ -17,10 +17,10 @@ namespace StarWarrior.Primitives
         GraphicsDevice device;
 
 
-        public TrianglesStrip(GraphicsDevice device)
+        public TrianglesStrip(GraphicsDevice device,PrimitiveBatch primitiveBatch)
         {
             this.device = device;
-            this.batch = new PrimitiveBatch(device);
+            this.batch = primitiveBatch;
             state = new RasterizerState();
             state.CullMode = CullMode.CullCounterClockwiseFace;
             state.FillMode = FillMode.WireFrame;

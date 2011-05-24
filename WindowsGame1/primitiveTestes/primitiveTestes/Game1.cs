@@ -19,8 +19,9 @@ namespace primitiveTestes
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        Triangle poligono;
+        Triangle poligono,poligono2,poligono3;
         Vector2 transform = new Vector2();
+        PrimitiveBatch batch;
 
         public Game1()
         {
@@ -37,7 +38,7 @@ namespace primitiveTestes
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
+            batch = new PrimitiveBatch(GraphicsDevice);
             base.Initialize();
         }
 
@@ -54,6 +55,18 @@ namespace primitiveTestes
             poligono.AddTriangle(50, 0,50,50,0,50);            
             poligono.SetColor(Color.White);
             poligono.SetFillMode(true);
+
+            poligono2 = new Triangle(GraphicsDevice);
+
+            poligono2.AddTriangle(50, 0, 50, 50, 0, 50);
+            poligono2.SetColor(Color.White);
+            poligono2.SetFillMode(true);
+
+            poligono3 = new Triangle(GraphicsDevice);
+
+            poligono3.AddTriangle(50, 0, 50, 50, 0, 50);
+            poligono3.SetColor(Color.White);
+            poligono3.SetFillMode(true);
 
         }
 
@@ -107,9 +120,11 @@ namespace primitiveTestes
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
-            poligono.Draw(transform);            
-
+            batch.Begin(PrimitiveType.TriangleList);
+            poligono.Draw(transform);
+            poligono2.Draw(transform);
+            poligono3.Draw(transform);
+            batch.End();
             base.Draw(gameTime);
         }
     }

@@ -15,15 +15,17 @@ namespace StarWarrior.Spatials
         private Transform transform;
         private Triangle ship;
         GraphicsDevice device;
+        PrimitiveBatch primitiveBatch;
 
-	    public PlayerShip(World world, Entity owner,GraphicsDevice device) : base(world, owner) {
+	    public PlayerShip(World world, Entity owner,GraphicsDevice device,PrimitiveBatch primitiveBatch) : base(world, owner) {
             this.device = device;
+            this.primitiveBatch = primitiveBatch;
 	    }
 
 	    public override void Initalize() {
 		    ComponentMapper transformMapper = new ComponentMapper(typeof(Transform), world.GetEntityManager());
 		    transform = transformMapper.Get<Transform>(owner);
-            ship = new Triangle(device);
+            ship = new Triangle(device,primitiveBatch);
 		    ship.AddTriangle(0, -10,10,10,-10,10);		    
             ship.SetColor(Color.White);
 	    }

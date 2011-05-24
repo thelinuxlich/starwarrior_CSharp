@@ -17,10 +17,10 @@ namespace StarWarrior.Primitives
         GraphicsDevice device;       
 
 
-        public Triangle(GraphicsDevice device)
+        public Triangle(GraphicsDevice device,PrimitiveBatch primitiveBatch)
         {
             this.device = device;
-            this.batch = new PrimitiveBatch(device);
+            this.batch = primitiveBatch;
             state = new RasterizerState();
             state.CullMode = CullMode.CullCounterClockwiseFace;
             state.FillMode = FillMode.WireFrame;
@@ -50,13 +50,11 @@ namespace StarWarrior.Primitives
                 device.RasterizerState = state;
             }
 
-            batch.Begin(PrimitiveType.TriangleList);
             foreach (var item in point)
             {
                 batch.AddVertex(item + transform, color);       
             }
-            batch.End();
-
+           
             if (fill == false)
             {
                 device.RasterizerState = RasterizerState.CullCounterClockwise;

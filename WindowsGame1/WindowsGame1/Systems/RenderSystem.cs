@@ -3,6 +3,7 @@ using Artemis;
 using StarWarrior.Components;
 using StarWarrior.Spatials;
 using Microsoft.Xna.Framework.Graphics;
+using StarWarrior.Primitives;
 namespace StarWarrior.Systems	
 {
 	public class RenderSystem : EntityProcessingSystem {
@@ -10,10 +11,12 @@ namespace StarWarrior.Systems
 		private ComponentMapper spatialFormMapper;
 		private ComponentMapper transformMapper;
 		private SpriteBatch spriteBatch;
+        private PrimitiveBatch primitiveBatch;
         GraphicsDevice device;
 	
-		public RenderSystem(GraphicsDevice device,SpriteBatch spriteBatch) : base(typeof(Transform), typeof(SpatialForm)) {
+		public RenderSystem(GraphicsDevice device,SpriteBatch spriteBatch,PrimitiveBatch primitiveBatch) : base(typeof(Transform), typeof(SpatialForm)) {
             this.spriteBatch = spriteBatch;
+            this.primitiveBatch = primitiveBatch;
             this.device = device;
 			spatials = new Bag<Spatial>();
 		}
@@ -28,9 +31,7 @@ namespace StarWarrior.Systems
 			Transform transform = transformMapper.Get<Transform>(e);
 	
 			if (transform.GetX() >= 0 && transform.GetY() >= 0 && transform.GetX() < spriteBatch.GraphicsDevice.Viewport.Width && transform.GetY() < spriteBatch.GraphicsDevice.Viewport.Height && spatial != null) {
-               // spriteBatch.Begin();
-				spatial.Render(spriteBatch);
-                //spriteBatch.End();
+               spatial.Render(spriteBatch);
 			}
 		}
 	
@@ -49,13 +50,13 @@ namespace StarWarrior.Systems
 		private Spatial CreateSpatial(Entity e) {
 			SpatialForm spatialForm = spatialFormMapper.Get<SpatialForm>(e);
 			String spatialFormFile = spatialForm.GetSpatialFormFile();
-	
+	        
 			if (String.Compare("PlayerShip",spatialFormFile,true) == 0) {
-                return new PlayerShip(world, e, device);
+                return new PlayerShip(world, e, device,primitiveBatch);
 			} else if (String.Compare("Missile",spatialFormFile,true) == 0) {
 				return new Missile(world, e);
 			} else if (String.Compare("EnemyShip",spatialFormFile,true) == 0) {
-				return new EnemyShip(world, e,device);
+				return new EnemyShip(world, e,device,primitiveBatch);
 			} else if (String.Compare("BulletExplosion",spatialFormFile,true) == 0) {
 				return new Explosion(world, e, 10);
 			} else if (String.Compare("ShipExplosion",spatialFormFile,true) == 0) {

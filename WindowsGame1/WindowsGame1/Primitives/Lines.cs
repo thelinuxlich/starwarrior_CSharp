@@ -15,10 +15,10 @@ namespace StarWarrior.Primitives
         GraphicsDevice device;
 
 
-        public Lines(GraphicsDevice device)
+        public Lines(GraphicsDevice device,PrimitiveBatch primitiveBatch)
         {
             this.device = device;
-            this.batch = new PrimitiveBatch(device);            
+            this.batch = primitiveBatch;            
         }
 
         public void AddLine(float x1, float y1, float x2, float y2)

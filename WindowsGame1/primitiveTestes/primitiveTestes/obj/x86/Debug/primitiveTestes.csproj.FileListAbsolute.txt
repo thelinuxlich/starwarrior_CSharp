@@ -4,3 +4,9 @@ C:\Users\tpastor\Desktop\Artemis\teste\WindowsGame1\primitiveTestes\primitiveTes
 C:\Users\tpastor\Desktop\Artemis\teste\WindowsGame1\primitiveTestes\primitiveTestes\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 C:\Users\tpastor\Desktop\Artemis\teste\WindowsGame1\primitiveTestes\primitiveTestes\obj\x86\Debug\primitiveTestes.exe
 C:\Users\tpastor\Desktop\Artemis\teste\WindowsGame1\primitiveTestes\primitiveTestes\obj\x86\Debug\primitiveTestes.pdb
+D:\starwarrior_CSharp\WindowsGame1\primitiveTestes\primitiveTestes\bin\x86\Debug\primitiveTestes.exe
+D:\starwarrior_CSharp\WindowsGame1\primitiveTestes\primitiveTestes\bin\x86\Debug\primitiveTestes.pdb
+D:\starwarrior_CSharp\WindowsGame1\primitiveTestes\primitiveTestes\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\starwarrior_CSharp\WindowsGame1\primitiveTestes\primitiveTestes\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+D:\starwarrior_CSharp\WindowsGame1\primitiveTestes\primitiveTestes\obj\x86\Debug\primitiveTestes.exe
+D:\starwarrior_CSharp\WindowsGame1\primitiveTestes\primitiveTestes\obj\x86\Debug\primitiveTestes.pdb

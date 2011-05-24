@@ -11,6 +11,7 @@ using Microsoft.Xna.Framework.Media;
 using Artemis;
 using StarWarrior.Components;
 using StarWarrior.Systems;
+using StarWarrior.Primitives;
 
 namespace StarWarrior
 {
@@ -22,6 +23,7 @@ namespace StarWarrior
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        PrimitiveBatch primitiveBatch;
         private World world;
 
         private EntitySystem renderSystem;
@@ -34,7 +36,10 @@ namespace StarWarrior
         private EntitySystem healthBarRenderSystem;
         private EntitySystem enemySpawnSystem;
         private EntitySystem expirationSystem;
-        int delta = 0;
+        private SpriteFont font;
+
+        int frameRate,frameCounter;
+        TimeSpan elapsedTime = TimeSpan.Zero;
 
         public Game1()
         {
@@ -52,12 +57,13 @@ namespace StarWarrior
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            primitiveBatch = new PrimitiveBatch(GraphicsDevice);
 
             world = new World();
 
-            SpriteFont font = Content.Load<SpriteFont>("myFont");
+            font = Content.Load<SpriteFont>("myFont");
             SystemManager systemManager = world.GetSystemManager();
-            renderSystem = systemManager.SetSystem(new RenderSystem(GraphicsDevice,spriteBatch));
+            renderSystem = systemManager.SetSystem(new RenderSystem(GraphicsDevice,spriteBatch,primitiveBatch));
             hudRenderSystem = systemManager.SetSystem(new HudRenderSystem(spriteBatch,font));
             controlSystem = systemManager.SetSystem(new MovementSystem(spriteBatch));
             movementSystem = systemManager.SetSystem(new PlayerShipControlSystem(spriteBatch));
@@ -65,7 +71,7 @@ namespace StarWarrior
             enemyShipMovementSystem = systemManager.SetSystem(new EnemyShooterSystem());
             collisionSystem = systemManager.SetSystem(new CollisionSystem());
             healthBarRenderSystem = systemManager.SetSystem(new HealthBarRenderSystem(spriteBatch,font));
-            enemySpawnSystem = systemManager.SetSystem(new EnemySpawnSystem(500, spriteBatch));
+            enemySpawnSystem = systemManager.SetSystem(new EnemySpawnSystem(5000000, spriteBatch));
             expirationSystem = systemManager.SetSystem(new ExpirationSystem());
 
             systemManager.InitializeAll();
@@ -80,7 +86,7 @@ namespace StarWarrior
 
         private void InitEnemyShips() {
 		    Random r = new Random();
-		    for (int i = 0; 10 > i; i++) {
+		    for (int i = 0; 2 > i; i++) {
 			    Entity e = EntityFactory.CreateEnemyShip(world);
 
 			    e.GetComponent<Transform>().SetLocation(r.Next(GraphicsDevice.Viewport.Width), r.Next(400)+50);
@@ -128,7 +134,6 @@ namespace StarWarrior
         protected override void Update(GameTime gameTime)
         {
             world.LoopStart();
-            //delta++;
             world.SetDelta(gameTime.ElapsedGameTime.Milliseconds);
 
             controlSystem.Process();
@@ -138,6 +143,16 @@ namespace StarWarrior
             collisionSystem.Process();
             enemySpawnSystem.Process();
             expirationSystem.Process();
+
+            elapsedTime += gameTime.ElapsedGameTime;
+
+            if (elapsedTime > TimeSpan.FromSeconds(1))
+            {
+                elapsedTime -= TimeSpan.FromSeconds(1);
+                frameRate = frameCounter;
+                frameCounter = 0;
+            }
+
             base.Update(gameTime);
         }
 
@@ -148,12 +163,18 @@ namespace StarWarrior
         protected override void Draw(GameTime gameTime)
         {
 
-            GraphicsDevice.Clear(Color.Black);  
+            frameCounter++;
+            string fps = string.Format("fps: {0}", frameRate);
+
+            GraphicsDevice.Clear(Color.Black);
+            primitiveBatch.Begin(PrimitiveType.TriangleList);
             spriteBatch.Begin();
+            spriteBatch.DrawString(font, fps, new Vector2(32,32), Color.Yellow);
             renderSystem.Process();
             healthBarRenderSystem.Process();
             hudRenderSystem.Process();
             base.Draw(gameTime);
+            primitiveBatch.End();
             spriteBatch.End();
         }
     }

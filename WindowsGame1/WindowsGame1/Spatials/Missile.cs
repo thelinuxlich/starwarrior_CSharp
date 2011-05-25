@@ -13,7 +13,7 @@ namespace StarWarrior.Spatials
     {
         private Transform transform;
 
-        Texture2D pixel = null;
+        static Texture2D pixel = null;
 	    public Missile(World world, Entity owner) : base(world, owner) {
 	    }
 

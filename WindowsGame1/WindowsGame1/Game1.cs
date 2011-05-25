@@ -174,10 +174,11 @@ namespace StarWarrior
             spriteBatch.DrawString(font, fps, new Vector2(32,32), Color.Yellow);
             renderSystem.Process();
             healthBarRenderSystem.Process();
-            hudRenderSystem.Process();
-            base.Draw(gameTime);
+            hudRenderSystem.Process();            
             primitiveBatch.End();
             spriteBatch.End();
+
+            base.Draw(gameTime);
         }
     }
 }

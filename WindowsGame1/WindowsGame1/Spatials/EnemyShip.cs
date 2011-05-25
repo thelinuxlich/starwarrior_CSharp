@@ -13,7 +13,7 @@ namespace StarWarrior.Spatials
     class EnemyShip : Spatial
     {
         private Transform transform;
-        private Triangle ship;
+        private static Triangle ship;
         GraphicsDevice device;
         PrimitiveBatch primitiveBatch;
 

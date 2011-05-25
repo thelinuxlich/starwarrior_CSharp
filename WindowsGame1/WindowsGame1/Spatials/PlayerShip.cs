@@ -13,7 +13,7 @@ namespace StarWarrior.Spatials
     class PlayerShip : Spatial
     {
         private Transform transform;
-        private Triangle ship;
+        private static Triangle ship = null;
         GraphicsDevice device;
         PrimitiveBatch primitiveBatch;
 
@@ -25,9 +25,12 @@ namespace StarWarrior.Spatials
 	    public override void Initalize() {
 		    ComponentMapper transformMapper = new ComponentMapper(typeof(Transform), world.GetEntityManager());
 		    transform = transformMapper.Get<Transform>(owner);
-            ship = new Triangle(device,primitiveBatch);
-		    ship.AddTriangle(0, -10,10,10,-10,10);		    
-            ship.SetColor(Color.White);
+            if (ship == null)
+            {
+                ship = new Triangle(device, primitiveBatch);
+                ship.AddTriangle(0, -10, 10, 10, -10, 10);
+                ship.SetColor(Color.White);
+            }
 	    }
 
 	    public override void Render(SpriteBatch spriteBatch) {

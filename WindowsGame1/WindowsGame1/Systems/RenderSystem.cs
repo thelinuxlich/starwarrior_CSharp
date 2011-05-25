@@ -23,7 +23,8 @@ namespace StarWarrior.Systems
 	
 		public override void Initialize() {
 			spatialFormMapper = new ComponentMapper(typeof(SpatialForm), world.GetEntityManager());
-			transformMapper = new ComponentMapper(typeof(Transform), world.GetEntityManager());
+			transformMapper = new ComponentMapper(typeof(Transform), world.GetEntityManager());          
+
 		}
 	
 		public override void Process(Entity e) {
@@ -46,8 +47,11 @@ namespace StarWarrior.Systems
 		public override void Removed(Entity e) {
 			spatials.Set(e.GetId(), null);
 		}
-	
+
+        
+
 		private Spatial CreateSpatial(Entity e) {
+
 			SpatialForm spatialForm = spatialFormMapper.Get<SpatialForm>(e);
 			String spatialFormFile = spatialForm.GetSpatialFormFile();
 	        

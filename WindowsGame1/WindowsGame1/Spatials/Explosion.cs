@@ -16,7 +16,7 @@ namespace StarWarrior.Spatials
 	    private int initialLifeTime;
 	    private Color color;
 	    private int radius;
-        Texture2D circle = null;
+        static Texture2D circle = null;
 
 	    public Explosion(World world, Entity owner, int radius) : base(world, owner) {
 		    this.radius = radius; 

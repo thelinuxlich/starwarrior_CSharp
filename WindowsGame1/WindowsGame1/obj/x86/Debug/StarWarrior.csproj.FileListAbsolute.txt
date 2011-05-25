@@ -8,3 +8,11 @@ D:\starwarrior_CSharp\WindowsGame1\WindowsGame1\bin\x86\Debug\StarWarrior.pdb
 D:\starwarrior_CSharp\WindowsGame1\WindowsGame1\bin\x86\Debug\artemis.dll
 D:\starwarrior_CSharp\WindowsGame1\WindowsGame1\obj\x86\Debug\StarWarrior.exe
 D:\starwarrior_CSharp\WindowsGame1\WindowsGame1\obj\x86\Debug\StarWarrior.pdb
+C:\Users\tpastor\Desktop\artemis\starwarrior_CSharp\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\myFont.xnb
+C:\Users\tpastor\Desktop\artemis\starwarrior_CSharp\WindowsGame1\WindowsGame1\bin\x86\Debug\StarWarrior.exe
+C:\Users\tpastor\Desktop\artemis\starwarrior_CSharp\WindowsGame1\WindowsGame1\bin\x86\Debug\StarWarrior.pdb
+C:\Users\tpastor\Desktop\artemis\starwarrior_CSharp\WindowsGame1\WindowsGame1\bin\x86\Debug\artemis.dll
+C:\Users\tpastor\Desktop\artemis\starwarrior_CSharp\WindowsGame1\WindowsGame1\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\tpastor\Desktop\artemis\starwarrior_CSharp\WindowsGame1\WindowsGame1\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\tpastor\Desktop\artemis\starwarrior_CSharp\WindowsGame1\WindowsGame1\obj\x86\Debug\StarWarrior.exe
+C:\Users\tpastor\Desktop\artemis\starwarrior_CSharp\WindowsGame1\WindowsGame1\obj\x86\Debug\StarWarrior.pdb

@@ -13,6 +13,7 @@ namespace StarWarrior.Spatials
     {
         private Transform transform;
 
+        Texture2D pixel = null;
 	    public Missile(World world, Entity owner) : base(world, owner) {
 	    }
 
@@ -22,7 +23,10 @@ namespace StarWarrior.Spatials
 	    }
 
 	    public override void Render(SpriteBatch spriteBatch) {
-		    Texture2D pixel = new Texture2D(spriteBatch.GraphicsDevice,1,1,true,SurfaceFormat.Color);
+            if (pixel == null)
+            {
+                pixel = new Texture2D(spriteBatch.GraphicsDevice, 1, 1, true, SurfaceFormat.Color);
+            }
 		    Rectangle rect = new Rectangle((int)transform.GetX() - 1, (int)transform.GetY() - 3, 2,6);
             spriteBatch.Draw(pixel, rect, Color.White);
 	    }

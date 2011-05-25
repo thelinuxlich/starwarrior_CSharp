@@ -45,20 +45,20 @@ namespace StarWarrior.Primitives
 
         public void Draw(Vector2 transform)
         {
-            if (fill == false)
-            {
-                device.RasterizerState = state;
-            }
+            //if (fill == false)
+            //{
+            //    device.RasterizerState = state;
+            //}
 
             foreach (var item in point)
             {
                 batch.AddVertex(item + transform, color);       
             }
            
-            if (fill == false)
-            {
-                device.RasterizerState = RasterizerState.CullCounterClockwise;
-            }
+            //if (fill == false)
+            //{
+            //    device.RasterizerState = RasterizerState.CullCounterClockwise;
+            //}
         }
 
     }

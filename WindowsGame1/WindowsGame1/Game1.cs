@@ -73,7 +73,7 @@ namespace StarWarrior
             enemyShipMovementSystem = systemManager.SetSystem(new EnemyShooterSystem());
             collisionSystem = systemManager.SetSystem(new CollisionSystem());
             healthBarRenderSystem = systemManager.SetSystem(new HealthBarRenderSystem(spriteBatch,font));
-            enemySpawnSystem = systemManager.SetSystem(new EnemySpawnSystem(5000000, spriteBatch));
+            enemySpawnSystem = systemManager.SetSystem(new EnemySpawnSystem(5000, spriteBatch));
             expirationSystem = systemManager.SetSystem(new ExpirationSystem());
 
             systemManager.InitializeAll();

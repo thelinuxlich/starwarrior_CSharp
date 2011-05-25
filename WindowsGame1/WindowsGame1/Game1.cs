@@ -44,6 +44,8 @@ namespace StarWarrior
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
+            graphics.SynchronizeWithVerticalRetrace = false;
+            this.IsFixedTimeStep = false;
             Content.RootDirectory = "Content";
         }
 

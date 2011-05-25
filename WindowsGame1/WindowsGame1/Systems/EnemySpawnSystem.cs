@@ -7,8 +7,7 @@ namespace StarWarrior.Systems
 {
 	public class EnemySpawnSystem : IntervalEntitySystem {
 
-		private ComponentMapper weaponMapper;
-		private long now;
+		private ComponentMapper weaponMapper;		
 		private ComponentMapper transformMapper;
 		private SpriteBatch spriteBatch;
 		private Random r;
@@ -23,9 +22,9 @@ namespace StarWarrior.Systems
 			
 			r = new Random();
 		}
-
+        
         public override void ProcessEntities(Dictionary<int, Entity> entities)
-        {
+        {            
 			Entity e = EntityFactory.CreateEnemyShip(world);
 			
 			e.GetComponent<Transform>().SetLocation(r.Next(spriteBatch.GraphicsDevice.Viewport.Width), r.Next(400)+50);

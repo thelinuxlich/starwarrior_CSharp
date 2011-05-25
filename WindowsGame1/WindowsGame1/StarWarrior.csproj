@@ -126,6 +126,7 @@
     <Compile Include="Components\Transform.cs" />
     <Compile Include="Components\Velocity.cs" />
     <Compile Include="Components\Weapon.cs" />
+    <Compile Include="Spatials\ShipExplosion.cs" />
     <Compile Include="Spatials\EnemyShip.cs" />
     <Compile Include="Spatials\Explosion.cs" />
     <Compile Include="Spatials\Missile.cs" />

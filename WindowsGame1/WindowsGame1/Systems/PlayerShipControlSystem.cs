@@ -60,7 +60,7 @@ namespace StarWarrior.Systems
             {
                 moveRight = false;
             }
-            if (ks.IsKeyDown(Keys.Space))
+            if (ks.IsKeyDown(Keys.Space) == true && oldState.IsKeyDown(Keys.Space) == false)
             {
                 shoot = true;
             }

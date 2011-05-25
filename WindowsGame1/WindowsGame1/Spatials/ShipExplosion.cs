@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace StarWarrior.Spatials
 {
-    class Explosion : Spatial
+    class ShipExplosion : Spatial
     {
         private Transform transform;
 	    private Expires expires;
@@ -18,7 +18,9 @@ namespace StarWarrior.Spatials
 	    private int radius;
         static Texture2D circle = null;
 
-	    public Explosion(World world, Entity owner, int radius,Color Color) : base(world, owner) {
+        public ShipExplosion(World world, Entity owner, int radius, Color Color)
+            : base(world, owner)
+        {
 		    this.radius = radius;
             this.color = Color;
 	    }

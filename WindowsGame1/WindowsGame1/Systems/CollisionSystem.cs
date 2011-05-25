@@ -21,15 +21,14 @@ namespace StarWarrior.Systems
 		    velocityMapper = new ComponentMapper(typeof(Velocity), world.GetEntityManager());
 		    healthMapper = new ComponentMapper(typeof(Health), world.GetEntityManager());
 	    }
-	
-	    public void processEntities(Bag<Entity> entities) {
-		    Bag<Entity> bullets = world.GetGroupManager().getEntities("BULLETS");
+
+        public override void ProcessEntities(Dictionary<int, Entity> entities)
+        {
+            Bag<Entity> bullets = world.GetGroupManager().getEntities("BULLETS");
 		    Bag<Entity> ships = world.GetGroupManager().getEntities("SHIPS");
 		
-		    if(bullets != null && ships != null) {
-                bool shipLoop = false;
-			    for(int a = 0; ships.Size() > a; a++) {
-                    shipLoop = false;
+		    if(bullets != null && ships != null) {                
+			    for(int a = 0; ships.Size() > a; a++) {                    
 				    Entity ship = ships.Get(a);
 				    for(int b = 0; bullets.Size() > b; b++) {
 					    Entity bullet = bullets.Get(b);
@@ -44,18 +43,14 @@ namespace StarWarrior.Systems
 	
 						
 						    if(!health.IsAlive()) {
-							    Transform ts = transformMapper.Get<Transform>(ship);
-	
-							    EntityFactory.CreateShipExplosion(world, ts.GetX(), ts.GetY()).Refresh();
-	
-							    world.DeleteEntity(ship);
+
+							    Transform ts = transformMapper.Get<Transform>(ship);	
+							    EntityFactory.CreateShipExplosion(world, ts.GetX(), ts.GetY()).Refresh();	
+							    world.DeleteEntity(ship);                                
 							    break;
 						    }
 					    }
-				    }
-                    if(shipLoop == true) {
-                        continue;
-                    }
+				    }                    
 			    }
 		    }
 	    }
@@ -63,7 +58,8 @@ namespace StarWarrior.Systems
 	    private bool CollisionExists(Entity e1, Entity e2) {
 		    Transform t1 = transformMapper.Get<Transform>(e1);
 		    Transform t2 = transformMapper.Get<Transform>(e2);
-		    return t1.GetDistanceTo(t2) < 15;
+            return t1.GetDistanceTo(t2) < 15;
+            
 	    }
     }
 }

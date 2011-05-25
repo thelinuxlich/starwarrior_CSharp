@@ -119,15 +119,8 @@ namespace StarWarrior
         {
         }
 
-        /// <summary>
-        /// UnloadContent will be called once per game and is the place to unload
-        /// all content.
-        /// </summary>
-        protected override void UnloadContent()
-        {
-            // TODO: Unload any non ContentManager content here
-        }
 
+        DateTime dt = DateTime.Now;
         /// <summary>
         /// Allows the game to run logic such as updating the world,
         /// checking for collisions, gathering input, and playing audio.
@@ -135,8 +128,10 @@ namespace StarWarrior
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            TimeSpan elapsed = DateTime.Now - dt;
+            dt = DateTime.Now;
             world.LoopStart();
-            world.SetDelta(gameTime.ElapsedGameTime.Milliseconds);
+            world.SetDelta(elapsed.Milliseconds);
 
             controlSystem.Process();
             movementSystem.Process();
@@ -146,7 +141,7 @@ namespace StarWarrior
             enemySpawnSystem.Process();
             expirationSystem.Process();
 
-            elapsedTime += gameTime.ElapsedGameTime;
+            elapsedTime += elapsed;
 
             if (elapsedTime > TimeSpan.FromSeconds(1))
             {

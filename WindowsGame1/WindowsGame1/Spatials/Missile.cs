@@ -25,7 +25,10 @@ namespace StarWarrior.Spatials
 	    public override void Render(SpriteBatch spriteBatch) {
             if (pixel == null)
             {
-                pixel = new Texture2D(spriteBatch.GraphicsDevice, 1, 1, true, SurfaceFormat.Color);
+                pixel = new Texture2D(spriteBatch.GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
+                Color[] cor = new Color[1];
+                cor[0] = Color.White;
+                pixel.SetData<Color>(cor);                  
             }
 		    Rectangle rect = new Rectangle((int)transform.GetX() - 1, (int)transform.GetY() - 3, 2,6);
             spriteBatch.Draw(pixel, rect, Color.White);

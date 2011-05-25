@@ -4,6 +4,7 @@ using StarWarrior.Components;
 using StarWarrior.Spatials;
 using Microsoft.Xna.Framework.Graphics;
 using StarWarrior.Primitives;
+using Microsoft.Xna.Framework;
 namespace StarWarrior.Systems	
 {
 	public class RenderSystem : EntityProcessingSystem {
@@ -62,9 +63,9 @@ namespace StarWarrior.Systems
 			} else if (String.Compare("EnemyShip",spatialFormFile,true) == 0) {
 				return new EnemyShip(world, e,device,primitiveBatch);
 			} else if (String.Compare("BulletExplosion",spatialFormFile,true) == 0) {
-				return new Explosion(world, e, 10);
+				return new Explosion(world, e, 10,Color.Red);
 			} else if (String.Compare("ShipExplosion",spatialFormFile,true) == 0) {
-				return new Explosion(world, e, 30);
+				return new ShipExplosion(world, e, 30,Color.Yellow);
 			}
 	
 			return null;

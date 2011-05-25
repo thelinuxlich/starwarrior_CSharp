@@ -5,9 +5,9 @@ namespace StarWarrior.Systems
 {
 	public class EnemyShooterSystem : EntityProcessingSystem {
 
-		private ComponentMapper weaponMapper;
-		private long now;
+		private ComponentMapper weaponMapper;		
 		private ComponentMapper transformMapper;
+        Random rd = new Random();
 	
 		public EnemyShooterSystem() : base(typeof(Transform), typeof(Weapon), typeof(Enemy)) {
 		}
@@ -17,14 +17,15 @@ namespace StarWarrior.Systems
 			transformMapper = new ComponentMapper(typeof(Transform), world.GetEntityManager());
 		}
 	
-		public override void Begin() {
-			now = DateTime.Now.Ticks;
+		public override void Begin() {			
 		}
 	
 		public override void Process(Entity e) {
 			Weapon weapon = weaponMapper.Get<Weapon>(e);
 	
-			if (weapon.GetShotAt() + 2000 < now) {
+            long t = weapon.GetShotAt() + TimeSpan.FromSeconds(2).Ticks;
+            if (t < DateTime.Now.Ticks)
+            {
 				Transform transform = transformMapper.Get<Transform>(e);
 	
 				Entity missile = EntityFactory.CreateMissile(world);
@@ -32,8 +33,8 @@ namespace StarWarrior.Systems
 				missile.GetComponent<Velocity>().SetVelocity(-0.5f);
 				missile.GetComponent<Velocity>().SetAngle(270);
 				missile.Refresh();
-	
-				weapon.SetShotAt(now);
+
+                weapon.SetShotAt(DateTime.Now.Ticks);
 			}
 	
 		}

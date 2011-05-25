@@ -2,6 +2,7 @@ using System;
 using Artemis;
 using StarWarrior.Components;
 using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
 namespace StarWarrior.Systems
 {
 	public class EnemySpawnSystem : IntervalEntitySystem {
@@ -22,8 +23,9 @@ namespace StarWarrior.Systems
 			
 			r = new Random();
 		}
-		
-		public override void ProcessEntities(Bag<Entity> entities) {
+
+        public override void ProcessEntities(Dictionary<int, Entity> entities)
+        {
 			Entity e = EntityFactory.CreateEnemyShip(world);
 			
 			e.GetComponent<Transform>().SetLocation(r.Next(spriteBatch.GraphicsDevice.Viewport.Width), r.Next(400)+50);

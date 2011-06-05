@@ -43,25 +43,28 @@ namespace StarWarrior.Systems
             if (player != null)
             {
                 Transform transform = transformMapper.Get<Transform>(player);
-                UpdateInput();
-                if (moveLeft)
+                if (transform != null)
                 {
-                    transform.AddX(world.GetDelta() * -0.3f);
-                }
-                if (moveRight)
-                {
-                    transform.AddX(world.GetDelta() * 0.3f);
-                }
+                    UpdateInput();
+                    if (moveLeft)
+                    {
+                        transform.AddX(world.GetDelta() * -0.3f);
+                    }
+                    if (moveRight)
+                    {
+                        transform.AddX(world.GetDelta() * 0.3f);
+                    }
 
-                if (shoot)
-                {
-                    Entity missile = EntityFactory.CreateMissile(world);
-                    missile.GetComponent<Transform>().SetLocation(transform.GetX(), transform.GetY() - 20);
-                    missile.GetComponent<Velocity>().SetVelocity(-0.5f);
-                    missile.GetComponent<Velocity>().SetAngle(90);
-                    missile.Refresh();
+                    if (shoot)
+                    {
+                        Entity missile = EntityFactory.CreateMissile(world);
+                        missile.GetComponent<Transform>().SetLocation(transform.GetX()+30, transform.GetY() - 20);
+                        missile.GetComponent<Velocity>().SetVelocity(-0.5f);
+                        missile.GetComponent<Velocity>().SetAngle(90);
+                        missile.Refresh();
 
-                    shoot = false;
+                        shoot = false;
+                    }
                 }
             }
 		}

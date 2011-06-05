@@ -6,23 +6,20 @@ using Artemis;
 using StarWarrior.Components;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Content;
 
 namespace StarWarrior.Spatials
 {
-    class Missile
+    static class Missile
     {
-        static Texture2D pixel = null;
+        static Texture2D bullet = null;
 	   
-	    public static void Render(SpriteBatch spriteBatch,Transform transform) {
-            if (pixel == null)
+	    public static void Render(SpriteBatch spriteBatch,ContentManager contentManager,Transform transform) {
+            if (bullet == null)
             {
-                pixel = new Texture2D(spriteBatch.GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
-                Color[] cor = new Color[1];
-                cor[0] = Color.White;
-                pixel.SetData<Color>(cor);                  
+                bullet = contentManager.Load<Texture2D>("bullet");
             }
-		    Rectangle rect = new Rectangle((int)transform.GetX() - 1, (int)transform.GetY() - 3, 2,6);
-            spriteBatch.Draw(pixel, rect, Color.White);
+		    spriteBatch.Draw(bullet, new Vector2(transform.GetX(), transform.GetY()), Color.White);
 	    }
     }
 }

@@ -7,21 +7,22 @@ using StarWarrior.Components;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using StarWarrior.Primitives;
+using Microsoft.Xna.Framework.Content;
 
 namespace StarWarrior.Spatials
 {
-    class PlayerShip
+    static class PlayerShip
     {
-        private static Triangle ship = null;
-        
-	    public static void Render(SpriteBatch spriteBatch,GraphicsDevice device,PrimitiveBatch primitiveBatch,Transform transform) {
+        private static Texture2D ship = null;
+
+        public static void Render(SpriteBatch spriteBatch, ContentManager contentManager, Transform transform)
+        {
             if (ship == null)
             {
-                ship = new Triangle(device, primitiveBatch);
-                ship.AddTriangle(0, -10, 10, 10, -10, 10);
-                ship.SetColor(Color.White);
+                ship = contentManager.Load<Texture2D>("player");
             }
-            ship.Draw(new Vector2(transform.GetX(), transform.GetY()));
-	    }
+            Rectangle rect = new Rectangle((int)transform.GetX(), (int)transform.GetY(), ship.Width, ship.Height);
+            spriteBatch.Draw(ship, rect, Color.White);
+        }
     }
 }

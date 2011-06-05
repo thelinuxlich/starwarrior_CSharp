@@ -14,3 +14,7 @@ D:\starwarrior_CSharp\WindowsGame1\WindowsGame1\obj\x86\Release\ResolveAssemblyR
 D:\starwarrior_CSharp\WindowsGame1\WindowsGame1\obj\x86\Release\Microsoft.Xna.Framework.RuntimeProfile.txt
 D:\starwarrior_CSharp\WindowsGame1\WindowsGame1\obj\x86\Release\StarWarrior.exe
 D:\starwarrior_CSharp\WindowsGame1\WindowsGame1\obj\x86\Release\StarWarrior.pdb
+D:\starwarrior_CSharp\WindowsGame1\WindowsGame1\bin\x86\Release\Content\enemy.xnb
+D:\starwarrior_CSharp\WindowsGame1\WindowsGame1\bin\x86\Release\Content\player.xnb
+D:\starwarrior_CSharp\WindowsGame1\WindowsGame1\bin\x86\Release\Content\Explosion.xnb
+D:\starwarrior_CSharp\WindowsGame1\WindowsGame1\bin\x86\Release\Content\bullet.xnb

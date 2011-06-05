@@ -23,7 +23,6 @@ namespace StarWarrior
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        PrimitiveBatch primitiveBatch;
         private World world;
 
         private EntitySystem renderSystem;
@@ -46,6 +45,9 @@ namespace StarWarrior
             graphics = new GraphicsDeviceManager(this);
             graphics.SynchronizeWithVerticalRetrace = false;
             this.IsFixedTimeStep = false;
+            graphics.IsFullScreen = false;
+            graphics.PreferredBackBufferHeight = 700;
+            graphics.PreferredBackBufferWidth = 1000;
             Content.RootDirectory = "Content";
         }
 
@@ -59,13 +61,11 @@ namespace StarWarrior
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            primitiveBatch = new PrimitiveBatch(GraphicsDevice);
-
             world = new World();
 
             font = Content.Load<SpriteFont>("myFont");
             SystemManager systemManager = world.GetSystemManager();
-            renderSystem = systemManager.SetSystem(new RenderSystem(GraphicsDevice,spriteBatch,primitiveBatch));
+            renderSystem = systemManager.SetSystem(new RenderSystem(GraphicsDevice,spriteBatch,Content));
             hudRenderSystem = systemManager.SetSystem(new HudRenderSystem(spriteBatch,font));
             controlSystem = systemManager.SetSystem(new MovementSystem(spriteBatch));
             movementSystem = systemManager.SetSystem(new PlayerShipControlSystem(spriteBatch));
@@ -103,7 +103,7 @@ namespace StarWarrior
 		    Entity e = world.CreateEntity();
 		    e.SetGroup("SHIPS");
 
-            e.AddComponent(new Transform(new Vector3(GraphicsDevice.Viewport.Width / 2, GraphicsDevice.Viewport.Height - 40,0)));
+            e.AddComponent(new Transform(new Vector3(GraphicsDevice.Viewport.Width / 2, GraphicsDevice.Viewport.Height - 50,0)));
 		    e.AddComponent(new SpatialForm("PlayerShip"));
 		    e.AddComponent(new Health(30));
 		    
@@ -164,13 +164,11 @@ namespace StarWarrior
             string fps = string.Format("fps: {0}", frameRate);
 
             GraphicsDevice.Clear(Color.Black);
-            primitiveBatch.Begin(PrimitiveType.TriangleList);
             spriteBatch.Begin();
             spriteBatch.DrawString(font, fps, new Vector2(32,32), Color.Yellow);
             renderSystem.Process();
             healthBarRenderSystem.Process();
             hudRenderSystem.Process();            
-            primitiveBatch.End();
             spriteBatch.End();
 
             base.Draw(gameTime);

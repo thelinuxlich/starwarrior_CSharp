@@ -10,6 +10,42 @@
       <Output>D:\starwarrior_CSharp\WindowsGame1\WindowsGame1\bin\x86\Release\Content\myFont.xnb</Output>
       <Time>2011-05-18T20:55:29.9960893-03:00</Time>
     </Item>
+    <Item>
+      <Source>enemy.png</Source>
+      <Name>enemy</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\starwarrior_CSharp\WindowsGame1\WindowsGame1\bin\x86\Release\Content\enemy.xnb</Output>
+      <Time>2011-06-05T04:09:53.3018384-03:00</Time>
+    </Item>
+    <Item>
+      <Source>player.png</Source>
+      <Name>player</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\starwarrior_CSharp\WindowsGame1\WindowsGame1\bin\x86\Release\Content\player.xnb</Output>
+      <Time>2011-06-05T04:17:16.3361785-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Explosion.png</Source>
+      <Name>Explosion</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\starwarrior_CSharp\WindowsGame1\WindowsGame1\bin\x86\Release\Content\Explosion.xnb</Output>
+      <Time>2011-06-05T04:20:40.2288405-03:00</Time>
+    </Item>
+    <Item>
+      <Source>bullet.png</Source>
+      <Name>bullet</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\starwarrior_CSharp\WindowsGame1\WindowsGame1\bin\x86\Release\Content\bullet.xnb</Output>
+      <Time>2011-06-05T04:43:45.7240863-03:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

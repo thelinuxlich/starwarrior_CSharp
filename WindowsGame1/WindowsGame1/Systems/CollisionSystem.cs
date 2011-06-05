@@ -41,9 +41,7 @@ namespace StarWarrior.Systems
 						    Health health = healthMapper.Get<Health>(ship);
 						    health.AddDamage(4);
 	
-						
 						    if(!health.IsAlive()) {
-
 							    Transform ts = transformMapper.Get<Transform>(ship);	
 							    EntityFactory.CreateShipExplosion(world, ts.GetX(), ts.GetY()).Refresh();	
 							    world.DeleteEntity(ship);                                

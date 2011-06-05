@@ -8,6 +8,7 @@ namespace StarWarrior.Systems
 		private ComponentMapper weaponMapper;		
 		private ComponentMapper transformMapper;
         Random rd = new Random();
+        long playerId = -1;
 	
 		public EnemyShooterSystem() : base(typeof(Transform), typeof(Weapon)) {
 		}
@@ -21,22 +22,28 @@ namespace StarWarrior.Systems
 		}
 	
 		public override void Process(Entity e) {
-			Weapon weapon = weaponMapper.Get<Weapon>(e);
-	
-            long t = weapon.GetShotAt() + TimeSpan.FromSeconds(2).Ticks;
-            if (t < DateTime.Now.Ticks)
+            if (playerId == -1)
             {
-				Transform transform = transformMapper.Get<Transform>(e);
-	
-				Entity missile = EntityFactory.CreateMissile(world);
-				missile.GetComponent<Transform>().SetLocation(transform.GetX() + 20, transform.GetY() + 20);
-				missile.GetComponent<Velocity>().SetVelocity(-0.5f);
-				missile.GetComponent<Velocity>().SetAngle(270);
-				missile.Refresh();
+                playerId = world.GetTagManager().GetEntity("PLAYER").GetUniqueId();
+            }
+            if (playerId != e.GetUniqueId())
+            {
+                Weapon weapon = weaponMapper.Get<Weapon>(e);
 
-                weapon.SetShotAt(DateTime.Now.Ticks);
-			}
-	
+                long t = weapon.GetShotAt() + TimeSpan.FromSeconds(2).Ticks;
+                if (t < DateTime.Now.Ticks)
+                {
+                    Transform transform = transformMapper.Get<Transform>(e);
+
+                    Entity missile = EntityFactory.CreateMissile(world);
+                    missile.GetComponent<Transform>().SetLocation(transform.GetX() + 20, transform.GetY() + 20);
+                    missile.GetComponent<Velocity>().SetVelocity(-0.5f);
+                    missile.GetComponent<Velocity>().SetAngle(270);
+                    missile.Refresh();
+
+                    weapon.SetShotAt(DateTime.Now.Ticks);
+                }
+            }
 		}
     }
 }

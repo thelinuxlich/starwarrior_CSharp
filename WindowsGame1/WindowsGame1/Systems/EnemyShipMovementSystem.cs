@@ -13,6 +13,7 @@ namespace StarWarrior.Systems
         private SpriteBatch spriteBatch;
 	    private ComponentMapper transformMapper;
 	    private ComponentMapper velocityMapper;
+        long playerId = -1;
 
 	    public EnemyShipMovementSystem(SpriteBatch spriteBatch) : base(typeof(Transform), typeof(Velocity)) {
 		    this.spriteBatch = spriteBatch;
@@ -24,12 +25,20 @@ namespace StarWarrior.Systems
 	    }
 
 	    public override void Process(Entity e) {
-		    Transform transform = transformMapper.Get<Transform>(e);
-		    Velocity velocity = velocityMapper.Get<Velocity>(e);
+            if (playerId == -1)
+            {
+                playerId = world.GetTagManager().GetEntity("PLAYER").GetUniqueId();
+            }
+            if (playerId != e.GetUniqueId())
+            {
+                Transform transform = transformMapper.Get<Transform>(e);
+                Velocity velocity = velocityMapper.Get<Velocity>(e);
 
-		    if (transform.GetX() > spriteBatch.GraphicsDevice.Viewport.Width || transform.GetX() < 0) {
-			    velocity.AddAngle(180);
-		    }
+                if (transform.GetX() > spriteBatch.GraphicsDevice.Viewport.Width || transform.GetX() < 0)
+                {
+                    velocity.AddAngle(180);
+                }
+            }
 	    }
     }
 }

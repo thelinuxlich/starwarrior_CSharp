@@ -8,7 +8,7 @@
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
       <Output>D:\starwarrior_CSharp\WindowsGame1\WindowsGame1\bin\x86\Release\Content\myFont.xnb</Output>
-      <Time>2011-05-18T20:55:29.9960893-03:00</Time>
+      <Time>2011-06-05T13:02:31.9990097-03:00</Time>
     </Item>
     <Item>
       <Source>enemy.png</Source>
@@ -17,7 +17,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\starwarrior_CSharp\WindowsGame1\WindowsGame1\bin\x86\Release\Content\enemy.xnb</Output>
-      <Time>2011-06-05T04:09:53.3018384-03:00</Time>
+      <Time>2011-06-05T13:02:31.5429836-03:00</Time>
     </Item>
     <Item>
       <Source>player.png</Source>
@@ -26,7 +26,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\starwarrior_CSharp\WindowsGame1\WindowsGame1\bin\x86\Release\Content\player.xnb</Output>
-      <Time>2011-06-05T04:17:16.3361785-03:00</Time>
+      <Time>2011-06-05T13:02:35.4572075-03:00</Time>
     </Item>
     <Item>
       <Source>Explosion.png</Source>
@@ -35,7 +35,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\starwarrior_CSharp\WindowsGame1\WindowsGame1\bin\x86\Release\Content\Explosion.xnb</Output>
-      <Time>2011-06-05T04:20:40.2288405-03:00</Time>
+      <Time>2011-06-05T13:02:31.6209881-03:00</Time>
     </Item>
     <Item>
       <Source>bullet.png</Source>
@@ -44,7 +44,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\starwarrior_CSharp\WindowsGame1\WindowsGame1\bin\x86\Release\Content\bullet.xnb</Output>
-      <Time>2011-06-05T04:43:45.7240863-03:00</Time>
+      <Time>2011-06-05T13:02:31.3829745-03:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

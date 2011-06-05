@@ -9,20 +9,11 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace StarWarrior.Spatials
 {
-    class Missile : Spatial
+    class Missile
     {
-        private Transform transform;
-
         static Texture2D pixel = null;
-	    public Missile(World world, Entity owner) : base(world, owner) {
-	    }
-
-	    public override void Initalize() {
-		    ComponentMapper transformMapper = new ComponentMapper(typeof(Transform),world.GetEntityManager());
-		    transform = transformMapper.Get<Transform>(owner);
-	    }
-
-	    public override void Render(SpriteBatch spriteBatch) {
+	   
+	    public static void Render(SpriteBatch spriteBatch,Transform transform) {
             if (pixel == null)
             {
                 pixel = new Texture2D(spriteBatch.GraphicsDevice, 1, 1, false, SurfaceFormat.Color);

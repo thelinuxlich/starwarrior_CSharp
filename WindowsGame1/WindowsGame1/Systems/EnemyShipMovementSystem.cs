@@ -14,7 +14,7 @@ namespace StarWarrior.Systems
 	    private ComponentMapper transformMapper;
 	    private ComponentMapper velocityMapper;
 
-	    public EnemyShipMovementSystem(SpriteBatch spriteBatch) : base(typeof(Transform), typeof(Enemy), typeof(Velocity)) {
+	    public EnemyShipMovementSystem(SpriteBatch spriteBatch) : base(typeof(Transform), typeof(Velocity)) {
 		    this.spriteBatch = spriteBatch;
 	    }
 

@@ -3,44 +3,67 @@ using Artemis;
 using StarWarrior.Components;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Collections.Generic;
 namespace StarWarrior.Systems
 {
-	public class PlayerShipControlSystem : EntityProcessingSystem {
+	public class PlayerShipControlSystem : EntitySystem {
 		private SpriteBatch spriteBatch;
 		private bool moveRight;
 		private bool moveLeft;
 		private bool shoot;
 		private ComponentMapper transformMapper;
         private KeyboardState oldState;
+        private Entity player;
 	
-		public PlayerShipControlSystem(SpriteBatch spriteBatch) : base(typeof(Transform), typeof(Player)) {
+		public PlayerShipControlSystem(SpriteBatch spriteBatch) : base(typeof(Transform)) {
 			this.spriteBatch = spriteBatch;
 		}
 	
 		public override void Initialize() {
+            EnsurePlayerEntity();
 			transformMapper = new ComponentMapper(typeof(Transform), world.GetEntityManager());
             oldState = Keyboard.GetState();
 		}
-	
-		public override void Process(Entity e) {
-			Transform transform = transformMapper.Get<Transform>(e);
-            UpdateInput();
-			if (moveLeft) {
-				transform.AddX(world.GetDelta() * -0.3f);
-			}
-			if (moveRight) {
-				transform.AddX(world.GetDelta() * 0.3f);
-			}
-			
-			if (shoot) {
-				Entity missile = EntityFactory.CreateMissile(world);
-				missile.GetComponent<Transform>().SetLocation(transform.GetX(), transform.GetY() - 20);
-				missile.GetComponent<Velocity>().SetVelocity(-0.5f);
-				missile.GetComponent<Velocity>().SetAngle(90);
-				missile.Refresh();
-	
-				shoot = false;
-			}
+
+        private void EnsurePlayerEntity()
+        {
+            if (player == null)
+            {
+                player = world.GetTagManager().GetEntity("PLAYER");
+            }
+            else if (!player.IsActive())
+            {
+                player = null;
+            }
+        }
+
+        public override void ProcessEntities(Dictionary<int, Entity> entities)
+        {
+            EnsurePlayerEntity();
+            if (player != null)
+            {
+                Transform transform = transformMapper.Get<Transform>(player);
+                UpdateInput();
+                if (moveLeft)
+                {
+                    transform.AddX(world.GetDelta() * -0.3f);
+                }
+                if (moveRight)
+                {
+                    transform.AddX(world.GetDelta() * 0.3f);
+                }
+
+                if (shoot)
+                {
+                    Entity missile = EntityFactory.CreateMissile(world);
+                    missile.GetComponent<Transform>().SetLocation(transform.GetX(), transform.GetY() - 20);
+                    missile.GetComponent<Velocity>().SetVelocity(-0.5f);
+                    missile.GetComponent<Velocity>().SetAngle(90);
+                    missile.Refresh();
+
+                    shoot = false;
+                }
+            }
 		}
 	
 		public void UpdateInput() {

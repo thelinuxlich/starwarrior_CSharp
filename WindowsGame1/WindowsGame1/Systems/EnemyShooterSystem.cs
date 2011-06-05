@@ -9,7 +9,7 @@ namespace StarWarrior.Systems
 		private ComponentMapper transformMapper;
         Random rd = new Random();
 	
-		public EnemyShooterSystem() : base(typeof(Transform), typeof(Weapon), typeof(Enemy)) {
+		public EnemyShooterSystem() : base(typeof(Transform), typeof(Weapon)) {
 		}
 	
 		public override void Initialize() {

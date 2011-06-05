@@ -25,7 +25,6 @@ namespace StarWarrior
 			e.AddComponent(new SpatialForm("EnemyShip"));
 			e.AddComponent(new Health(10));
 			e.AddComponent(new Weapon());
-			e.AddComponent(new Enemy());
 			e.AddComponent(new Velocity());
 			
 			return e;

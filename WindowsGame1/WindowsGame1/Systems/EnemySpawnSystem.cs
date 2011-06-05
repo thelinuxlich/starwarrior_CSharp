@@ -12,7 +12,7 @@ namespace StarWarrior.Systems
 		private SpriteBatch spriteBatch;
 		private Random r;
 	
-		public EnemySpawnSystem(int interval, SpriteBatch spriteBatch) : base(interval, typeof(Transform), typeof(Weapon), typeof(Enemy)){
+		public EnemySpawnSystem(int interval, SpriteBatch spriteBatch) : base(interval, typeof(Transform), typeof(Weapon)){
 			this.spriteBatch = spriteBatch;
 		}
 	

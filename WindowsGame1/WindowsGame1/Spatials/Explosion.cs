@@ -9,30 +9,11 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace StarWarrior.Spatials
 {
-    class Explosion : Spatial
+    class Explosion
     {
-        private Transform transform;
-	    private Expires expires;
-	    private int initialLifeTime;
-	    private Color color;
-	    private int radius;
         static Texture2D circle = null;
 
-	    public Explosion(World world, Entity owner, int radius,Color Color) : base(world, owner) {
-		    this.radius = radius;
-            this.color = Color;
-	    }
-
-	    public override void Initalize() {
-		    ComponentMapper transformMapper = new ComponentMapper(typeof(Transform), world.GetEntityManager());
-		    transform = transformMapper.Get<Transform>(owner);
-		
-		    ComponentMapper expiresMapper = new ComponentMapper(typeof(Expires), world.GetEntityManager());
-		    expires = expiresMapper.Get<Expires>(owner);
-		    initialLifeTime = expires.GetLifeTime();
-	    }
-
-        private Texture2D CreateCircle(int radius,GraphicsDevice graphics)
+        public static Texture2D CreateCircle(int radius,GraphicsDevice graphics,Color color)
         {
             int outerRadius = radius * 2 + 2; // So circle doesn't go out of bounds
             Texture2D texture = new Texture2D(graphics, outerRadius, outerRadius);
@@ -58,11 +39,11 @@ namespace StarWarrior.Spatials
             return texture;
         }
 
-	    public override void Render(SpriteBatch spriteBatch) {
-		    color.A = (byte)(expires.GetLifeTime()/initialLifeTime);
+        public static void Render(SpriteBatch spriteBatch, GraphicsDevice device, Transform transform,Color color,int radius)
+        {
             if (circle == null)
             {
-                circle = CreateCircle(radius, spriteBatch.GraphicsDevice);
+                circle = CreateCircle(radius, spriteBatch.GraphicsDevice,color);
             }
 		    spriteBatch.Draw(circle, new Vector2((float)transform.GetX() - radius, (float)transform.GetY() - radius),Color.White);
 	    }

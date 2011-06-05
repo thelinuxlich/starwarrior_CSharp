@@ -110,11 +110,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Components\Enemy.cs" />
     <Compile Include="EntityFactory.cs" />
     <Compile Include="Components\Expires.cs" />
     <Compile Include="Components\Health.cs" />
-    <Compile Include="Components\Player.cs" />
     <Compile Include="Primitives\Lines.cs" />
     <Compile Include="Primitives\PrimitiveBatch.cs" />
     <Compile Include="Primitives\Triangles.cs" />
@@ -131,7 +129,6 @@
     <Compile Include="Spatials\Explosion.cs" />
     <Compile Include="Spatials\Missile.cs" />
     <Compile Include="Spatials\PlayerShip.cs" />
-    <Compile Include="Spatials\Spatial.cs" />
     <Compile Include="Systems\CollisionSystem.cs" />
     <Compile Include="Systems\EnemyShipMovementSystem.cs" />
     <Compile Include="Systems\EnemyShooterSystem.cs" />

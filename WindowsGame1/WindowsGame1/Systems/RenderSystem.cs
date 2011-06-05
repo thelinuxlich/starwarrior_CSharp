@@ -8,67 +8,47 @@ using Microsoft.Xna.Framework;
 namespace StarWarrior.Systems	
 {
 	public class RenderSystem : EntityProcessingSystem {
-		private Bag<Spatial> spatials;
 		private ComponentMapper spatialFormMapper;
 		private ComponentMapper transformMapper;
-		private SpriteBatch spriteBatch;
+        private SpriteBatch spriteBatch;
         private PrimitiveBatch primitiveBatch;
+        private Transform transform;
+        private string spatialName;
         GraphicsDevice device;
 	
 		public RenderSystem(GraphicsDevice device,SpriteBatch spriteBatch,PrimitiveBatch primitiveBatch) : base(typeof(Transform), typeof(SpatialForm)) {
             this.spriteBatch = spriteBatch;
             this.primitiveBatch = primitiveBatch;
             this.device = device;
-			spatials = new Bag<Spatial>();
 		}
 	
 		public override void Initialize() {
 			spatialFormMapper = new ComponentMapper(typeof(SpatialForm), world.GetEntityManager());
-			transformMapper = new ComponentMapper(typeof(Transform), world.GetEntityManager());          
-
-		}
+			transformMapper = new ComponentMapper(typeof(Transform), world.GetEntityManager());
+        }
 	
 		public override void Process(Entity e) {
-			Spatial spatial = spatials.Get(e.GetId());
-			Transform transform = transformMapper.Get<Transform>(e);
+			transform = transformMapper.Get<Transform>(e);
+            SpatialForm spatialForm = spatialFormMapper.Get<SpatialForm>(e);
+            spatialName = spatialForm.GetSpatialFormFile();
 	
-			if (transform.GetX() >= 0 && transform.GetY() >= 0 && transform.GetX() < spriteBatch.GraphicsDevice.Viewport.Width && transform.GetY() < spriteBatch.GraphicsDevice.Viewport.Height && spatial != null) {
-               spatial.Render(spriteBatch);
+			if (transform.GetX() >= 0 && transform.GetY() >= 0 && transform.GetX() < spriteBatch.GraphicsDevice.Viewport.Width && transform.GetY() < spriteBatch.GraphicsDevice.Viewport.Height && spatialName != null) {
+                CreateSpatial(e); 
 			}
 		}
-	
-		public override void Added(Entity e) {
-			Spatial spatial = CreateSpatial(e);
-			if (spatial != null) {
-				spatial.Initalize();
-				spatials.Set(e.GetId(), spatial);
+
+		private void CreateSpatial(Entity e) {
+			if (String.Compare("PlayerShip",spatialName,true) == 0) {
+                PlayerShip.Render(spriteBatch, device,primitiveBatch,transform);
+			} else if (String.Compare("Missile",spatialName,true) == 0) {
+                Missile.Render(spriteBatch, transform);
+			} else if (String.Compare("EnemyShip",spatialName,true) == 0) {
+                EnemyShip.Render(spriteBatch, device, primitiveBatch, transform);
+			} else if (String.Compare("BulletExplosion",spatialName,true) == 0) {
+                Explosion.Render(spriteBatch, device, transform,Color.Red,10);
+			} else if (String.Compare("ShipExplosion",spatialName,true) == 0) {
+                ShipExplosion.Render(spriteBatch, device, transform, Color.Yellow, 30);
 			}
-		}
-	
-		public override void Removed(Entity e) {
-			spatials.Set(e.GetId(), null);
-		}
-
-        
-
-		private Spatial CreateSpatial(Entity e) {
-
-			SpatialForm spatialForm = spatialFormMapper.Get<SpatialForm>(e);
-			String spatialFormFile = spatialForm.GetSpatialFormFile();
-	        
-			if (String.Compare("PlayerShip",spatialFormFile,true) == 0) {
-                return new PlayerShip(world, e, device,primitiveBatch);
-			} else if (String.Compare("Missile",spatialFormFile,true) == 0) {
-				return new Missile(world, e);
-			} else if (String.Compare("EnemyShip",spatialFormFile,true) == 0) {
-				return new EnemyShip(world, e,device,primitiveBatch);
-			} else if (String.Compare("BulletExplosion",spatialFormFile,true) == 0) {
-				return new Explosion(world, e, 10,Color.Red);
-			} else if (String.Compare("ShipExplosion",spatialFormFile,true) == 0) {
-				return new ShipExplosion(world, e, 30,Color.Yellow);
-			}
-	
-			return null;
 		}
     }
 }

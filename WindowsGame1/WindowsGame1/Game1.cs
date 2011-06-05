@@ -106,9 +106,9 @@ namespace StarWarrior
             e.AddComponent(new Transform(new Vector3(GraphicsDevice.Viewport.Width / 2, GraphicsDevice.Viewport.Height - 40,0)));
 		    e.AddComponent(new SpatialForm("PlayerShip"));
 		    e.AddComponent(new Health(30));
-		    e.AddComponent(new Player());
-		
+		    
 		    e.Refresh();
+            world.GetTagManager().Register("PLAYER", e);
 	    }
 
         /// <summary>

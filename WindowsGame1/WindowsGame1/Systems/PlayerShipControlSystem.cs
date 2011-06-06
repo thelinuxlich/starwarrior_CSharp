@@ -6,65 +6,47 @@ using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
 namespace StarWarrior.Systems
 {
-	public class PlayerShipControlSystem : EntitySystem {
+	public class PlayerShipControlSystem : TagSystem {
 		private SpriteBatch spriteBatch;
 		private bool moveRight;
 		private bool moveLeft;
 		private bool shoot;
 		private ComponentMapper transformMapper;
         private KeyboardState oldState;
-        private Entity player;
-	
-		public PlayerShipControlSystem(SpriteBatch spriteBatch) : base(typeof(Transform)) {
+        
+		public PlayerShipControlSystem(SpriteBatch spriteBatch) : base("PLAYER") {
 			this.spriteBatch = spriteBatch;
 		}
 	
 		public override void Initialize() {
-            EnsurePlayerEntity();
-			transformMapper = new ComponentMapper(typeof(Transform), world.GetEntityManager());
+            transformMapper = new ComponentMapper(typeof(Transform), world.GetEntityManager());
             oldState = Keyboard.GetState();
 		}
 
-        private void EnsurePlayerEntity()
+        public override void Process(Entity e)
         {
-            if (player == null)
+            Transform transform = transformMapper.Get<Transform>(e);
+            if (transform != null)
             {
-                player = world.GetTagManager().GetEntity("PLAYER");
-            }
-            else if (!player.IsActive())
-            {
-                player = null;
-            }
-        }
-
-        public override void ProcessEntities(Dictionary<int, Entity> entities)
-        {
-            EnsurePlayerEntity();
-            if (player != null)
-            {
-                Transform transform = transformMapper.Get<Transform>(player);
-                if (transform != null)
+                UpdateInput();
+                if (moveLeft)
                 {
-                    UpdateInput();
-                    if (moveLeft)
-                    {
-                        transform.AddX(world.GetDelta() * -0.3f);
-                    }
-                    if (moveRight)
-                    {
-                        transform.AddX(world.GetDelta() * 0.3f);
-                    }
+                    transform.AddX(world.GetDelta() * -0.3f);
+                }
+                if (moveRight)
+                {
+                    transform.AddX(world.GetDelta() * 0.3f);
+                }
 
-                    if (shoot)
-                    {
-                        Entity missile = EntityFactory.CreateMissile(world);
-                        missile.GetComponent<Transform>().SetLocation(transform.GetX()+30, transform.GetY() - 20);
-                        missile.GetComponent<Velocity>().SetVelocity(-0.5f);
-                        missile.GetComponent<Velocity>().SetAngle(90);
-                        missile.Refresh();
+                if (shoot)
+                {
+                    Entity missile = EntityFactory.CreateMissile(world);
+                    missile.GetComponent<Transform>().SetLocation(transform.GetX()+30, transform.GetY() - 20);
+                    missile.GetComponent<Velocity>().SetVelocity(-0.5f);
+                    missile.GetComponent<Velocity>().SetAngle(90);
+                    missile.Refresh();
 
-                        shoot = false;
-                    }
+                    shoot = false;
                 }
             }
 		}

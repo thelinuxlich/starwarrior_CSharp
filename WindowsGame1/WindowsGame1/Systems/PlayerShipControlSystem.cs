@@ -26,28 +26,25 @@ namespace StarWarrior.Systems
         public override void Process(Entity e)
         {
             Transform transform = transformMapper.Get<Transform>(e);
-            if (transform != null)
+            UpdateInput();
+            if (moveLeft)
             {
-                UpdateInput();
-                if (moveLeft)
-                {
-                    transform.AddX(world.GetDelta() * -0.3f);
-                }
-                if (moveRight)
-                {
-                    transform.AddX(world.GetDelta() * 0.3f);
-                }
+                transform.AddX(world.GetDelta() * -0.3f);
+            }
+            if (moveRight)
+            {
+                transform.AddX(world.GetDelta() * 0.3f);
+            }
 
-                if (shoot)
-                {
-                    Entity missile = EntityFactory.CreateMissile(world);
-                    missile.GetComponent<Transform>().SetLocation(transform.GetX()+30, transform.GetY() - 20);
-                    missile.GetComponent<Velocity>().SetVelocity(-0.5f);
-                    missile.GetComponent<Velocity>().SetAngle(90);
-                    missile.Refresh();
+            if (shoot)
+            {
+                Entity missile = EntityFactory.CreateMissile(world);
+                missile.GetComponent<Transform>().SetLocation(transform.GetX()+30, transform.GetY() - 20);
+                missile.GetComponent<Velocity>().SetVelocity(-0.5f);
+                missile.GetComponent<Velocity>().SetAngle(90);
+                missile.Refresh();
 
-                    shoot = false;
-                }
+                shoot = false;
             }
 		}
 	

@@ -43,9 +43,9 @@ namespace StarWarrior.Systems
 	
 						    if(!health.IsAlive()) {
 							    Transform ts = transformMapper.Get<Transform>(ship);	
-							    EntityFactory.CreateShipExplosion(world, ts.GetX(), ts.GetY()).Refresh();	
-							    world.DeleteEntity(ship);                                
-							    break;
+							    EntityFactory.CreateShipExplosion(world, ts.GetX(), ts.GetY()).Refresh();
+							    world.DeleteEntity(ship);
+                                break;
 						    }
 					    }
 				    }                    

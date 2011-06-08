@@ -111,6 +111,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\Enemy.cs" />
     <Compile Include="EntityFactory.cs" />
     <Compile Include="Components\Expires.cs" />
     <Compile Include="Components\Health.cs" />

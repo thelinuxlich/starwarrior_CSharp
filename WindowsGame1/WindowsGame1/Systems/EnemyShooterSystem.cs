@@ -10,7 +10,7 @@ namespace StarWarrior.Systems
         Random rd = new Random();
         long playerId = -1;
 	
-		public EnemyShooterSystem() : base(typeof(Transform), typeof(Weapon)) {
+		public EnemyShooterSystem() : base(typeof(Transform), typeof(Weapon),typeof(Enemy)) {
 		}
 	
 		public override void Initialize() {
@@ -22,27 +22,20 @@ namespace StarWarrior.Systems
 		}
 	
 		public override void Process(Entity e) {
-            if (playerId == -1)
+            Weapon weapon = weaponMapper.Get<Weapon>(e);
+
+            long t = weapon.GetShotAt() + TimeSpan.FromSeconds(2).Ticks;
+            if (t < DateTime.Now.Ticks)
             {
-                playerId = world.GetTagManager().GetEntity("PLAYER").GetUniqueId();
-            }
-            if (playerId != e.GetUniqueId())
-            {
-                Weapon weapon = weaponMapper.Get<Weapon>(e);
+                Transform transform = transformMapper.Get<Transform>(e);
 
-                long t = weapon.GetShotAt() + TimeSpan.FromSeconds(2).Ticks;
-                if (t < DateTime.Now.Ticks)
-                {
-                    Transform transform = transformMapper.Get<Transform>(e);
+                Entity missile = EntityFactory.CreateMissile(world);
+                missile.GetComponent<Transform>().SetLocation(transform.GetX() + 20, transform.GetY() + 20);
+                missile.GetComponent<Velocity>().SetVelocity(-0.5f);
+                missile.GetComponent<Velocity>().SetAngle(270);
+                missile.Refresh();
 
-                    Entity missile = EntityFactory.CreateMissile(world);
-                    missile.GetComponent<Transform>().SetLocation(transform.GetX() + 20, transform.GetY() + 20);
-                    missile.GetComponent<Velocity>().SetVelocity(-0.5f);
-                    missile.GetComponent<Velocity>().SetAngle(270);
-                    missile.Refresh();
-
-                    weapon.SetShotAt(DateTime.Now.Ticks);
-                }
+                weapon.SetShotAt(DateTime.Now.Ticks);
             }
 		}
     }

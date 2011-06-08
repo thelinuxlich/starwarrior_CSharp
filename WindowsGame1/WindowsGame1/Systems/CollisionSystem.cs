@@ -26,8 +26,8 @@ namespace StarWarrior.Systems
         {
             Bag<Entity> bullets = world.GetGroupManager().getEntities("BULLETS");
 		    Bag<Entity> ships = world.GetGroupManager().getEntities("SHIPS");
-		
-		    if(bullets != null && ships != null) {                
+            Entity player = world.GetTagManager().GetEntity("PLAYER");
+            if(bullets != null && ships != null) {                
 			    for(int a = 0; ships.Size() > a; a++) {                    
 				    Entity ship = ships.Get(a);
 				    for(int b = 0; bullets.Size() > b; b++) {

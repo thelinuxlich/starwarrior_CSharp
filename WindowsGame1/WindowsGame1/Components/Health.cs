@@ -8,8 +8,10 @@ namespace StarWarrior.Components
 {
     class Health : Component
     {
-        private float health;
-        private float maximumHealth;
+        private float health = 0;
+        private float maximumHealth = 0;
+
+        public Health() { }
 
         public Health(float health)
         {
@@ -19,6 +21,11 @@ namespace StarWarrior.Components
         public float GetHealth()
         {
             return health;
+        }
+
+        public void SetHealth(float health)
+        {
+            this.health = this.maximumHealth = health;
         }
 
         public float GetMaximumHealth()

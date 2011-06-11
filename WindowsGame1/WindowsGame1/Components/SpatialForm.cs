@@ -10,6 +10,8 @@ namespace StarWarrior.Components
     {
         private String spatialFormFile;
 
+        public SpatialForm() { }
+
         public SpatialForm(String spatialFormFile)
         {
             this.spatialFormFile = spatialFormFile;
@@ -18,6 +20,11 @@ namespace StarWarrior.Components
         public String GetSpatialFormFile()
         {
             return spatialFormFile;
+        }
+
+        public void SetSpatialFormFile(string spatial)
+        {
+            spatialFormFile = spatial;
         }
     }
 }

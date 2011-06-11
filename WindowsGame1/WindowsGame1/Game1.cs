@@ -36,6 +36,7 @@ namespace StarWarrior
         private EntitySystem enemySpawnSystem;
         private EntitySystem expirationSystem;
         private SpriteFont font;
+        private GamePool pool;
 
         int frameRate,frameCounter;
         TimeSpan elapsedTime = TimeSpan.Zero;
@@ -57,11 +58,35 @@ namespace StarWarrior
         /// related content.  Calling base.Initialize will enumerate through any components
         /// and initialize them as well.
         /// </summary>
+        /// 
+
+        private void RemovedComponent(Component c)
+        {
+            if (c != null)
+            {
+                pool.AddComponent(c.GetType(), c);
+            }
+        }
+
+        private void RemovedEntity(Entity e)
+        {
+            pool.AddEntity(e);
+        }
+
         protected override void Initialize()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
+            Type[] types = new Type[] {typeof(Enemy),typeof(Expires),typeof(Health),typeof(SpatialForm),typeof(Transform),typeof(Velocity),typeof(Weapon)};
+            pool = new GamePool(100,types);
+            pool.Initialize();
+
             spriteBatch = new SpriteBatch(GraphicsDevice);
             world = new World();
+            world.GetEntityManager().RemovedComponentEvent += new RemovedComponentHandler(RemovedComponent);
+            world.GetEntityManager().RemovedEntityEvent += new RemovedEntityHandler(RemovedEntity);
+            world.SetPool(pool);
+
+            EntityFactory.SetPool(pool);
 
             font = Content.Load<SpriteFont>("myFont");
             SystemManager systemManager = world.GetSystemManager();
@@ -100,13 +125,15 @@ namespace StarWarrior
 	    }
 
 	    private void InitPlayerShip() {
-		    Entity e = world.CreateEntity();
+		    Entity e = world.AddEntity(pool.TakeEntity());
 		    e.SetGroup("SHIPS");
 
-            e.AddComponent(new Transform(new Vector3(GraphicsDevice.Viewport.Width / 2, GraphicsDevice.Viewport.Height - 50,0)));
-		    e.AddComponent(new SpatialForm("PlayerShip"));
-		    e.AddComponent(new Health(30));
-		    
+            e.AddComponent(pool.TakeComponent<Transform>());
+		    e.AddComponent(pool.TakeComponent<SpatialForm>());
+		    e.AddComponent(pool.TakeComponent<Health>());
+            e.GetComponent<SpatialForm>().SetSpatialFormFile("PlayerShip");
+            e.GetComponent<Health>().SetHealth(30);
+            e.GetComponent<Transform>().SetCoords(new Vector3(GraphicsDevice.Viewport.Width / 2, GraphicsDevice.Viewport.Height - 50, 0));
 		    e.Refresh();
             world.GetTagManager().Register("PLAYER", e);
 	    }

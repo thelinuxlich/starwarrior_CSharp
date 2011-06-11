@@ -115,6 +115,7 @@
     <Compile Include="EntityFactory.cs" />
     <Compile Include="Components\Expires.cs" />
     <Compile Include="Components\Health.cs" />
+    <Compile Include="Pool.cs" />
     <Compile Include="Primitives\Lines.cs" />
     <Compile Include="Primitives\PrimitiveBatch.cs" />
     <Compile Include="Primitives\Triangles.cs" />

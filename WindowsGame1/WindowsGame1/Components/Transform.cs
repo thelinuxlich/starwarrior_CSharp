@@ -19,6 +19,10 @@ namespace StarWarrior.Components
 		    this.coords = coords;
 	    }
 
+        public void SetCoords(Vector3 coords) {
+            this.coords = coords;
+        }
+
 	    public void AddX(float x) {
 		    this.coords.X += x;
 	    }

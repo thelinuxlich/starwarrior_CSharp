@@ -5,53 +5,67 @@ using Microsoft.Xna.Framework;
 namespace StarWarrior
 {
 	public class EntityFactory {
+
+        private static GamePool pool;
+
 		public static Entity CreateMissile(World world) {
-			Entity missile = world.CreateEntity();
+			Entity missile = world.AddEntity(pool.TakeEntity());
 			missile.SetGroup("BULLETS");
 			
-			missile.AddComponent(new Transform());
-			missile.AddComponent(new SpatialForm("Missile"));
-			missile.AddComponent(new Velocity());
-			missile.AddComponent(new Expires(2000));
-	
-			return missile;
+			missile.AddComponent(pool.TakeComponent<Transform>());
+			missile.AddComponent(pool.TakeComponent<SpatialForm>());
+			missile.AddComponent(pool.TakeComponent<Velocity>());
+			missile.AddComponent(pool.TakeComponent<Expires>());
+            missile.GetComponent<SpatialForm>().SetSpatialFormFile("Missile");
+            missile.GetComponent<Expires>().SetLifeTime(2000);
+	   		return missile;
 		}
-		
+
+        public static void SetPool(GamePool gamePool)
+        {
+            pool = gamePool;
+        }
+
 		public static Entity CreateEnemyShip(World world) {
-			Entity e = world.CreateEntity();
+			Entity e = world.AddEntity(pool.TakeEntity());
 			e.SetGroup("SHIPS");
 			
-			e.AddComponent(new Transform());
-			e.AddComponent(new SpatialForm("EnemyShip"));
-			e.AddComponent(new Health(10));
-			e.AddComponent(new Weapon());
-            e.AddComponent(new Enemy());
-			e.AddComponent(new Velocity());
-			
+			e.AddComponent(pool.TakeComponent<Transform>());
+			e.AddComponent(pool.TakeComponent<SpatialForm>());
+			e.AddComponent(pool.TakeComponent<Health>());
+			e.AddComponent(pool.TakeComponent<Weapon>());
+            e.AddComponent(pool.TakeComponent<Enemy>());
+			e.AddComponent(pool.TakeComponent<Velocity>());
+            e.GetComponent<SpatialForm>().SetSpatialFormFile("EnemyShip");
+            e.GetComponent<Health>().SetHealth(10);
 			return e;
 		}
 		
 		public static Entity CreateBulletExplosion(World world, float x, float y) {
-			Entity e = world.CreateEntity();
+			Entity e = world.AddEntity(pool.TakeEntity());
 			
 			e.SetGroup("EFFECTS");
 			
-			e.AddComponent(new Transform(new Vector3(x,y,0)));
-			e.AddComponent(new SpatialForm("BulletExplosion"));
-			e.AddComponent(new Expires(1000));
-			
+			e.AddComponent(pool.TakeComponent<Transform>());
+			e.AddComponent(pool.TakeComponent<SpatialForm>());
+			e.AddComponent(pool.TakeComponent<Expires>());
+            e.GetComponent<SpatialForm>().SetSpatialFormFile("BulletExplosion");
+            e.GetComponent<Expires>().SetLifeTime(1000);
+            e.GetComponent<Transform>().SetCoords(new Vector3(x, y, 0));
 			return e;
 		}
 		
 		public static Entity CreateShipExplosion(World world, float x, float y) {
-			Entity e = world.CreateEntity();
+			Entity e = world.AddEntity(pool.TakeEntity());
 			
 			e.SetGroup("EFFECTS");
 			
-			e.AddComponent(new Transform(new Vector3(x, y,0)));
-			e.AddComponent(new SpatialForm("ShipExplosion"));
-			e.AddComponent(new Expires(1000));
-			
+			e.AddComponent(pool.TakeComponent<Transform>());
+			e.AddComponent(pool.TakeComponent<SpatialForm>());
+			e.AddComponent(pool.TakeComponent<Expires>());
+            e.GetComponent<SpatialForm>().SetSpatialFormFile("ShipExplosion");
+            e.GetComponent<Transform>().SetCoords(new Vector3(x, y, 0));
+            e.GetComponent<Expires>().SetLifeTime(1000);
 			return e;
 		}
 	

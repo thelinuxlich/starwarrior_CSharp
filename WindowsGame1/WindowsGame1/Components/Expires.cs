@@ -10,6 +10,8 @@ namespace StarWarrior.Components
     {
         private int lifeTime;
 
+        public Expires() { }
+
         public Expires(int lifeTime)
         {
             this.lifeTime = lifeTime;

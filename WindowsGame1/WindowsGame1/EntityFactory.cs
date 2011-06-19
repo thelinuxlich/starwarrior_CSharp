@@ -6,10 +6,9 @@ namespace StarWarrior
 {
 	public class EntityFactory {
 
-        private static GamePool pool;
-
 		public static Entity CreateMissile(World world) {
-			Entity missile = world.AddEntity(pool.TakeEntity());
+			Entity missile = world.CreateEntity();
+            GamePool pool = (GamePool)world.GetPool();
 			missile.SetGroup("BULLETS");
 			
 			missile.AddComponent(pool.TakeComponent<Transform>());
@@ -21,15 +20,10 @@ namespace StarWarrior
 	   		return missile;
 		}
 
-        public static void SetPool(GamePool gamePool)
-        {
-            pool = gamePool;
-        }
-
-		public static Entity CreateEnemyShip(World world) {
-			Entity e = world.AddEntity(pool.TakeEntity());
+     	public static Entity CreateEnemyShip(World world) {
+			Entity e = world.CreateEntity();
 			e.SetGroup("SHIPS");
-			
+            GamePool pool = (GamePool)world.GetPool();
 			e.AddComponent(pool.TakeComponent<Transform>());
 			e.AddComponent(pool.TakeComponent<SpatialForm>());
 			e.AddComponent(pool.TakeComponent<Health>());
@@ -42,8 +36,8 @@ namespace StarWarrior
 		}
 		
 		public static Entity CreateBulletExplosion(World world, float x, float y) {
-			Entity e = world.AddEntity(pool.TakeEntity());
-			
+			Entity e = world.CreateEntity();
+            GamePool pool = (GamePool)world.GetPool();
 			e.SetGroup("EFFECTS");
 			
 			e.AddComponent(pool.TakeComponent<Transform>());
@@ -56,8 +50,8 @@ namespace StarWarrior
 		}
 		
 		public static Entity CreateShipExplosion(World world, float x, float y) {
-			Entity e = world.AddEntity(pool.TakeEntity());
-			
+			Entity e = world.CreateEntity();
+            GamePool pool = (GamePool)world.GetPool();
 			e.SetGroup("EFFECTS");
 			
 			e.AddComponent(pool.TakeComponent<Transform>());
@@ -71,4 +65,3 @@ namespace StarWarrior
 	
 	}
 }
-

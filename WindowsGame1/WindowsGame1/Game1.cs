@@ -60,17 +60,12 @@ namespace StarWarrior
         /// </summary>
         /// 
 
-        private void RemovedComponent(Component c)
+        private void RemovedComponent(Entity e,Component c)
         {
             if (c != null)
             {
                 pool.AddComponent(c.GetType(), c);
             }
-        }
-
-        private void RemovedEntity(Entity e)
-        {
-            pool.AddEntity(e);
         }
 
         protected override void Initialize()
@@ -83,10 +78,7 @@ namespace StarWarrior
             spriteBatch = new SpriteBatch(GraphicsDevice);
             world = new World();
             world.GetEntityManager().RemovedComponentEvent += new RemovedComponentHandler(RemovedComponent);
-            world.GetEntityManager().RemovedEntityEvent += new RemovedEntityHandler(RemovedEntity);
             world.SetPool(pool);
-
-            EntityFactory.SetPool(pool);
 
             font = Content.Load<SpriteFont>("myFont");
             SystemManager systemManager = world.GetSystemManager();
@@ -106,8 +98,6 @@ namespace StarWarrior
             InitPlayerShip();
             InitEnemyShips();
 
-
-            // TODO: use this.Content to load your game content here   
             base.Initialize();
         }
 
@@ -125,7 +115,7 @@ namespace StarWarrior
 	    }
 
 	    private void InitPlayerShip() {
-		    Entity e = world.AddEntity(pool.TakeEntity());
+		    Entity e = world.CreateEntity();
 		    e.SetGroup("SHIPS");
 
             e.AddComponent(pool.TakeComponent<Transform>());

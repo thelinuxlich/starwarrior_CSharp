@@ -7,8 +7,8 @@ namespace StarWarrior.Systems
 {
 	public class HealthBarRenderSystem : EntityProcessingSystem {
 		private SpriteBatch spriteBatch;
-		private ComponentMapper healthMapper;
-		private ComponentMapper transformMapper;
+		private ComponentMapper<Health> healthMapper;
+		private ComponentMapper<Transform> transformMapper;
         private SpriteFont font;
 	
 		public HealthBarRenderSystem(SpriteBatch spriteBatch,SpriteFont font) : base(typeof(Health), typeof(Transform)) {
@@ -17,13 +17,13 @@ namespace StarWarrior.Systems
 		}
 	
 		public override void Initialize() {
-			healthMapper = new ComponentMapper(typeof(Health), world.GetEntityManager());
-			transformMapper = new ComponentMapper(typeof(Transform), world.GetEntityManager());
+			healthMapper = new ComponentMapper<Health>(world);
+			transformMapper = new ComponentMapper<Transform>(world);
 		}
 	
 		public override void Process(Entity e) {
-			Health health = healthMapper.Get<Health>(e);
-			Transform transform = transformMapper.Get<Transform>(e);
+			Health health = healthMapper.Get(e);
+			Transform transform = transformMapper.Get(e);
 			Vector2 textPosition = new Vector2((float)transform.GetX()-10, (float)transform.GetY()-30);
 			spriteBatch.DrawString(font,health.GetHealthPercentage() + "%",textPosition,Color.White);
 		}

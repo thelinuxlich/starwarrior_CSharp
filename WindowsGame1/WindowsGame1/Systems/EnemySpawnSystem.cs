@@ -7,19 +7,14 @@ namespace StarWarrior.Systems
 {
 	public class EnemySpawnSystem : IntervalEntitySystem {
 
-		private ComponentMapper weaponMapper;		
-		private ComponentMapper transformMapper;
 		private SpriteBatch spriteBatch;
 		private Random r;
 	
-		public EnemySpawnSystem(int interval, SpriteBatch spriteBatch) : base(interval, typeof(Transform), typeof(Weapon),typeof(Enemy)){
+		public EnemySpawnSystem(int interval, SpriteBatch spriteBatch) : base(interval){
 			this.spriteBatch = spriteBatch;
 		}
 	
 		public override void Initialize() {
-			weaponMapper = new ComponentMapper(typeof(Weapon), world.GetEntityManager());
-			transformMapper = new ComponentMapper(typeof(Transform), world.GetEntityManager());
-			
 			r = new Random();
 		}
         

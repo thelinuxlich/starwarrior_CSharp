@@ -7,26 +7,22 @@ using System.Reflection;
 
 namespace StarWarrior
 {
-    public class GamePool : Pool
+    public class GamePool : ArtemisPool
     {
-        Bag<Entity> entityPool = new Bag<Entity>();
         Dictionary<Type, Bag<Component>> componentPool = new Dictionary<Type, Bag<Component>>();
         int limit = 0;
         Type[] components;
 
-        public GamePool(int limit,Type[] components)
+        public GamePool(int limit, Type[] components)
         {
             this.limit = limit;
             this.components = components;
         }
 
-        public void AddEntity(Entity e)
+        public void Initialize()
         {
-            entityPool.Add(e);
-        }
-
-        public void Initialize() {
-            foreach(Type type in components) {
+            foreach (Type type in components)
+            {
                 MethodInfo methodInfo = GetType().GetMethod("AddComponentType");
                 MethodInfo genericMethodInfo = methodInfo.MakeGenericMethod(new Type[] { type });
                 genericMethodInfo.Invoke(this, null);
@@ -38,7 +34,6 @@ namespace StarWarrior
         {
             for (int i = 0; i < quantity; i++)
             {
-                entityPool.Add(new Entity());
                 foreach (Type type in components)
                 {
                     AddComponent(type, (Component)Activator.CreateInstance(type));
@@ -59,16 +54,6 @@ namespace StarWarrior
             {
                 bag.Add(c);
             }
-        }
-
-        public Entity TakeEntity()
-        {
-            Entity e = entityPool.RemoveLast();
-            if(e == null) {
-                Populate((int)(limit * 0.25));
-                e = entityPool.RemoveLast();
-            }
-            return e;
         }
 
         public Component TakeComponent<T>() where T : Component

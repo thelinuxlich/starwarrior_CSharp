@@ -11,7 +11,7 @@ namespace StarWarrior.Systems
 		private bool moveRight;
 		private bool moveLeft;
 		private bool shoot;
-		private ComponentMapper transformMapper;
+		private ComponentMapper<Transform> transformMapper;
         private KeyboardState oldState;
         
 		public PlayerShipControlSystem(SpriteBatch spriteBatch) : base("PLAYER") {
@@ -19,13 +19,13 @@ namespace StarWarrior.Systems
 		}
 	
 		public override void Initialize() {
-            transformMapper = new ComponentMapper(typeof(Transform), world.GetEntityManager());
+            transformMapper = new ComponentMapper<Transform>(world);
             oldState = Keyboard.GetState();
 		}
 
         public override void Process(Entity e)
         {
-            Transform transform = transformMapper.Get<Transform>(e);
+            Transform transform = transformMapper.Get(e);
             UpdateInput();
             if (moveLeft)
             {

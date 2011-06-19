@@ -9,8 +9,8 @@ using Microsoft.Xna.Framework.Content;
 namespace StarWarrior.Systems	
 {
 	public class RenderSystem : EntityProcessingSystem {
-		private ComponentMapper spatialFormMapper;
-		private ComponentMapper transformMapper;
+		private ComponentMapper<SpatialForm> spatialFormMapper;
+		private ComponentMapper<Transform> transformMapper;
         private SpriteBatch spriteBatch;
         private Transform transform;
         private string spatialName;
@@ -24,13 +24,13 @@ namespace StarWarrior.Systems
 		}
 	
 		public override void Initialize() {
-			spatialFormMapper = new ComponentMapper(typeof(SpatialForm), world.GetEntityManager());
-			transformMapper = new ComponentMapper(typeof(Transform), world.GetEntityManager());
+			spatialFormMapper = new ComponentMapper<SpatialForm>(world);
+			transformMapper = new ComponentMapper<Transform>(world);
         }
 	
 		public override void Process(Entity e) {
-			transform = transformMapper.Get<Transform>(e);
-            SpatialForm spatialForm = spatialFormMapper.Get<SpatialForm>(e);
+			transform = transformMapper.Get(e);
+            SpatialForm spatialForm = spatialFormMapper.Get(e);
             spatialName = spatialForm.GetSpatialFormFile();
 	
 			if (transform.GetX() >= 0 && transform.GetY() >= 0 && transform.GetX() < spriteBatch.GraphicsDevice.Viewport.Width && transform.GetY() < spriteBatch.GraphicsDevice.Viewport.Height && spatialForm != null) {

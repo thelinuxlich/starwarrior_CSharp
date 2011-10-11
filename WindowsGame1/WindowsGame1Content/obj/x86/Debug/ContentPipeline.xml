@@ -7,7 +7,7 @@
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\thelinuxlich-starwarrior_CSharp-3db07f1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\myFont.xnb</Output>
+      <Output>D:\starwarrior_CSharp\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\myFont.xnb</Output>
       <Time>2011-06-18T19:35:06-03:00</Time>
     </Item>
     <Item>
@@ -16,7 +16,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\thelinuxlich-starwarrior_CSharp-3db07f1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\enemy.xnb</Output>
+      <Output>D:\starwarrior_CSharp\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\enemy.xnb</Output>
       <Time>2011-06-18T19:35:06-03:00</Time>
     </Item>
     <Item>
@@ -25,7 +25,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\thelinuxlich-starwarrior_CSharp-3db07f1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\player.xnb</Output>
+      <Output>D:\starwarrior_CSharp\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\player.xnb</Output>
       <Time>2011-06-18T19:35:06-03:00</Time>
     </Item>
     <Item>
@@ -34,7 +34,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\thelinuxlich-starwarrior_CSharp-3db07f1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\explosion.xnb</Output>
+      <Output>D:\starwarrior_CSharp\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\explosion.xnb</Output>
       <Time>2011-06-18T19:35:06-03:00</Time>
     </Item>
     <Item>
@@ -43,7 +43,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\thelinuxlich-starwarrior_CSharp-3db07f1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\bullet.xnb</Output>
+      <Output>D:\starwarrior_CSharp\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\bullet.xnb</Output>
       <Time>2011-06-18T19:35:06-03:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
@@ -52,10 +52,10 @@
       <TargetProfile>HiDef</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>D:\thelinuxlich-starwarrior_CSharp-3db07f1\WindowsGame1\WindowsGame1Content\</RootDirectory>
-      <LoggerRootDirectory>D:\thelinuxlich-starwarrior_CSharp-3db07f1\WindowsGame1\WindowsGame1\</LoggerRootDirectory>
-      <IntermediateDirectory>D:\thelinuxlich-starwarrior_CSharp-3db07f1\WindowsGame1\WindowsGame1Content\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>D:\thelinuxlich-starwarrior_CSharp-3db07f1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>D:\starwarrior_CSharp\WindowsGame1\WindowsGame1Content\</RootDirectory>
+      <LoggerRootDirectory>D:\starwarrior_CSharp\WindowsGame1\WindowsGame1\</LoggerRootDirectory>
+      <IntermediateDirectory>D:\starwarrior_CSharp\WindowsGame1\WindowsGame1Content\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>D:\starwarrior_CSharp\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>

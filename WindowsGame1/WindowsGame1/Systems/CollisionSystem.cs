@@ -22,11 +22,10 @@ namespace StarWarrior.Systems
 		    healthMapper = new ComponentMapper<Health>(world);
 	    }
 
-        public override void ProcessEntities(Dictionary<int, Entity> entities)
+        protected override void ProcessEntities(Dictionary<int, Entity> entities)
         {
             Bag<Entity> bullets = world.GetGroupManager().getEntities("BULLETS");
-		    Bag<Entity> ships = world.GetGroupManager().getEntities("SHIPS");
-            Entity player = world.GetTagManager().GetEntity("PLAYER");
+		    Bag<Entity> ships = world.GetGroupManager().getEntities("SHIPS");            
             if(bullets != null && ships != null) {                
 			    for(int a = 0; ships.Size() > a; a++) {                    
 				    Entity ship = ships.Get(a);

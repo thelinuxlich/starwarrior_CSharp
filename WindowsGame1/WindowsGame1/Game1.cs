@@ -23,7 +23,7 @@ namespace StarWarrior
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        private World world;
+        private EntityWorld world;
 
         private EntitySystem renderSystem;
         private EntitySystem hudRenderSystem;
@@ -76,22 +76,22 @@ namespace StarWarrior
             pool.Initialize();
 
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            world = new World();
+            world = new EntityWorld();
             world.GetEntityManager().RemovedComponentEvent += new RemovedComponentHandler(RemovedComponent);
             world.SetPool(pool);
 
             font = Content.Load<SpriteFont>("myFont");
             SystemManager systemManager = world.GetSystemManager();
-            renderSystem = systemManager.SetSystem(new RenderSystem(GraphicsDevice,spriteBatch,Content));
-            hudRenderSystem = systemManager.SetSystem(new HudRenderSystem(spriteBatch,font));
-            controlSystem = systemManager.SetSystem(new MovementSystem(spriteBatch));
-            movementSystem = systemManager.SetSystem(new PlayerShipControlSystem(spriteBatch));
-            enemyShooterSystem = systemManager.SetSystem(new EnemyShipMovementSystem(spriteBatch));
-            enemyShipMovementSystem = systemManager.SetSystem(new EnemyShooterSystem());
-            collisionSystem = systemManager.SetSystem(new CollisionSystem());
-            healthBarRenderSystem = systemManager.SetSystem(new HealthBarRenderSystem(spriteBatch,font));
-            enemySpawnSystem = systemManager.SetSystem(new EnemySpawnSystem(500, spriteBatch));
-            expirationSystem = systemManager.SetSystem(new ExpirationSystem());
+            renderSystem = systemManager.SetSystem(new RenderSystem(GraphicsDevice,spriteBatch,Content),ExecutionType.Draw);
+            hudRenderSystem = systemManager.SetSystem(new HudRenderSystem(spriteBatch, font), ExecutionType.Draw);
+            controlSystem = systemManager.SetSystem(new MovementSystem(spriteBatch), ExecutionType.Update,1);
+            movementSystem = systemManager.SetSystem(new PlayerShipControlSystem(spriteBatch),ExecutionType.Update);
+            enemyShooterSystem = systemManager.SetSystem(new EnemyShipMovementSystem(spriteBatch), ExecutionType.Update,1);
+            enemyShipMovementSystem = systemManager.SetSystem(new EnemyShooterSystem(), ExecutionType.Update);
+            collisionSystem = systemManager.SetSystem(new CollisionSystem(), ExecutionType.Update,1);
+            healthBarRenderSystem = systemManager.SetSystem(new HealthBarRenderSystem(spriteBatch, font), ExecutionType.Draw);
+            enemySpawnSystem = systemManager.SetSystem(new EnemySpawnSystem(500, spriteBatch), ExecutionType.Update);
+            expirationSystem = systemManager.SetSystem(new ExpirationSystem(), ExecutionType.Update);
 
             systemManager.InitializeAll();
 
@@ -147,17 +147,14 @@ namespace StarWarrior
         {
             TimeSpan elapsed = DateTime.Now - dt;
             dt = DateTime.Now;
+            frameCounter++;
+
             world.LoopStart();
             world.SetDelta(elapsed.Milliseconds);
 
-            controlSystem.Process();
-            movementSystem.Process();
-            enemyShooterSystem.Process();
-            enemyShipMovementSystem.Process();
-            collisionSystem.Process();
-            enemySpawnSystem.Process();
-            expirationSystem.Process();
-
+            world.GetSystemManager().UpdateAsynchronous(ExecutionType.Update);
+            //world.GetSystemManager().UpdateSynchronous(ExecutionType.Update);
+            
             elapsedTime += elapsed;
 
             if (elapsedTime > TimeSpan.FromSeconds(1))
@@ -175,17 +172,13 @@ namespace StarWarrior
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
-        {
-
-            frameCounter++;
+        {            
             string fps = string.Format("fps: {0}", frameRate);
 
             GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin();
             spriteBatch.DrawString(font, fps, new Vector2(32,32), Color.Yellow);
-            renderSystem.Process();
-            healthBarRenderSystem.Process();
-            hudRenderSystem.Process();            
+            world.GetSystemManager().UpdateSynchronous(ExecutionType.Draw);
             spriteBatch.End();
 
             base.Draw(gameTime);

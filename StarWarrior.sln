@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual C# Express 2010
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarWarrior", "WindowsGame1\WindowsGame1\StarWarrior.csproj", "{2812F1D6-08A4-442A-9593-DC389EA9FB32}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarWarriorContent", "WindowsGame1\WindowsGame1Content\StarWarriorContent.contentproj", "{E0469A42-C861-4E3B-8874-521FCB5C2B8F}"

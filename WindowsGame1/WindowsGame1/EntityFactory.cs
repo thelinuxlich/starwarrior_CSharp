@@ -6,7 +6,8 @@ namespace StarWarrior
 {
 	public class EntityFactory {
 
-		public static Entity CreateMissile(World world) {
+        public static Entity CreateMissile(EntityWorld world)
+        {
 			Entity missile = world.CreateEntity();
             GamePool pool = (GamePool)world.GetPool();
 			missile.SetGroup("BULLETS");
@@ -20,7 +21,7 @@ namespace StarWarrior
 	   		return missile;
 		}
 
-     	public static Entity CreateEnemyShip(World world) {
+     	public static Entity CreateEnemyShip(EntityWorld world) {
 			Entity e = world.CreateEntity();
 			e.SetGroup("SHIPS");
             GamePool pool = (GamePool)world.GetPool();
@@ -34,8 +35,9 @@ namespace StarWarrior
             e.GetComponent<Health>().SetHealth(10);
 			return e;
 		}
-		
-		public static Entity CreateBulletExplosion(World world, float x, float y) {
+
+        public static Entity CreateBulletExplosion(EntityWorld world, float x, float y)
+        {
 			Entity e = world.CreateEntity();
             GamePool pool = (GamePool)world.GetPool();
 			e.SetGroup("EFFECTS");
@@ -48,8 +50,9 @@ namespace StarWarrior
             e.GetComponent<Transform>().SetCoords(new Vector3(x, y, 0));
 			return e;
 		}
-		
-		public static Entity CreateShipExplosion(World world, float x, float y) {
+
+        public static Entity CreateShipExplosion(EntityWorld world, float x, float y)
+        {
 			Entity e = world.CreateEntity();
             GamePool pool = (GamePool)world.GetPool();
 			e.SetGroup("EFFECTS");

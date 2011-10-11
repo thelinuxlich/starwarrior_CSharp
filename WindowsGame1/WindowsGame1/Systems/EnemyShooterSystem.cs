@@ -18,7 +18,7 @@ namespace StarWarrior.Systems
 			transformMapper = new ComponentMapper<Transform>(world);
 		}
 	
-		public override void Begin() {			
+		protected override void Begin() {			
 		}
 	
 		public override void Process(Entity e) {

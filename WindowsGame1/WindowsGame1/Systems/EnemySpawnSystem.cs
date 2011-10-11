@@ -18,7 +18,7 @@ namespace StarWarrior.Systems
 			r = new Random();
 		}
         
-        public override void ProcessEntities(Dictionary<int, Entity> entities)
+       protected override void ProcessEntities(Dictionary<int, Entity> entities)
         {            
 			Entity e = EntityFactory.CreateEnemyShip(world);
 			

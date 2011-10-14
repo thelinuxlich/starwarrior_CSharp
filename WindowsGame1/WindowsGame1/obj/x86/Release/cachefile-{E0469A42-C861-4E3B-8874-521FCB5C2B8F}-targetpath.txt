@@ -1,5 +1,0 @@
-Content\myFont.xnb
-Content\enemy.xnb
-Content\player.xnb
-Content\Explosion.xnb
-Content\bullet.xnb

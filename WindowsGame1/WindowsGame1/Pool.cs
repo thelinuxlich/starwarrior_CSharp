@@ -22,7 +22,7 @@ namespace StarWarrior
         public void Initialize()
         {
             foreach (Type type in components)
-            {
+            {                
                 MethodInfo methodInfo = GetType().GetMethod("AddComponentType");
                 MethodInfo genericMethodInfo = methodInfo.MakeGenericMethod(new Type[] { type });
                 genericMethodInfo.Invoke(this, null);
@@ -58,8 +58,7 @@ namespace StarWarrior
 
         public Component TakeComponent<T>() where T : Component
         {
-            Bag<Component> bag;
-            componentPool.TryGetValue(typeof(T), out bag);
+            Bag<Component> bag;            
             if (componentPool.TryGetValue(typeof(T), out bag))
             {
                 Component c = bag.RemoveLast();

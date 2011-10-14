@@ -39,15 +39,23 @@ namespace StarWarrior.Systems
 		}
 
 		private void CreateSpatial(Entity e) {
-			if (String.Compare("PlayerShip",spatialName,true) == 0) {
+			if (String.Compare("PlayerShip",spatialName,StringComparison.InvariantCultureIgnoreCase) == 0) {
                 PlayerShip.Render(spriteBatch, contentManager,transform);
-			} else if (String.Compare("Missile",spatialName,true) == 0) {
+            }
+            else if (String.Compare("Missile", spatialName, StringComparison.InvariantCultureIgnoreCase) == 0)
+            {
                 Missile.Render(spriteBatch, contentManager, transform);
-			} else if (String.Compare("EnemyShip",spatialName,true) == 0) {
+            }
+            else if (String.Compare("EnemyShip", spatialName, StringComparison.InvariantCultureIgnoreCase) == 0)
+            {
                 EnemyShip.Render(spriteBatch, contentManager, transform);
-			} else if (String.Compare("BulletExplosion",spatialName,true) == 0) {
+            }
+            else if (String.Compare("BulletExplosion", spatialName, StringComparison.InvariantCultureIgnoreCase) == 0)
+            {
                 Explosion.Render(spriteBatch, contentManager, transform,Color.Red,10);
-			} else if (String.Compare("ShipExplosion",spatialName,true) == 0) {
+            }
+            else if (String.Compare("ShipExplosion", spatialName, StringComparison.InvariantCultureIgnoreCase) == 0)
+            {
                 ShipExplosion.Render(spriteBatch, contentManager, transform, Color.Yellow, 30);
 			}
 		}

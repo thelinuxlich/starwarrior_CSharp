@@ -3,12 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarWarrior", "WindowsGame1\WindowsGame1\StarWarrior.csproj", "{2812F1D6-08A4-442A-9593-DC389EA9FB32}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarWarriorContent", "WindowsGame1\WindowsGame1Content\StarWarriorContent.contentproj", "{E0469A42-C861-4E3B-8874-521FCB5C2B8F}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Windows Phone Copy of StarWarrior", "WindowsGame1\WindowsGame1\Windows Phone Copy of StarWarrior.csproj", "{081B67B6-F48A-4C30-9EFF-A4DFF2E498F5}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xbox 360 Copy of StarWarrior", "WindowsGame1\WindowsGame1\Xbox 360 Copy of StarWarrior.csproj", "{B0B2606A-F465-410D-AF46-55506DC8F360}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Mixed Platforms = Debug|Mixed Platforms
@@ -37,48 +31,34 @@ Global
 		{2812F1D6-08A4-442A-9593-DC389EA9FB32}.Release|x86.Build.0 = Release|x86
 		{2812F1D6-08A4-442A-9593-DC389EA9FB32}.Release|Xbox 360.ActiveCfg = Release|x86
 		{2812F1D6-08A4-442A-9593-DC389EA9FB32}.Release|Xbox 360.Build.0 = Release|x86
-		{E0469A42-C861-4E3B-8874-521FCB5C2B8F}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{E0469A42-C861-4E3B-8874-521FCB5C2B8F}.Debug|Windows Phone.ActiveCfg = Debug|x86
-		{E0469A42-C861-4E3B-8874-521FCB5C2B8F}.Debug|x86.ActiveCfg = Debug|x86
-		{E0469A42-C861-4E3B-8874-521FCB5C2B8F}.Debug|Xbox 360.ActiveCfg = Debug|x86
-		{E0469A42-C861-4E3B-8874-521FCB5C2B8F}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{E0469A42-C861-4E3B-8874-521FCB5C2B8F}.Release|Windows Phone.ActiveCfg = Release|x86
-		{E0469A42-C861-4E3B-8874-521FCB5C2B8F}.Release|x86.ActiveCfg = Release|x86
-		{E0469A42-C861-4E3B-8874-521FCB5C2B8F}.Release|Xbox 360.ActiveCfg = Release|x86
-		{081B67B6-F48A-4C30-9EFF-A4DFF2E498F5}.Debug|Mixed Platforms.ActiveCfg = Debug|Windows Phone
-		{081B67B6-F48A-4C30-9EFF-A4DFF2E498F5}.Debug|Mixed Platforms.Build.0 = Debug|Windows Phone
 		{081B67B6-F48A-4C30-9EFF-A4DFF2E498F5}.Debug|Mixed Platforms.Deploy.0 = Debug|Windows Phone
-		{081B67B6-F48A-4C30-9EFF-A4DFF2E498F5}.Debug|Windows Phone.ActiveCfg = Debug|Windows Phone
-		{081B67B6-F48A-4C30-9EFF-A4DFF2E498F5}.Debug|Windows Phone.Build.0 = Debug|Windows Phone
 		{081B67B6-F48A-4C30-9EFF-A4DFF2E498F5}.Debug|Windows Phone.Deploy.0 = Debug|Windows Phone
-		{081B67B6-F48A-4C30-9EFF-A4DFF2E498F5}.Debug|x86.ActiveCfg = Debug|Windows Phone
-		{081B67B6-F48A-4C30-9EFF-A4DFF2E498F5}.Debug|Xbox 360.ActiveCfg = Debug|Windows Phone
-		{081B67B6-F48A-4C30-9EFF-A4DFF2E498F5}.Debug|Xbox 360.Build.0 = Debug|Windows Phone
-		{081B67B6-F48A-4C30-9EFF-A4DFF2E498F5}.Release|Mixed Platforms.ActiveCfg = Release|Windows Phone
-		{081B67B6-F48A-4C30-9EFF-A4DFF2E498F5}.Release|Mixed Platforms.Build.0 = Release|Windows Phone
 		{081B67B6-F48A-4C30-9EFF-A4DFF2E498F5}.Release|Mixed Platforms.Deploy.0 = Release|Windows Phone
-		{081B67B6-F48A-4C30-9EFF-A4DFF2E498F5}.Release|Windows Phone.ActiveCfg = Release|Windows Phone
-		{081B67B6-F48A-4C30-9EFF-A4DFF2E498F5}.Release|Windows Phone.Build.0 = Release|Windows Phone
 		{081B67B6-F48A-4C30-9EFF-A4DFF2E498F5}.Release|Windows Phone.Deploy.0 = Release|Windows Phone
-		{081B67B6-F48A-4C30-9EFF-A4DFF2E498F5}.Release|x86.ActiveCfg = Release|Windows Phone
-		{081B67B6-F48A-4C30-9EFF-A4DFF2E498F5}.Release|Xbox 360.ActiveCfg = Release|Windows Phone
-		{081B67B6-F48A-4C30-9EFF-A4DFF2E498F5}.Release|Xbox 360.Build.0 = Release|Windows Phone
-		{B0B2606A-F465-410D-AF46-55506DC8F360}.Debug|Mixed Platforms.ActiveCfg = Debug|Xbox 360
-		{B0B2606A-F465-410D-AF46-55506DC8F360}.Debug|Mixed Platforms.Build.0 = Debug|Xbox 360
 		{B0B2606A-F465-410D-AF46-55506DC8F360}.Debug|Mixed Platforms.Deploy.0 = Debug|Xbox 360
-		{B0B2606A-F465-410D-AF46-55506DC8F360}.Debug|Windows Phone.ActiveCfg = Debug|Xbox 360
-		{B0B2606A-F465-410D-AF46-55506DC8F360}.Debug|x86.ActiveCfg = Debug|Xbox 360
-		{B0B2606A-F465-410D-AF46-55506DC8F360}.Debug|Xbox 360.ActiveCfg = Debug|Xbox 360
-		{B0B2606A-F465-410D-AF46-55506DC8F360}.Debug|Xbox 360.Build.0 = Debug|Xbox 360
 		{B0B2606A-F465-410D-AF46-55506DC8F360}.Debug|Xbox 360.Deploy.0 = Debug|Xbox 360
-		{B0B2606A-F465-410D-AF46-55506DC8F360}.Release|Mixed Platforms.ActiveCfg = Release|Xbox 360
-		{B0B2606A-F465-410D-AF46-55506DC8F360}.Release|Mixed Platforms.Build.0 = Release|Xbox 360
 		{B0B2606A-F465-410D-AF46-55506DC8F360}.Release|Mixed Platforms.Deploy.0 = Release|Xbox 360
-		{B0B2606A-F465-410D-AF46-55506DC8F360}.Release|Windows Phone.ActiveCfg = Release|Xbox 360
-		{B0B2606A-F465-410D-AF46-55506DC8F360}.Release|x86.ActiveCfg = Release|Xbox 360
-		{B0B2606A-F465-410D-AF46-55506DC8F360}.Release|Xbox 360.ActiveCfg = Release|Xbox 360
-		{B0B2606A-F465-410D-AF46-55506DC8F360}.Release|Xbox 360.Build.0 = Release|Xbox 360
 		{B0B2606A-F465-410D-AF46-55506DC8F360}.Release|Xbox 360.Deploy.0 = Release|Xbox 360
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = WindowsGame1\WindowsGame1\StarWarrior.csproj
+		Policies = $0
+		$0.DotNetNamingPolicy = $1
+		$1.DirectoryNamespaceAssociation = None
+		$1.ResourceNamePolicy = FileFormatDefault
+		$0.TextStylePolicy = $2
+		$2.FileWidth = 120
+		$2.TabWidth = 4
+		$2.inheritsSet = Mono
+		$2.inheritsScope = text/plain
+		$2.scope = text/plain
+		$0.VersionControlPolicy = $3
+		$3.inheritsSet = Mono
+		$0.ChangeLogPolicy = $4
+		$4.UpdateMode = None
+		$4.MessageStyle = $5
+		$5.LineAlign = 0
+		$4.inheritsSet = Mono
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -46,9 +46,9 @@ namespace StarWarrior
             graphics = new GraphicsDeviceManager(this);
             graphics.SynchronizeWithVerticalRetrace = false;
             this.IsFixedTimeStep = false;
-            graphics.IsFullScreen = false;
-            graphics.PreferredBackBufferHeight = 700;
-            graphics.PreferredBackBufferWidth = 1000;
+            //graphics.IsFullScreen = false;
+            graphics.PreferredBackBufferHeight = 600;
+            graphics.PreferredBackBufferWidth = 800;
             Content.RootDirectory = "Content";
         }
 
@@ -80,7 +80,7 @@ namespace StarWarrior
             world.GetEntityManager().RemovedComponentEvent += new RemovedComponentHandler(RemovedComponent);
             world.SetPool(pool);
 
-            font = Content.Load<SpriteFont>("myFont");
+            font = Content.Load<SpriteFont>("Arial");
             SystemManager systemManager = world.GetSystemManager();
             renderSystem = systemManager.SetSystem(new RenderSystem(GraphicsDevice,spriteBatch,Content),ExecutionType.Draw);
             hudRenderSystem = systemManager.SetSystem(new HudRenderSystem(spriteBatch, font), ExecutionType.Draw);

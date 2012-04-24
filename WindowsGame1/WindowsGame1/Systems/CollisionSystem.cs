@@ -24,8 +24,8 @@ namespace StarWarrior.Systems
 
         protected override void ProcessEntities(Dictionary<int, Entity> entities)
         {
-            Bag<Entity> bullets = world.GetGroupManager().getEntities("BULLETS");
-		    Bag<Entity> ships = world.GetGroupManager().getEntities("SHIPS");            
+            Bag<Entity> bullets = world.GroupManager.GetEntities("BULLETS");
+		    Bag<Entity> ships = world.GroupManager.GetEntities("SHIPS");            
             if(bullets != null && ships != null) {                
 			    for(int a = 0; ships.Size() > a; a++) {                    
 				    Entity ship = ships.Get(a);
@@ -34,15 +34,15 @@ namespace StarWarrior.Systems
 					
 					    if(CollisionExists(bullet, ship)) {
 						    Transform tb = transformMapper.Get(bullet);
-						    EntityFactory.CreateBulletExplosion(world, tb.GetX(), tb.GetY()).Refresh();
+						    EntityFactory.CreateBulletExplosion(world, tb.X, tb.Y).Refresh();
 						    world.DeleteEntity(bullet);
 						
 						    Health health = healthMapper.Get(ship);
 						    health.AddDamage(4);
 	
-						    if(!health.IsAlive()) {
+						    if(!health.IsAlive) {
 							    Transform ts = transformMapper.Get(ship);	
-							    EntityFactory.CreateShipExplosion(world, ts.GetX(), ts.GetY()).Refresh();
+							    EntityFactory.CreateShipExplosion(world, ts.X, ts.Y).Refresh();
 							    world.DeleteEntity(ship);
                                 break;
 						    }
@@ -55,8 +55,7 @@ namespace StarWarrior.Systems
 	    private bool CollisionExists(Entity e1, Entity e2) {
 		    Transform t1 = transformMapper.Get(e1);
 		    Transform t2 = transformMapper.Get(e2);
-            return t1.GetDistanceTo(t2) < 15;
-            
+            return t1.DistanceTo(t2) < 15; 
 	    }
     }
 }

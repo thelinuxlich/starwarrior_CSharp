@@ -27,7 +27,7 @@ namespace StarWarrior.Systems
             Transform transform = transformMapper.Get(e);
             Velocity velocity = velocityMapper.Get(e);
 
-            if (transform.GetX() > spriteBatch.GraphicsDevice.Viewport.Width || transform.GetX() < 0)
+            if (transform.X > spriteBatch.GraphicsDevice.Viewport.Width || transform.X < 0)
             {
                 velocity.AddAngle(180);
             }

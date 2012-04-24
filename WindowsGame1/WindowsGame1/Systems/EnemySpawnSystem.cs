@@ -23,8 +23,8 @@ namespace StarWarrior.Systems
 			Entity e = EntityFactory.CreateEnemyShip(world);
 			
 			e.GetComponent<Transform>().SetLocation(r.Next(spriteBatch.GraphicsDevice.Viewport.Width), r.Next(400)+50);
-			e.GetComponent<Velocity>().SetVelocity(0.05f);
-			e.GetComponent<Velocity>().SetAngle(r.Next() % 2  == 0 ? 0 : 180);
+			e.GetComponent<Velocity>().Speed = 0.05f;
+			e.GetComponent<Velocity>().Angle = r.Next() % 2  == 0 ? 0 : 180;
 			
 			e.Refresh();
 		}

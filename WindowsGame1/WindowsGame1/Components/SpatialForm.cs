@@ -17,14 +17,10 @@ namespace StarWarrior.Components
             this.spatialFormFile = spatialFormFile;
         }
 
-        public String GetSpatialFormFile()
+        public String SpatialFormFile
         {
-            return spatialFormFile;
-        }
-
-        public void SetSpatialFormFile(string spatial)
-        {
-            spatialFormFile = spatial;
+            get { return spatialFormFile;}
+			set { spatialFormFile = value; }
         }
     }
 }

@@ -20,14 +20,14 @@ namespace StarWarrior.Systems
 	
 		public override void Process(Entity e) {
 			Velocity velocity = velocityMapper.Get(e);
-			float v = velocity.GetVelocity();
+			float v = velocity.Speed;
 	
 			Transform transform = transformMapper.Get(e);
 	
 			float r = velocity.GetAngleAsRadians();
 	
-			float xn = transform.GetX() + (TrigLUT.Cos(r) * v * world.GetDelta());
-			float yn = transform.GetY() + (TrigLUT.Sin(r) * v * world.GetDelta());
+			float xn = transform.X + (TrigLUT.Cos(r) * v * world.Delta);
+			float yn = transform.Y + (TrigLUT.Sin(r) * v * world.Delta);
 	
 			transform.SetLocation(xn, yn);
 		}

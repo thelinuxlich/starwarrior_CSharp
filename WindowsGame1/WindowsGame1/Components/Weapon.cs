@@ -14,14 +14,10 @@ namespace StarWarrior.Components
         {
         }
 
-        public void SetShotAt(long shotAt)
+        public long ShotAt
         {
-            this.shotAt = shotAt;
-        }
-
-        public long GetShotAt()
-        {
-            return shotAt;
+			get { return shotAt; }
+            set { shotAt = value;}
         }
     }
 }

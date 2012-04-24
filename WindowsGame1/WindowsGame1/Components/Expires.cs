@@ -17,14 +17,10 @@ namespace StarWarrior.Components
             this.lifeTime = lifeTime;
         }
 
-        public int GetLifeTime()
+        public int LifeTime
         {
-            return lifeTime;
-        }
-
-        public void SetLifeTime(int lifeTime)
-        {
-            this.lifeTime = lifeTime;
+            get { return lifeTime; }
+			set { lifeTime = value; }
         }
 
         public void ReduceLifeTime(int lifeTime)
@@ -32,9 +28,9 @@ namespace StarWarrior.Components
             this.lifeTime -= lifeTime;
         }
 
-        public bool IsExpired()
+        public bool IsExpired 
         {
-            return lifeTime <= 0;
+            get { return lifeTime <= 0;}
         }
     }
 }

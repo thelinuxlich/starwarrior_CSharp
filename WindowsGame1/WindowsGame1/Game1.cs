@@ -77,11 +77,11 @@ namespace StarWarrior
 
             spriteBatch = new SpriteBatch(GraphicsDevice);
             world = new EntityWorld();
-            world.GetEntityManager().RemovedComponentEvent += new RemovedComponentHandler(RemovedComponent);
-            world.SetPool(pool);
+            world.EntityManager.RemovedComponentEvent += new RemovedComponentHandler(RemovedComponent);
+            world.Pool = pool;
 
             font = Content.Load<SpriteFont>("myFont");
-            SystemManager systemManager = world.GetSystemManager();
+            var systemManager = world.SystemManager;
             renderSystem = systemManager.SetSystem(new RenderSystem(GraphicsDevice,spriteBatch,Content),ExecutionType.Draw);
             hudRenderSystem = systemManager.SetSystem(new HudRenderSystem(spriteBatch, font), ExecutionType.Draw);
             controlSystem = systemManager.SetSystem(new MovementSystem(spriteBatch), ExecutionType.Update,1);
@@ -107,8 +107,8 @@ namespace StarWarrior
 			    Entity e = EntityFactory.CreateEnemyShip(world);
 
 			    e.GetComponent<Transform>().SetLocation(r.Next(GraphicsDevice.Viewport.Width), r.Next(400)+50);
-			    e.GetComponent<Velocity>().SetVelocity(0.05f);
-			    e.GetComponent<Velocity>().SetAngle(r.Next() % 2 == 0 ? 0 : 180);
+			    e.GetComponent<Velocity>().Speed = 0.05f;
+			    e.GetComponent<Velocity>().Angle = r.Next() % 2 == 0 ? 0 : 180;
 			
 			    e.Refresh();
 		    }
@@ -121,11 +121,11 @@ namespace StarWarrior
             e.AddComponent(pool.TakeComponent<Transform>());
 		    e.AddComponent(pool.TakeComponent<SpatialForm>());
 		    e.AddComponent(pool.TakeComponent<Health>());
-            e.GetComponent<SpatialForm>().SetSpatialFormFile("PlayerShip");
-            e.GetComponent<Health>().SetHealth(30);
-            e.GetComponent<Transform>().SetCoords(new Vector3(GraphicsDevice.Viewport.Width / 2, GraphicsDevice.Viewport.Height - 50, 0));
+            e.GetComponent<SpatialForm>().SpatialFormFile = "PlayerShip";
+            e.GetComponent<Health>().HP = 30;
+            e.GetComponent<Transform>().Coords = new Vector3(GraphicsDevice.Viewport.Width / 2, GraphicsDevice.Viewport.Height - 50, 0);
 		    e.Refresh();
-            world.GetTagManager().Register("PLAYER", e);
+            world.TagManager.Register("PLAYER", e);
 	    }
 
         /// <summary>
@@ -150,10 +150,9 @@ namespace StarWarrior
             frameCounter++;
 
             world.LoopStart();
-            world.SetDelta(elapsed.Milliseconds);
+            world.Delta = elapsed.Milliseconds;
 
-            world.GetSystemManager().UpdateAsynchronous(ExecutionType.Update);
-            //world.GetSystemManager().UpdateSynchronous(ExecutionType.Update);
+            world.SystemManager.UpdateSynchronous(ExecutionType.Update);
             
             elapsedTime += elapsed;
 
@@ -178,7 +177,7 @@ namespace StarWarrior
             GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin();
             spriteBatch.DrawString(font, fps, new Vector2(32,32), Color.Yellow);
-            world.GetSystemManager().UpdateSynchronous(ExecutionType.Draw);
+            world.SystemManager.UpdateSynchronous(ExecutionType.Draw);
             spriteBatch.End();
 
             base.Draw(gameTime);

@@ -21,7 +21,7 @@ namespace StarWarrior.Spatials
             {
                 ship = contentManager.Load<Texture2D>("player");
             }
-            Rectangle rect = new Rectangle((int)transform.GetX(), (int)transform.GetY(), ship.Width, ship.Height);
+            Rectangle rect = new Rectangle((int)transform.X, (int)transform.Y, ship.Width, ship.Height);
             spriteBatch.Draw(ship, rect, Color.White);
         }
     }

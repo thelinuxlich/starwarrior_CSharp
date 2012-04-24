@@ -16,9 +16,9 @@ namespace StarWarrior.Systems
 	
 		public override void Process(Entity e) {
 			Expires expires = expiresMapper.Get(e);
-			expires.ReduceLifeTime(world.GetDelta());
+			expires.ReduceLifeTime(world.Delta);
 	
-			if (expires.IsExpired()) {
+			if (expires.IsExpired) {
 				world.DeleteEntity(e);
 			}
 	

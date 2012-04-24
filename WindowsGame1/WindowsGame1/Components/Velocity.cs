@@ -17,7 +17,7 @@ namespace StarWarrior.Components
 
         public Velocity(float vector)
         {
-            this.velocity = vector;
+            velocity = vector;
         }
 
         public Velocity(float velocity, float angle)
@@ -26,24 +26,15 @@ namespace StarWarrior.Components
             this.angle = angle;
         }
 
-        public float GetVelocity()
-        {
-            return velocity;
+        public float Speed {
+            get { return velocity;}
+			set { velocity = value; }
         }
 
-        public void SetVelocity(float velocity)
+        public float Angle
         {
-            this.velocity = velocity;
-        }
-
-        public void SetAngle(float angle)
-        {
-            this.angle = angle;
-        }
-
-        public float GetAngle()
-        {
-            return angle;
+			get { return angle; }	
+            set { angle = angle;}
         }
 
         public void AddAngle(float a)
@@ -51,9 +42,9 @@ namespace StarWarrior.Components
             angle = (angle + a) % 360;
         }
 
-        public float GetAngleAsRadians()
+        public float AngleAsRadians
         {
-            return (float)Math.PI * angle / 180.0f; ;
+            get { return (float)Math.PI * angle / 180.0f; }
         }
     }
 }

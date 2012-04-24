@@ -19,32 +19,19 @@ namespace StarWarrior.Components
 		    this.coords = coords;
 	    }
 
-        public void SetCoords(Vector3 coords) {
-            this.coords = coords;
+        public Vector3 Coords {
+			get { return coords; }
+            set { coords = value; }
         }
 
-	    public void AddX(float x) {
-		    this.coords.X += x;
+	    public float X {
+		    get { return coords.X; }
+			set { coords.X = value; }
 	    }
 
-	    public void AddY(float y) {
-		    this.coords.Y += y;
-	    }
-
-	    public float GetX() {
-		    return this.coords.X;
-	    }
-
-	    public void SetX(float x) {
-		    this.coords.X = x;
-	    }
-
-	    public float GetY() {
-		    return this.coords.Y;
-	    }
-
-	    public void SetY(float y) {
-		    this.coords.Y = y;
+	    public float Y {
+		    get { return coords.Y;}
+			set { coords.Y = value; }
 	    }
 
 	    public void SetLocation(float x, float y) {
@@ -52,24 +39,21 @@ namespace StarWarrior.Components
 		    this.coords.Y = y;
 	    }
 
-	    public float GetRotation() {
-		    return this.coords.Z;
+	    public float Rotation {
+		    get { return coords.Z;}
+			set { coords.Z = value;}
 	    }
-
-	    public void SetRotation(float rotation) {
-		    this.coords.Z = rotation;
-	    }
-
+		
 	    public void AddRotation(float angle) {
-		    this.coords.Z = (this.coords.Z + angle) % 360;
+		    coords.Z = (coords.Z + angle) % 360;
 	    }
 
-	    public float GetRotationAsRadians() {
-            return (float)Math.PI * this.coords.Z / 180.0f;
+	    public float RotationAsRadians {
+            get { return (float)Math.PI * coords.Z / 180.0f;}
 	    }
 	
-	    public float GetDistanceTo(Transform t) {
-		    return Artemis.Utils.Distance(t.GetX(), t.GetY(), GetX(), GetY());
+	    public float DistanceTo(Transform t) {
+		    return Artemis.Utils.Distance(t.X, t.Y, X, Y);
 	    }
     }
 }

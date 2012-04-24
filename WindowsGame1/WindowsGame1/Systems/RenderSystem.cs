@@ -31,9 +31,9 @@ namespace StarWarrior.Systems
 		public override void Process(Entity e) {
 			transform = transformMapper.Get(e);
             SpatialForm spatialForm = spatialFormMapper.Get(e);
-            spatialName = spatialForm.GetSpatialFormFile();
+            spatialName = spatialForm.SpatialFormFile;
 	
-			if (transform.GetX() >= 0 && transform.GetY() >= 0 && transform.GetX() < spriteBatch.GraphicsDevice.Viewport.Width && transform.GetY() < spriteBatch.GraphicsDevice.Viewport.Height && spatialForm != null) {
+			if (transform.X >= 0 && transform.Y >= 0 && transform.X < spriteBatch.GraphicsDevice.Viewport.Width && transform.Y < spriteBatch.GraphicsDevice.Viewport.Height && spatialForm != null) {
                 CreateSpatial(e); 
 			}
 		}

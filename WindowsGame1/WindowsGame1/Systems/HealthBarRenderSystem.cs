@@ -24,8 +24,8 @@ namespace StarWarrior.Systems
 		public override void Process(Entity e) {
 			Health health = healthMapper.Get(e);
 			Transform transform = transformMapper.Get(e);
-			Vector2 textPosition = new Vector2((float)transform.GetX()-10, (float)transform.GetY()-30);
-			spriteBatch.DrawString(font,health.GetHealthPercentage() + "%",textPosition,Color.White);
+			Vector2 textPosition = new Vector2((float)transform.X -10, (float)transform.Y - 30);
+			spriteBatch.DrawString(font,health.HealthPercentage + "%",textPosition,Color.White);
 		}
     }
 }

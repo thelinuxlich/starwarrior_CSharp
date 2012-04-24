@@ -18,24 +18,18 @@ namespace StarWarrior.Components
             this.health = this.maximumHealth = health;
         }
 
-        public float GetHealth()
-        {
-            return health;
+        public float HP {
+            get { return health;}
+			set { health = maximumHealth = value; }
         }
 
-        public void SetHealth(float health)
-        {
-            this.health = this.maximumHealth = health;
+        public float MaximumHealth {
+            get { return maximumHealth;}
         }
 
-        public float GetMaximumHealth()
+        public double HealthPercentage
         {
-            return maximumHealth;
-        }
-
-        public double GetHealthPercentage()
-        {
-            return Math.Round(health / maximumHealth * 100f);
+            get { return Math.Round(health / maximumHealth * 100f);}
         }
 
         public void AddDamage(int damage)
@@ -45,9 +39,9 @@ namespace StarWarrior.Components
                 health = 0;
         }
 
-        public bool IsAlive()
+        public bool IsAlive
         {
-            return health > 0;
+            get { return health > 0;}
         }
     }
 }

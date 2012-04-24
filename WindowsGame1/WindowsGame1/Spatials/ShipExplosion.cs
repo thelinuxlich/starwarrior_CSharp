@@ -20,7 +20,7 @@ namespace StarWarrior.Spatials
             {
                 circle = contentManager.Load<Texture2D>("explosion");
             }
-            spriteBatch.Draw(circle, new Vector2((float)transform.GetX() - radius, (float)transform.GetY() - radius), null, Color.White, 0, new Vector2(0, 0), 0.8f, SpriteEffects.None, 0);
+            spriteBatch.Draw(circle, new Vector2((float)transform.X - radius, (float)transform.Y - radius), null, Color.White, 0, new Vector2(0, 0), 0.8f, SpriteEffects.None, 0);
         }
     }
 }

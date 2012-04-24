@@ -24,18 +24,18 @@ namespace StarWarrior.Systems
 		public override void Process(Entity e) {
             Weapon weapon = weaponMapper.Get(e);
 
-            long t = weapon.GetShotAt() + TimeSpan.FromSeconds(2).Ticks;
+            long t = weapon.ShotAt + TimeSpan.FromSeconds(2).Ticks;
             if (t < DateTime.Now.Ticks)
             {
                 Transform transform = transformMapper.Get(e);
 
                 Entity missile = EntityFactory.CreateMissile(world);
-                missile.GetComponent<Transform>().SetLocation(transform.GetX() + 20, transform.GetY() + 20);
-                missile.GetComponent<Velocity>().SetVelocity(-0.5f);
-                missile.GetComponent<Velocity>().SetAngle(270);
+                missile.GetComponent<Transform>().SetLocation(transform.X + 20, transform.Y + 20);
+                missile.GetComponent<Velocity>().Speed = -0.5f;
+                missile.GetComponent<Velocity>().Angle = 270;
                 missile.Refresh();
 
-                weapon.SetShotAt(DateTime.Now.Ticks);
+                weapon.ShotAt = DateTime.Now.Ticks;
             }
 		}
     }

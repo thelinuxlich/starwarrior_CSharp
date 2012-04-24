@@ -29,19 +29,19 @@ namespace StarWarrior.Systems
             UpdateInput();
             if (moveLeft)
             {
-                transform.AddX(world.GetDelta() * -0.3f);
+                transform.X += world.Delta * -0.3f;
             }
             if (moveRight)
             {
-                transform.AddX(world.GetDelta() * 0.3f);
+                transform.X += world.Delta * 0.3f;
             }
 
             if (shoot)
             {
                 Entity missile = EntityFactory.CreateMissile(world);
-                missile.GetComponent<Transform>().SetLocation(transform.GetX()+30, transform.GetY() - 20);
-                missile.GetComponent<Velocity>().SetVelocity(-0.5f);
-                missile.GetComponent<Velocity>().SetAngle(90);
+                missile.GetComponent<Transform>().SetLocation(transform.X + 30, transform.Y - 20);
+                missile.GetComponent<Velocity>().Speed = -0.5f;
+                missile.GetComponent<Velocity>().Angle = 90;
                 missile.Refresh();
 
                 shoot = false;

@@ -34,7 +34,7 @@ namespace StarWarrior.Components
         public float Angle
         {
 			get { return angle; }	
-            set { angle = angle;}
+            set { angle = value;}
         }
 
         public void AddAngle(float a)

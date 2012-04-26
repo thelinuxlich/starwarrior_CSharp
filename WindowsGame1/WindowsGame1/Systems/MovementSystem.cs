@@ -24,7 +24,7 @@ namespace StarWarrior.Systems
 	
 			Transform transform = transformMapper.Get(e);
 	
-			float r = velocity.GetAngleAsRadians();
+			float r = velocity.AngleAsRadians;
 	
 			float xn = transform.X + (TrigLUT.Cos(r) * v * world.Delta);
 			float yn = transform.Y + (TrigLUT.Sin(r) * v * world.Delta);

@@ -19,7 +19,7 @@ namespace StarWarrior.Systems
 			expires.ReduceLifeTime(world.Delta);
 	
 			if (expires.IsExpired) {
-				world.DeleteEntity(e);
+				e.Delete();
 			}
 	
 		}

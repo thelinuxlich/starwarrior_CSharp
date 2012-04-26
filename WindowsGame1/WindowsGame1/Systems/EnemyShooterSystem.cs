@@ -8,8 +8,7 @@ namespace StarWarrior.Systems
 		private ComponentMapper<Weapon> weaponMapper;		
 		private ComponentMapper<Transform> transformMapper;
         Random rd = new Random();
-        long playerId = -1;
-	
+     
 		public EnemyShooterSystem() : base(typeof(Transform), typeof(Weapon),typeof(Enemy)) {
 		}
 	

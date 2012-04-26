@@ -173,10 +173,16 @@ namespace StarWarrior
         protected override void Draw(GameTime gameTime)
         {            
             string fps = string.Format("fps: {0}", frameRate);
+            string entityCount = string.Format("active entities: {0}", world.EntityManager.EntityCount);
+            string removedEntityCount = string.Format("removed entities: {0}", world.EntityManager.TotalCreated);
+            string totalEntityCount = string.Format("total entities: {0}", world.EntityManager.TotalRemoved);
 
             GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin();
             spriteBatch.DrawString(font, fps, new Vector2(32,32), Color.Yellow);
+            spriteBatch.DrawString(font, entityCount, new Vector2(32, 62), Color.Yellow);
+            spriteBatch.DrawString(font, removedEntityCount, new Vector2(32, 92), Color.Yellow);
+            spriteBatch.DrawString(font, totalEntityCount, new Vector2(32, 122), Color.Yellow);
             world.SystemManager.UpdateSynchronous(ExecutionType.Draw);
             spriteBatch.End();
 

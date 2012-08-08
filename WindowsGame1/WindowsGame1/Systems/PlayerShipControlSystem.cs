@@ -38,7 +38,7 @@ namespace StarWarrior.Systems
 
             if (shoot)
             {
-                Entity missile = EntityFactory.CreateMissile(world);
+                Entity missile = world.CreateEntity("Missile");
                 missile.GetComponent<Transform>().SetLocation(transform.X + 30, transform.Y - 20);
                 missile.GetComponent<Velocity>().Speed = -0.5f;
                 missile.GetComponent<Velocity>().Angle = 90;

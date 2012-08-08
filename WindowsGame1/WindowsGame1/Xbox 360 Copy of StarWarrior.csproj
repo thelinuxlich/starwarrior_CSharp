@@ -66,10 +66,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Components\Enemy.cs" />
-    <Compile Include="EntityFactory.cs" />
     <Compile Include="Components\Expires.cs" />
     <Compile Include="Components\Health.cs" />
-    <Compile Include="Pool.cs" />
     <Compile Include="Primitives\Lines.cs" />
     <Compile Include="Primitives\PrimitiveBatch.cs" />
     <Compile Include="Primitives\Triangles.cs" />
@@ -96,6 +94,10 @@
     <Compile Include="Systems\MovementSystem.cs" />
     <Compile Include="Systems\PlayerShipControlSystem.cs" />
     <Compile Include="Systems\RenderSystem.cs" />
+    <Compile Include="Templates\BulletExplosionTemplate.cs" />
+    <Compile Include="Templates\EnemyShipTemplate.cs" />
+    <Compile Include="Templates\MissileTemplate.cs" />
+    <Compile Include="Templates\ShipExplosionTemplate.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />

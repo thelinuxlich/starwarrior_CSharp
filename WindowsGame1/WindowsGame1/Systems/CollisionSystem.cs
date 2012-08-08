@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Artemis;
 using StarWarrior.Components;
+using Microsoft.Xna.Framework;
 
 namespace StarWarrior.Systems
 {
@@ -27,14 +28,16 @@ namespace StarWarrior.Systems
             Bag<Entity> bullets = world.GroupManager.GetEntities("BULLETS");
 		    Bag<Entity> ships = world.GroupManager.GetEntities("SHIPS");            
             if(bullets != null && ships != null) {                
-			    for(int a = 0; ships.Size() > a; a++) {                    
+			    for(int a = 0; ships.Size > a; a++) {                    
 				    Entity ship = ships.Get(a);
-				    for(int b = 0; bullets.Size() > b; b++) {
+				    for(int b = 0; bullets.Size > b; b++) {
 					    Entity bullet = bullets.Get(b);
 					
 					    if(CollisionExists(bullet, ship)) {
 						    Transform tb = transformMapper.Get(bullet);
-						    EntityFactory.CreateBulletExplosion(world, tb.X, tb.Y).Refresh();
+						    Entity bulletExplosion = world.CreateEntity("BulletExplosion");
+                            bulletExplosion.GetComponent<Transform>().Coords = new Vector3(tb.X, tb.Y, 0);
+                            bulletExplosion.Refresh();
 						    bullet.Delete();
 						
 						    Health health = healthMapper.Get(ship);
@@ -42,8 +45,10 @@ namespace StarWarrior.Systems
 	
 						    if(!health.IsAlive) {
 							    Transform ts = transformMapper.Get(ship);	
-							    EntityFactory.CreateShipExplosion(world, ts.X, ts.Y).Refresh();
-							    ship.Delete();
+							    Entity shipExplosion = world.CreateEntity("ShipExplosion");
+                                shipExplosion.GetComponent<Transform>().Coords = new Vector3(ts.X, ts.Y, 0);
+                                shipExplosion.Refresh();
+                                ship.Delete();
                                 break;
 						    }
 					    }

@@ -164,8 +164,8 @@ namespace StarWarrior
         {            
             string fps = string.Format("fps: {0}", frameRate);
             string entityCount = string.Format("active entities: {0}", world.EntityManager.ActiveEntitiesCount);
-            string removedEntityCount = string.Format("removed entities: {0}", world.EntityManager.TotalCreated);
-            string totalEntityCount = string.Format("total entities: {0}", world.EntityManager.TotalRemoved);
+			string removedEntityCount = string.Format("removed entities: {0}", world.EntityManager.TotalRemoved);
+            string totalEntityCount = string.Format("total entities: {0}", world.EntityManager.TotalCreated);
 
             GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin();

@@ -1,2 +1,0 @@
-C:\Users\tpastor\Desktop\thelinuxlich-starwarrior_CSharp-3db07f1\WindowsGame1\WindowsGame1Content\obj\x86\Release\ResolveAssemblyReference.cache
-D:\opensource\starwarrior_CSharp\WindowsGame1\WindowsGame1Content\obj\x86\Release\ResolveAssemblyReference.cache

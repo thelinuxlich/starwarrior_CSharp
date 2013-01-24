@@ -20,8 +20,8 @@ namespace StarWarrior.Spatials
             {
                 ship = contentManager.Load<Texture2D>("enemy");
             }
-            Rectangle rect = new Rectangle((int)transform.X,(int)transform.Y,ship.Width,ship.Height);
-            spriteBatch.Draw(ship, rect, Color.Red);
+            Rectangle rect = new Rectangle((int)transform.X, (int)transform.Y, ship.Width, ship.Height);
+            spriteBatch.Draw(ship, new Vector2(transform.X - ship.Width / 2, transform.Y - ship.Height / 2), ship.Bounds, Color.Red);
 	    }
     }
 }

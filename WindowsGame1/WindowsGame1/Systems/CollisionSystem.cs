@@ -60,7 +60,9 @@ namespace StarWarrior.Systems
 	    private bool CollisionExists(Entity e1, Entity e2) {
 		    Transform t1 = transformMapper.Get(e1);
 		    Transform t2 = transformMapper.Get(e2);
-            return t1.DistanceTo(t2) < 15; 
+            Vector2 x = new Vector2(t1.X, t1.Y);
+            Vector2 y = new Vector2(t2.X, t2.Y);
+            return Vector2.Distance(x, y) < 20 ;            
 	    }
     }
 }

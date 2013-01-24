@@ -19,7 +19,8 @@ namespace StarWarrior.Spatials
             {
                 bullet = contentManager.Load<Texture2D>("bullet");
             }
-		    spriteBatch.Draw(bullet, new Vector2(transform.X, transform.Y), Color.White);
+            Rectangle rect = new Rectangle((int)transform.X, (int)transform.Y, bullet.Width, bullet.Height);
+            spriteBatch.Draw(bullet, new Vector2(transform.X - bullet.Width / 2, transform.Y - bullet.Height / 2), bullet.Bounds, Color.White);
 	    }
     }
 }

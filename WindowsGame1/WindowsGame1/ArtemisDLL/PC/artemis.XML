@@ -401,6 +401,11 @@
         <member name="M:Artemis.SystemManager.InitializeAll">
             After adding all systems to the world, you must initialize them all.
         </member>
+        <member name="T:Artemis.TagSystem">
+            <summary>
+            Tag System does not fire ANY Events of the EntitySystem
+            </summary>
+        </member>
         <member name="M:Artemis.TagSystem.Process(Artemis.Entity)">
             Process a entity this system is interested in.
             @param e the entity to process.

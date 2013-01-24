@@ -53,7 +53,7 @@ namespace StarWarrior.Components
 	    }
 	
 	    public float DistanceTo(Transform t) {
-		    return Artemis.Utils.Distance(t.X, t.Y, X, Y);
+            return Vector2.Distance(new Vector2(t.X, t.Y), new Vector2(X, Y));
 	    }
     }
 }

@@ -62,7 +62,7 @@ namespace StarWarrior.Systems
 		    Transform t2 = transformMapper.Get(e2);
             Vector2 x = new Vector2(t1.X, t1.Y);
             Vector2 y = new Vector2(t2.X, t2.Y);
-            return Vector2.Distance(x, y) < 20 ;            
+            return Vector2.Distance(x, y) < 20 ;
 	    }
     }
 }

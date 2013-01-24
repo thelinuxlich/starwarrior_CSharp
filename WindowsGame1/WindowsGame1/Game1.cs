@@ -80,7 +80,7 @@ namespace StarWarrior
             enemyShipMovementSystem = systemManager.SetSystem(new EnemyShooterSystem(), ExecutionType.Update);
             collisionSystem = systemManager.SetSystem(new CollisionSystem(), ExecutionType.Update,1);
             healthBarRenderSystem = systemManager.SetSystem(new HealthBarRenderSystem(spriteBatch, font), ExecutionType.Draw);
-            //enemySpawnSystem = systemManager.SetSystem(new EnemySpawnSystem(500, spriteBatch), ExecutionType.Update);
+            enemySpawnSystem = systemManager.SetSystem(new EnemySpawnSystem(500, spriteBatch), ExecutionType.Update);
             expirationSystem = systemManager.SetSystem(new ExpirationSystem(), ExecutionType.Update);
 
             systemManager.InitializeAll();
@@ -93,7 +93,7 @@ namespace StarWarrior
 
         private void InitEnemyShips() {
 		    Random r = new Random();
-		    for (int i = 0; 1 > i; i++) {
+		    for (int i = 0; 2 > i; i++) {
                 Entity e = world.CreateEntityFromTemplate("EnemyShip");
 
 			    e.GetComponent<Transform>().SetLocation(r.Next(GraphicsDevice.Viewport.Width), r.Next(400)+50);

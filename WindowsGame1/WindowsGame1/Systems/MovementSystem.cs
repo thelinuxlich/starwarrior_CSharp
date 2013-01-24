@@ -26,8 +26,8 @@ namespace StarWarrior.Systems
 	
 			float r = velocity.AngleAsRadians;
 	
-			float xn = transform.X + (TrigLUT.Cos(r) * v * world.Delta);
-			float yn = transform.Y + (TrigLUT.Sin(r) * v * world.Delta);
+			float xn = transform.X + ((float)Math.Cos(r) * v * world.Delta);
+            float yn = transform.Y + ((float)Math.Sin(r) * v * world.Delta);
 	
 			transform.SetLocation(xn, yn);
 		}

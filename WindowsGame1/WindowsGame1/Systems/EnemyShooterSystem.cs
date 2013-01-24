@@ -28,7 +28,7 @@ namespace StarWarrior.Systems
             {
                 Transform transform = transformMapper.Get(e);
 
-                Entity missile = world.CreateEntity("Missile");
+                Entity missile = world.CreateEntityFromTemplate("Missile");
                 missile.GetComponent<Transform>().SetLocation(transform.X + 20, transform.Y + 20);
                 missile.GetComponent<Velocity>().Speed = -0.5f;
                 missile.GetComponent<Velocity>().Angle = 270;

@@ -9,8 +9,8 @@ namespace StarWarrior.Templates
 {
     public class MissileTemplate : Artemis.IEntityTemplate
     {
-        public Entity BuildEntity(Entity e)
-        {
+        public Entity BuildEntity(Entity e, params object[] args)
+        {            
             e.Group = "BULLETS";
 
             e.AddComponent(new Transform());

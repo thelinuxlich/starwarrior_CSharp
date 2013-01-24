@@ -20,7 +20,7 @@ namespace StarWarrior.Systems
         
        protected override void ProcessEntities(Dictionary<int, Entity> entities)
         {
-            Entity e = world.CreateEntity("EnemyShip");
+            Entity e = world.CreateEntityFromTemplate("EnemyShip");
 			
 			e.GetComponent<Transform>().SetLocation(r.Next(spriteBatch.GraphicsDevice.Viewport.Width), r.Next(400)+50);
 			e.GetComponent<Velocity>().Speed = 0.05f;

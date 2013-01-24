@@ -94,7 +94,7 @@ namespace StarWarrior
         private void InitEnemyShips() {
 		    Random r = new Random();
 		    for (int i = 0; 2 > i; i++) {
-                Entity e = world.CreateEntity("EnemyShip");
+                Entity e = world.CreateEntityFromTemplate("EnemyShip");
 
 			    e.GetComponent<Transform>().SetLocation(r.Next(GraphicsDevice.Viewport.Width), r.Next(400)+50);
 			    e.GetComponent<Velocity>().Speed = 0.05f;

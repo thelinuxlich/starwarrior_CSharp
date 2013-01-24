@@ -10,7 +10,7 @@ namespace StarWarrior.Templates
 {
     public class ShipExplosionTemplate : Artemis.IEntityTemplate
     {
-        public Entity BuildEntity(Entity e)
+        public Entity BuildEntity(Entity e, params object[] args)
         {
             e.Group = "EFFECTS";
             e.AddComponent(new Transform());

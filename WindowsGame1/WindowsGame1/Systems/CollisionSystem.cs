@@ -35,7 +35,7 @@ namespace StarWarrior.Systems
 					
 					    if(CollisionExists(bullet, ship)) {
 						    Transform tb = transformMapper.Get(bullet);
-						    Entity bulletExplosion = world.CreateEntity("BulletExplosion");
+                            Entity bulletExplosion = world.CreateEntityFromTemplate("BulletExplosion");
                             bulletExplosion.GetComponent<Transform>().Coords = new Vector3(tb.X, tb.Y, 0);
                             bulletExplosion.Refresh();
 						    bullet.Delete();
@@ -44,8 +44,8 @@ namespace StarWarrior.Systems
 						    health.AddDamage(4);
 	
 						    if(!health.IsAlive) {
-							    Transform ts = transformMapper.Get(ship);	
-							    Entity shipExplosion = world.CreateEntity("ShipExplosion");
+							    Transform ts = transformMapper.Get(ship);
+                                Entity shipExplosion = world.CreateEntityFromTemplate("ShipExplosion");
                                 shipExplosion.GetComponent<Transform>().Coords = new Vector3(ts.X, ts.Y, 0);
                                 shipExplosion.Refresh();
                                 ship.Delete();

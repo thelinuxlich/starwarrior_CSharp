@@ -7,9 +7,9 @@ using StarWarrior.Components;
 
 namespace StarWarrior.Templates
 {
-    public class EnemyShipTemplate : Artemis.IEntityTemplate
+    public class EnemyShipTemplate : IEntityTemplate
     {
-        public Entity BuildEntity(Entity e)
+        public Entity BuildEntity(Entity e, params object[] args)
         {
             e.Group = "SHIPS";
             e.AddComponent(new Transform());

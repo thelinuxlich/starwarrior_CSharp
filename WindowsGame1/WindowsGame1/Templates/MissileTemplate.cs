@@ -7,9 +7,12 @@ using StarWarrior.Components;
 
 namespace StarWarrior.Templates
 {
+    [Artemis.Attributes.ArtemisEntityTemplate(MissileTemplate.Name)]
     public class MissileTemplate : Artemis.IEntityTemplate
     {
-        public Entity BuildEntity(Entity e, params object[] args)
+        public const String Name = "MissileTemplate";
+
+        public Entity BuildEntity(Entity e, EntityWorld world, params object[] args)
         {            
             e.Group = "BULLETS";
 

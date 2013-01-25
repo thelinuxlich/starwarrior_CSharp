@@ -7,9 +7,12 @@ using StarWarrior.Components;
 
 namespace StarWarrior.Templates
 {
+    [Artemis.Attributes.ArtemisEntityTemplate(BulletExplosionTemplate.Name)]
     public class BulletExplosionTemplate : Artemis.IEntityTemplate
     {
-        public Entity BuildEntity(Entity e, params object[] args)
+        public const  String Name = "BulletExplosionTemplate";
+
+        public Entity BuildEntity(Entity e, EntityWorld world, params object[] args)
         {
             e.Group = "EFFECTS";
             e.AddComponent(new Transform());

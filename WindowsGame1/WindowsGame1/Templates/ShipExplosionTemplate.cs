@@ -8,9 +8,12 @@ using Microsoft.Xna.Framework;
 
 namespace StarWarrior.Templates
 {
+    [Artemis.Attributes.ArtemisEntityTemplate(ShipExplosionTemplate.Name)]
     public class ShipExplosionTemplate : Artemis.IEntityTemplate
     {
-        public Entity BuildEntity(Entity e, params object[] args)
+        public const String Name = "ShipExplosionTemplate";
+
+        public Entity BuildEntity(Entity e, EntityWorld world, params object[] args)
         {
             e.Group = "EFFECTS";
             e.AddComponent(new Transform());

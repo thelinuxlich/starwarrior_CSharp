@@ -72,18 +72,18 @@ namespace StarWarrior
             world.SetEntityTemplate("BulletExplosion", new BulletExplosionTemplate());
             world.SetEntityTemplate("Missile", new MissileTemplate());
             world.SetEntityTemplate("EnemyShip", new EnemyShipTemplate());
-            renderSystem = systemManager.SetSystem(new RenderSystem(GraphicsDevice,spriteBatch,Content),ExecutionType.Draw);
-            hudRenderSystem = systemManager.SetSystem(new HudRenderSystem(spriteBatch, font), ExecutionType.Draw);
-            controlSystem = systemManager.SetSystem(new MovementSystem(spriteBatch), ExecutionType.Update,1);
-            movementSystem = systemManager.SetSystem(new PlayerShipControlSystem(spriteBatch),ExecutionType.Update);
-            enemyShooterSystem = systemManager.SetSystem(new EnemyShipMovementSystem(spriteBatch), ExecutionType.Update,1);
-            enemyShipMovementSystem = systemManager.SetSystem(new EnemyShooterSystem(), ExecutionType.Update);
-            collisionSystem = systemManager.SetSystem(new CollisionSystem(), ExecutionType.Update,1);
-            healthBarRenderSystem = systemManager.SetSystem(new HealthBarRenderSystem(spriteBatch, font), ExecutionType.Draw);
-            enemySpawnSystem = systemManager.SetSystem(new EnemySpawnSystem(500, spriteBatch), ExecutionType.Update);
-            expirationSystem = systemManager.SetSystem(new ExpirationSystem(), ExecutionType.Update);
+            renderSystem = systemManager.SetSystem(new RenderSystem(GraphicsDevice,spriteBatch,Content),ExecutionType.DrawSyncronous);
+            hudRenderSystem = systemManager.SetSystem(new HudRenderSystem(spriteBatch, font), ExecutionType.DrawSyncronous);
+            controlSystem = systemManager.SetSystem(new MovementSystem(spriteBatch), ExecutionType.UpdateSyncronous,1);
+            movementSystem = systemManager.SetSystem(new PlayerShipControlSystem(spriteBatch),ExecutionType.UpdateSyncronous);
+            enemyShooterSystem = systemManager.SetSystem(new EnemyShipMovementSystem(spriteBatch), ExecutionType.UpdateSyncronous,1);
+            enemyShipMovementSystem = systemManager.SetSystem(new EnemyShooterSystem(), ExecutionType.UpdateSyncronous);
+            collisionSystem = systemManager.SetSystem(new CollisionSystem(), ExecutionType.UpdateSyncronous,1);
+            healthBarRenderSystem = systemManager.SetSystem(new HealthBarRenderSystem(spriteBatch, font), ExecutionType.DrawSyncronous);
+            enemySpawnSystem = systemManager.SetSystem(new EnemySpawnSystem(500, spriteBatch), ExecutionType.UpdateSyncronous);
+            expirationSystem = systemManager.SetSystem(new ExpirationSystem(), ExecutionType.UpdateSyncronous);
 
-            systemManager.InitializeAll();
+            world.InitializeAll();
 
             InitPlayerShip();
             InitEnemyShips();
@@ -139,11 +139,9 @@ namespace StarWarrior
             dt = DateTime.Now;
             frameCounter++;
 
-            world.LoopStart();
-            world.Delta = elapsed.Milliseconds;
-
-            world.SystemManager.UpdateSynchronous(ExecutionType.Update);
             
+            world.Delta = elapsed.Milliseconds;
+            world.Update(ExecutionType.UpdateSyncronous);                        
             elapsedTime += elapsed;
 
             if (elapsedTime > TimeSpan.FromSeconds(1))
@@ -169,7 +167,7 @@ namespace StarWarrior
 
             GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin();
-            world.SystemManager.UpdateSynchronous(ExecutionType.Draw);
+            world.Update(ExecutionType.DrawSyncronous);
             spriteBatch.DrawString(font, fps, new Vector2(32,32), Color.Yellow);
             spriteBatch.DrawString(font, entityCount, new Vector2(32, 62), Color.Yellow);
             spriteBatch.DrawString(font, removedEntityCount, new Vector2(32, 92), Color.Yellow);

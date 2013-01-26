@@ -5,18 +5,20 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 namespace StarWarrior.Systems
 {
+    [Artemis.Attributes.ArtemisEntitySystem(ExecutionType = ExecutionType.DrawSyncronous)]
 	public class HealthBarRenderSystem : EntityProcessingSystem {
 		private SpriteBatch spriteBatch;
 		private ComponentMapper<Health> healthMapper;
 		private ComponentMapper<Transform> transformMapper;
         private SpriteFont font;
 	
-		public HealthBarRenderSystem(SpriteBatch spriteBatch,SpriteFont font) : base(typeof(Health), typeof(Transform)) {
-			this.spriteBatch = spriteBatch;
-            this.font = font;
+		public HealthBarRenderSystem() : base(typeof(Health), typeof(Transform)) {
+			
 		}
 	
 		public override void Initialize() {
+            this.spriteBatch = EntitySystem.BlackBoard.GetEntry<SpriteBatch>("SpriteBatch");
+            this.font = EntitySystem.BlackBoard.GetEntry<SpriteFont>("SpriteFont");		    
 			healthMapper = new ComponentMapper<Health>(world);
 			transformMapper = new ComponentMapper<Transform>(world);
 		}

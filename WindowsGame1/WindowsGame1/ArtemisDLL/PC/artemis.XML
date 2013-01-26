@@ -130,11 +130,11 @@
             @param otherTypes
             @return
         </member>
-        <member name="M:Artemis.DelayedEntitySystem.ProcessEntities(System.Collections.Generic.Dictionary{System.Int32,Artemis.Entity},System.Int32)">
+        <member name="M:Artemis.DelayedEntitySystem.ProcessEntities(System.Collections.Generic.Dictionary{System.Int32,Artemis.Entity},System.Single)">
             The entities to process with accumulated delta.
             @param entities read-only bag of entities.
         </member>
-        <member name="M:Artemis.DelayedEntitySystem.StartDelayedRun(System.Int32)">
+        <member name="M:Artemis.DelayedEntitySystem.StartDelayedRun(System.Single)">
             Start processing of entities after a certain amount of milliseconds.
             
             Cancels current delayed run and starts a new one.
@@ -167,14 +167,14 @@
             </summary>
             <param name="aspect"></param>
         </member>
-        <member name="M:Artemis.DelayedEntityProcessingSystem.Process(Artemis.Entity,System.Int32)">
+        <member name="M:Artemis.DelayedEntityProcessingSystem.Process(Artemis.Entity,System.Single)">
             <summary>
             Process an entity this system is interested in.
             </summary>
             <param name="e"></param>
             <param name="accumulatedDelta">The entity to process.</param>
         </member>
-        <member name="M:Artemis.DelayedEntityProcessingSystem.ProcessEntities(System.Collections.Generic.Dictionary{System.Int32,Artemis.Entity},System.Int32)">
+        <member name="M:Artemis.DelayedEntityProcessingSystem.ProcessEntities(System.Collections.Generic.Dictionary{System.Int32,Artemis.Entity},System.Single)">
             <summary>
             Process all entities with the delayed Entity processing system
             </summary>
@@ -483,6 +483,12 @@
             Process a entity this system is interested in.
             @param e the entity to process.
         </member>
+        <member name="T:Artemis.EntityWorld">
+            <summary>
+            Entity World Class
+            Main interface of the Entity System
+            </summary>
+        </member>
         <member name="M:Artemis.EntityWorld.DeleteEntity(Artemis.Entity)">
             Delete the provided entity from the world.
             @param e entity
@@ -505,6 +511,13 @@
             Get a entity having the specified id.
             @param entityId
             @return entity
+        </member>
+        <member name="M:Artemis.EntityWorld.Update(System.Single,Artemis.ExecutionType)">
+            <summary>
+            Updates the World
+            </summary>
+            <param name="executionType">Type of the execution.</param>
+            <param name="elapsedTime">The elapsed TIME in milliseconds.</param>
         </member>
         <member name="M:Artemis.EntityWorld.LoadEntityState(System.String,System.String,Artemis.Bag{Artemis.Component},System.Object[])">
             <summary>

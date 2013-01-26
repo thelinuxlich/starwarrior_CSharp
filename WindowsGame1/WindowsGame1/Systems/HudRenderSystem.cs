@@ -7,17 +7,18 @@ using Microsoft.Xna.Framework.Content;
 using System.Collections.Generic;
 namespace StarWarrior.Systems
 {
+    [Artemis.Attributes.ArtemisEntitySystem(ExecutionType = ExecutionType.DrawSyncronous)]
 	public class HudRenderSystem : TagSystem {
 		private SpriteBatch spriteBatch;
 		private ComponentMapper<Health> healthMapper;
         private SpriteFont font;
        
-		public HudRenderSystem(SpriteBatch spriteBatch,SpriteFont font) : base("PLAYER") {
-			this.spriteBatch = spriteBatch;
-            this.font = font;
+		public HudRenderSystem() : base("PLAYER") {			
 		}
 	
 		public override void Initialize() {
+            this.spriteBatch = EntitySystem.BlackBoard.GetEntry<SpriteBatch>("SpriteBatch");
+            this.font = EntitySystem.BlackBoard.GetEntry<SpriteFont>("SpriteFont");		    
             healthMapper = new ComponentMapper<Health>(world);
 		}
 	

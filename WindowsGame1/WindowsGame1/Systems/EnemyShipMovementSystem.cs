@@ -8,17 +8,18 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace StarWarrior.Systems
 {
+    [Artemis.Attributes.ArtemisEntitySystem(ExecutionType=ExecutionType.UpdateSyncronous)]
     class EnemyShipMovementSystem : EntityProcessingSystem
     {
         private SpriteBatch spriteBatch;
 	    private ComponentMapper<Transform> transformMapper;
 	    private ComponentMapper<Velocity> velocityMapper;
         
-	    public EnemyShipMovementSystem(SpriteBatch spriteBatch) : base(typeof(Transform), typeof(Velocity),typeof(Enemy)) {
-		    this.spriteBatch = spriteBatch;
+	    public EnemyShipMovementSystem() : base(typeof(Transform), typeof(Velocity),typeof(Enemy)) {            
 	    }
 
 	    public override void Initialize() {
+            this.spriteBatch = EntitySystem.BlackBoard.GetEntry<SpriteBatch>("SpriteBatch");		    
 		    transformMapper = new ComponentMapper<Transform>(world);
 		    velocityMapper = new ComponentMapper<Velocity>(world);
 	    }

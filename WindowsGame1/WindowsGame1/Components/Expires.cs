@@ -8,22 +8,22 @@ namespace StarWarrior.Components
 {
     class Expires : Component
     {
-        private int lifeTime;
+        private float lifeTime;
 
         public Expires() { }
 
-        public Expires(int lifeTime)
+        public Expires(float lifeTime)
         {
             this.lifeTime = lifeTime;
         }
 
-        public int LifeTime
+        public float LifeTime
         {
             get { return lifeTime; }
 			set { lifeTime = value; }
         }
 
-        public void ReduceLifeTime(int lifeTime)
+        public void ReduceLifeTime(float lifeTime)
         {
             this.lifeTime -= lifeTime;
         }

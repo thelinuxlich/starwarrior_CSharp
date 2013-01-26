@@ -8,6 +8,8 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 namespace StarWarrior.Systems	
 {
+    //renderSystem = systemManager.SetSystem(new RenderSystem(GraphicsDevice,spriteBatch,Content),ExecutionType.DrawSyncronous);                        
+    [Artemis.Attributes.ArtemisEntitySystem(ExecutionType = ExecutionType.DrawSyncronous)]
 	public class RenderSystem : EntityProcessingSystem {
 		private ComponentMapper<SpatialForm> spatialFormMapper;
 		private ComponentMapper<Transform> transformMapper;
@@ -17,13 +19,13 @@ namespace StarWarrior.Systems
         private ContentManager contentManager;
         GraphicsDevice device;
 	
-		public RenderSystem(GraphicsDevice device,SpriteBatch spriteBatch,ContentManager contentManager) : base(typeof(Transform), typeof(SpatialForm)) {
-            this.spriteBatch = spriteBatch;
-            this.device = device;
-            this.contentManager = contentManager;
+		public RenderSystem() : base(typeof(Transform), typeof(SpatialForm)) {            
 		}
 	
 		public override void Initialize() {
+            this.device = EntitySystem.BlackBoard.GetEntry<GraphicsDevice>("GraphicsDevice");
+            this.spriteBatch = EntitySystem.BlackBoard.GetEntry<SpriteBatch>("SpriteBatch");
+            this.contentManager = EntitySystem.BlackBoard.GetEntry<ContentManager>("ContentManager");		    
 			spatialFormMapper = new ComponentMapper<SpatialForm>(world);
 			transformMapper = new ComponentMapper<Transform>(world);
         }

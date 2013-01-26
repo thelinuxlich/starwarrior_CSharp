@@ -1,8 +1,10 @@
 using System;
 using Artemis;
 using StarWarrior.Components;
+using StarWarrior.Templates;
 namespace StarWarrior.Systems
 {
+    [Artemis.Attributes.ArtemisEntitySystem(ExecutionType=ExecutionType.UpdateSyncronous,Layer=1)]
 	public class EnemyShooterSystem : EntityProcessingSystem {
 
 		private ComponentMapper<Weapon> weaponMapper;		
@@ -28,7 +30,7 @@ namespace StarWarrior.Systems
             {
                 Transform transform = transformMapper.Get(e);
 
-                Entity missile = world.CreateEntityFromTemplate("Missile");
+                Entity missile = world.CreateEntityFromTemplate(MissileTemplate.Name);
                 missile.GetComponent<Transform>().SetLocation(transform.X, transform.Y + 20);
                 missile.GetComponent<Velocity>().Speed = -0.5f;
                 missile.GetComponent<Velocity>().Angle = 270;

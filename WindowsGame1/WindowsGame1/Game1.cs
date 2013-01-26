@@ -25,17 +25,6 @@ namespace StarWarrior
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         private EntityWorld world;
-
-        private EntitySystem renderSystem;
-        private EntitySystem hudRenderSystem;
-        private EntitySystem controlSystem;
-        private EntitySystem movementSystem;
-        private EntitySystem enemyShooterSystem;
-        private EntitySystem enemyShipMovementSystem;
-        private EntitySystem collisionSystem;
-        private EntitySystem healthBarRenderSystem;
-        private EntitySystem enemySpawnSystem;
-        private EntitySystem expirationSystem;
         private SpriteFont font;
        
         int frameRate,frameCounter;
@@ -59,29 +48,18 @@ namespace StarWarrior
         /// and initialize them as well.
         /// </summary>
         protected override void Initialize()
-        {
+        {   
             // Create a new SpriteBatch, which can be used to draw textures.
-            Type[] types = new Type[] {typeof(Enemy),typeof(Expires),typeof(Health),typeof(SpatialForm),typeof(Transform),typeof(Velocity),typeof(Weapon)};
-
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            world = new EntityWorld();
-            
             font = Content.Load<SpriteFont>("myFont");
-            var systemManager = world.SystemManager;
-            world.SetEntityTemplate("ShipExplosion", new ShipExplosionTemplate());
-            world.SetEntityTemplate("BulletExplosion", new BulletExplosionTemplate());
-            world.SetEntityTemplate("Missile", new MissileTemplate());
-            world.SetEntityTemplate("EnemyShip", new EnemyShipTemplate());
-            renderSystem = systemManager.SetSystem(new RenderSystem(GraphicsDevice,spriteBatch,Content),ExecutionType.DrawSyncronous);
-            hudRenderSystem = systemManager.SetSystem(new HudRenderSystem(spriteBatch, font), ExecutionType.DrawSyncronous);
-            controlSystem = systemManager.SetSystem(new MovementSystem(spriteBatch), ExecutionType.UpdateSyncronous,1);
-            movementSystem = systemManager.SetSystem(new PlayerShipControlSystem(spriteBatch),ExecutionType.UpdateSyncronous);
-            enemyShooterSystem = systemManager.SetSystem(new EnemyShipMovementSystem(spriteBatch), ExecutionType.UpdateSyncronous,1);
-            enemyShipMovementSystem = systemManager.SetSystem(new EnemyShooterSystem(), ExecutionType.UpdateSyncronous);
-            collisionSystem = systemManager.SetSystem(new CollisionSystem(), ExecutionType.UpdateSyncronous,1);
-            healthBarRenderSystem = systemManager.SetSystem(new HealthBarRenderSystem(spriteBatch, font), ExecutionType.DrawSyncronous);
-            enemySpawnSystem = systemManager.SetSystem(new EnemySpawnSystem(500, spriteBatch), ExecutionType.UpdateSyncronous);
-            expirationSystem = systemManager.SetSystem(new ExpirationSystem(), ExecutionType.UpdateSyncronous);
+
+            world = new EntityWorld();
+
+            EntitySystem.BlackBoard.SetEntry<ContentManager>("ContentManager", Content);
+            EntitySystem.BlackBoard.SetEntry<GraphicsDevice>("GraphicsDevice", GraphicsDevice);
+            EntitySystem.BlackBoard.SetEntry<SpriteBatch>("SpriteBatch", spriteBatch);
+            EntitySystem.BlackBoard.SetEntry<SpriteFont>("SpriteFont", font);            
+            EntitySystem.BlackBoard.SetEntry<int>("EnemyInterval", 500);
 
             world.InitializeAll();
 
@@ -94,7 +72,7 @@ namespace StarWarrior
         private void InitEnemyShips() {
 		    Random r = new Random();
 		    for (int i = 0; 2 > i; i++) {
-                Entity e = world.CreateEntityFromTemplate("EnemyShip");
+                Entity e = world.CreateEntityFromTemplate(EnemyShipTemplate.Name);
 
 			    e.GetComponent<Transform>().SetLocation(r.Next(GraphicsDevice.Viewport.Width), r.Next(400)+50);
 			    e.GetComponent<Velocity>().Speed = 0.05f;
@@ -118,14 +96,6 @@ namespace StarWarrior
             e.Tag = "PLAYER";
 	    }
 
-        /// <summary>
-        /// LoadContent will be called once per game and is the place to load
-        /// all of your content.
-        /// </summary>
-        protected override void LoadContent()
-        {
-        }
-
 
         DateTime dt = DateTime.Now;
         /// <summary>
@@ -139,9 +109,7 @@ namespace StarWarrior
             dt = DateTime.Now;
             frameCounter++;
 
-            
-            world.Delta = elapsed.Milliseconds;
-            world.Update(ExecutionType.UpdateSyncronous);                        
+            world.Update(elapsed.Milliseconds,ExecutionType.UpdateSyncronous);                        
             elapsedTime += elapsed;
 
             if (elapsedTime > TimeSpan.FromSeconds(1))
@@ -167,7 +135,7 @@ namespace StarWarrior
 
             GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin();
-            world.Update(ExecutionType.DrawSyncronous);
+            world.Update(gameTime.ElapsedGameTime.Milliseconds,ExecutionType.DrawSyncronous);
             spriteBatch.DrawString(font, fps, new Vector2(32,32), Color.Yellow);
             spriteBatch.DrawString(font, entityCount, new Vector2(32, 62), Color.Yellow);
             spriteBatch.DrawString(font, removedEntityCount, new Vector2(32, 92), Color.Yellow);

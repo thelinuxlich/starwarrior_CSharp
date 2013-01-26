@@ -3,6 +3,7 @@ using Artemis;
 using StarWarrior.Components;
 namespace StarWarrior.Systems
 {
+    [Artemis.Attributes.ArtemisEntitySystem()]
 	public class ExpirationSystem : EntityProcessingSystem {
 
 		private ComponentMapper<Expires> expiresMapper;

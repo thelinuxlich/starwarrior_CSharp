@@ -5,16 +5,18 @@ using System.Text;
 using Artemis;
 using StarWarrior.Components;
 using Microsoft.Xna.Framework;
+using StarWarrior.Templates;
 
 namespace StarWarrior.Systems
-{
+{    
+    [Artemis.Attributes.ArtemisEntitySystem(ExecutionType=ExecutionType.UpdateSyncronous,Layer=1)]
     class CollisionSystem : EntitySystem
     {
         private ComponentMapper<Transform> transformMapper;
 	    private ComponentMapper<Velocity> velocityMapper;
 	    private ComponentMapper<Health> healthMapper;
 
-	    public CollisionSystem() : base(typeof(Transform)){
+	    public CollisionSystem() : base(Aspect.All(typeof(Transform))){
 	    }
 
 	    public override void Initialize() {
@@ -35,7 +37,7 @@ namespace StarWarrior.Systems
 					
 					    if(CollisionExists(bullet, ship)) {
 						    Transform tb = transformMapper.Get(bullet);
-                            Entity bulletExplosion = world.CreateEntityFromTemplate("BulletExplosion");
+                            Entity bulletExplosion = world.CreateEntityFromTemplate(BulletExplosionTemplate.Name);
                             bulletExplosion.GetComponent<Transform>().Coords = new Vector3(tb.X, tb.Y, 0);
                             bulletExplosion.Refresh();
 						    bullet.Delete();
@@ -45,7 +47,7 @@ namespace StarWarrior.Systems
 	
 						    if(!health.IsAlive) {
 							    Transform ts = transformMapper.Get(ship);
-                                Entity shipExplosion = world.CreateEntityFromTemplate("ShipExplosion");
+                                Entity shipExplosion = world.CreateEntityFromTemplate(ShipExplosionTemplate.Name);
                                 shipExplosion.GetComponent<Transform>().Coords = new Vector3(ts.X, ts.Y, 0);
                                 shipExplosion.Refresh();
                                 ship.Delete();

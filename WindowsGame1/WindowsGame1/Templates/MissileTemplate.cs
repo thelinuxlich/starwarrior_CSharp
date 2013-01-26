@@ -16,7 +16,7 @@ namespace StarWarrior.Templates
         {            
             e.Group = "BULLETS";
 
-            e.AddComponent(new Transform());
+            e.AddComponentFromPool<Transform>();
             e.AddComponent(new SpatialForm());
             e.AddComponent(new Velocity());
             e.AddComponent(new Expires());

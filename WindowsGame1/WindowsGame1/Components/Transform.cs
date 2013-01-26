@@ -7,7 +7,9 @@ using Microsoft.Xna.Framework;
 
 namespace StarWarrior.Components
 {
-    class Transform : Component
+    ///just to show how to use the pool =P (just add this annotation and extend ArtemisComponentPool =P)
+    [Artemis.Attributes.ArtemisComponentPool(InitialSize=5,Resizes=true, ResizeSize=20, isSupportMultiThread=false)]
+    class Transform : ComponentPoolable
     {
         private Vector3 coords;
 
@@ -55,5 +57,14 @@ namespace StarWarrior.Components
 	    public float DistanceTo(Transform t) {
             return Vector2.Distance(new Vector2(t.X, t.Y), new Vector2(X, Y));
 	    }
+
+        #region ComponentPoolable Members
+
+        public void Cleanup()
+        {
+             coords = Vector3.Zero;
+        }
+
+        #endregion
     }
 }

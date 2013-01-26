@@ -53,7 +53,7 @@ namespace StarWarrior
             spriteBatch = new SpriteBatch(GraphicsDevice);
             font = Content.Load<SpriteFont>("myFont");
 
-            world = new EntityWorld();
+            world = new EntityWorld();            
 
             EntitySystem.BlackBoard.SetEntry<ContentManager>("ContentManager", Content);
             EntitySystem.BlackBoard.SetEntry<GraphicsDevice>("GraphicsDevice", GraphicsDevice);
@@ -86,7 +86,7 @@ namespace StarWarrior
 		    Entity e = world.CreateEntity();
 		    e.Group = "SHIPS";
 
-            e.AddComponent(new Transform());
+            e.AddComponentFromPool<Transform>();
 		    e.AddComponent(new SpatialForm());
 		    e.AddComponent(new Health());
             e.GetComponent<SpatialForm>().SpatialFormFile = "PlayerShip";

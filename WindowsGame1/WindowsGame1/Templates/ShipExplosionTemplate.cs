@@ -16,7 +16,7 @@ namespace StarWarrior.Templates
         public Entity BuildEntity(Entity e, EntityWorld world, params object[] args)
         {
             e.Group = "EFFECTS";
-            e.AddComponent(new Transform());
+            e.AddComponentFromPool<Transform>();
             e.AddComponent(new SpatialForm());
             e.AddComponent(new Expires());
             e.GetComponent<SpatialForm>().SpatialFormFile = "ShipExplosion";

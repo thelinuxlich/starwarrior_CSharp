@@ -22,6 +22,21 @@
             Default 10
             </summary>
         </member>
+        <member name="P:Artemis.Attributes.ArtemisComponentPool.ResizeSize">
+            <summary>
+            The size of the pool resize        
+            Default 10
+            </summary>
+        </member>
+        <member name="P:Artemis.Attributes.ArtemisComponentPool.isSupportMultiThread">
+            <summary>
+            Gets or sets a value indicating whether this instance should support multi thread environemnt
+            Default false
+            </summary>
+            <value>
+            <c>true</c> if this instance should support multi thread environemnt; otherwise, <c>false</c>.
+            </value>
+        </member>
         <member name="P:Artemis.Attributes.ArtemisComponentPool.Resizes">
             <summary>
             If the pool can be resized
@@ -90,6 +105,60 @@
             </summary>
             <param name="component">The component type label you want to ensure is an "official" component type</param>
             <returns>ComponentType</returns>
+        </member>
+        <member name="T:Artemis.MultiThreadComponentPool`1">
+            <summary>
+            A collection that maintains a set of class instances to allow for recycling
+            instances and minimizing the effects of garbage collection.
+            </summary>
+            <typeparam name="T">The type of object to store in the Pool. Pools can only hold class types.</typeparam>
+        </member>
+        <member name="M:Artemis.MultiThreadComponentPool`1.#ctor(System.Int32,System.Int32,System.Boolean,System.Func{System.Type,`0},System.Type)">
+            <summary>
+            Creates a new pool with a specific starting size.
+            </summary>
+            <param name="initialSize">The initial size of the pool.</param>
+            <param name="resizePool">The resize pool size.</param>
+            <param name="resizes">Whether or not the pool is allowed to increase its size as needed.</param>
+            <param name="allocateFunc">A function used to allocate an instance for the pool.</param>
+            <param name="innerType">Type ComponentPoolable.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">initialSize;initialSize must be at least 1.</exception>
+            <exception cref="T:System.ArgumentNullException">allocateFunc</exception>
+        </member>
+        <member name="M:Artemis.MultiThreadComponentPool`1.ReturnObject(`0)">
+            <summary>
+            Return an object to the pool
+            </summary>
+            <param name="obj"></param>
+        </member>
+        <member name="M:Artemis.MultiThreadComponentPool`1.CleanUp">
+            <summary>
+            Cleans up the pool by checking each valid object to ensure it is still actually valid.
+            Must be called regularly to free returned Objects
+            </summary>
+        </member>
+        <member name="M:Artemis.MultiThreadComponentPool`1.New">
+            <summary>
+            Returns a new object from the Pool.
+            </summary>
+            <returns>The next object in the pool if available, null if all instances are valid.</returns>
+        </member>
+        <member name="P:Artemis.MultiThreadComponentPool`1.ValidCount">
+            <summary>
+            Gets the number of valid objects in the pool.
+            </summary>
+        </member>
+        <member name="P:Artemis.MultiThreadComponentPool`1.InvalidCount">
+            <summary>
+            Gets the number of invalid objects in the pool.
+            </summary>
+        </member>
+        <member name="P:Artemis.MultiThreadComponentPool`1.Item(System.Int32)">
+            <summary>
+            Returns a valid object at the given index. The index must fall in the range of [0, ValidCount].
+            </summary>
+            <param name="index">The index of the valid object to get</param>
+            <returns>A valid object found at the index</returns>
         </member>
         <member name="T:Artemis.EntitySystem">
             <summary>
@@ -415,14 +484,17 @@
             </summary>
             <typeparam name="T">The type of object to store in the Pool. Pools can only hold class types.</typeparam>
         </member>
-        <member name="M:Artemis.ComponentPool`1.#ctor(System.Int32,System.Boolean,System.Func{System.Type,`0})">
+        <member name="M:Artemis.ComponentPool`1.#ctor(System.Int32,System.Int32,System.Boolean,System.Func{System.Type,`0},System.Type)">
             <summary>
             Creates a new pool with a specific starting size.
             </summary>
             <param name="initialSize">The initial size of the pool.</param>
+            <param name="resizePool">The resize pool size.</param>
             <param name="resizes">Whether or not the pool is allowed to increase its size as needed.</param>
-            <param name="validateFunc">A predicate used to determine if a given object is still valid.</param>
             <param name="allocateFunc">A function used to allocate an instance for the pool.</param>
+            <param name="innerType">Type ComponentPoolable.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">initialSize;initialSize must be at least 1.</exception>
+            <exception cref="T:System.ArgumentNullException">allocateFunc</exception>
         </member>
         <member name="M:Artemis.ComponentPool`1.ReturnObject(`0)">
             <summary>
@@ -501,11 +573,47 @@
             Create and return a new or reused entity instance.
             @return entity
         </member>
+        <member name="M:Artemis.EntityWorld.SetPool(System.Type,Artemis.IComponentPool{Artemis.ComponentPoolable})">
+            <summary>
+            Sets the pool for a specific type
+            </summary>
+            <param name="type">The type.</param>
+            <param name="pool">The pool.</param>
+        </member>
+        <member name="M:Artemis.EntityWorld.GetPool(System.Type)">
+            <summary>
+            Gets the pool for a Type
+            </summary>
+            <param name="type">The type.</param>
+            <returns></returns>
+        </member>
         <member name="M:Artemis.EntityWorld.InitializeAll(System.Boolean)">
             <summary>
             
             </summary>
             <param name="processAttributes"></param>
+        </member>
+        <member name="M:Artemis.EntityWorld.GetComponentFromPool(System.Type)">
+            <summary>
+            Gets a component from a pool.
+            </summary>
+            <param name="type">The typeof the object to get</param>
+            <returns></returns>
+        </member>
+        <member name="M:Artemis.EntityWorld.GetComponentFromPool``1">
+            <summary>
+            Gets the component from pool.
+            </summary>
+            <typeparam name="T">Type of the component</typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Artemis.EntityWorld.CreateEntityFromTemplate(System.String,System.Object[])">
+            <summary>
+            Creates a entity from template.
+            </summary>
+            <param name="entityTemplateTag">The entity template tag.</param>
+            <param name="templateArgs">The template args.</param>
+            <returns></returns>
         </member>
         <member name="M:Artemis.EntityWorld.GetEntity(System.Int32)">
             Get a entity having the specified id.

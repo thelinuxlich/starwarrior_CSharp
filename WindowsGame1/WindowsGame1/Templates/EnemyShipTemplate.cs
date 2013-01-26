@@ -15,7 +15,7 @@ namespace StarWarrior.Templates
         public Entity BuildEntity(Entity e, EntityWorld world, params object[] args)
         {
             e.Group = "SHIPS";
-            e.AddComponent(new Transform());
+            e.AddComponentFromPool<Transform>();
             e.AddComponent(new SpatialForm());
             e.AddComponent(new Health());
             e.AddComponent(new Weapon());

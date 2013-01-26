@@ -533,7 +533,7 @@
             Interval in FrameUpdates between pools cleanup
             </summary>
         </member>
-        <member name="P:Artemis.EntityWorld.Delta">
+        <member name="P:Artemis.EntityWorld.ElapsedTime">
             Time since last game loop.
             @return delta in milliseconds.
         </member>

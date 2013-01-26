@@ -26,9 +26,9 @@ namespace StarWarrior.Systems
 			Transform transform = transformMapper.Get(e);
 	
 			float r = velocity.AngleAsRadians;
-	
-			float xn = transform.X + ((float)Math.Cos(r) * v * world.Delta);
-            float yn = transform.Y + ((float)Math.Sin(r) * v * world.Delta);
+
+            float xn = transform.X + ((float)Math.Cos(r) * v * world.ElapsedTime);
+            float yn = transform.Y + ((float)Math.Sin(r) * v * world.ElapsedTime);
 	
 			transform.SetLocation(xn, yn);
 		}

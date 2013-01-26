@@ -31,11 +31,11 @@ namespace StarWarrior.Systems
             UpdateInput();
             if (moveLeft)
             {
-                transform.X += world.Delta * -0.3f;
+                transform.X += world.ElapsedTime * -0.3f;
             }
             if (moveRight)
             {
-                transform.X += world.Delta * 0.3f;
+                transform.X += world.ElapsedTime * 0.3f;
             }
 
             if (shoot)

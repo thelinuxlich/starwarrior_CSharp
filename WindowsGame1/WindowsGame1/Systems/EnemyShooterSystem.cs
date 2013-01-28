@@ -4,7 +4,7 @@ using StarWarrior.Components;
 using StarWarrior.Templates;
 namespace StarWarrior.Systems
 {
-    [Artemis.Attributes.ArtemisEntitySystem(ExecutionType=ExecutionType.UpdateSyncronous,Layer=1)]
+    [Artemis.Attributes.ArtemisEntitySystem(ExecutionType=ExecutionType.UpdateSynchronous,Layer=1)]
 	public class EnemyShooterSystem : EntityProcessingSystem {
 
 		private ComponentMapper<Weapon> weaponMapper;		

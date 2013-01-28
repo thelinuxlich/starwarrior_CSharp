@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Content;
 using System.Collections.Generic;
 namespace StarWarrior.Systems
 {
-    [Artemis.Attributes.ArtemisEntitySystem(ExecutionType = ExecutionType.DrawSyncronous)]
+    [Artemis.Attributes.ArtemisEntitySystem(ExecutionType = ExecutionType.DrawSynchronous)]
 	public class HudRenderSystem : TagSystem {
 		private SpriteBatch spriteBatch;
 		private ComponentMapper<Health> healthMapper;

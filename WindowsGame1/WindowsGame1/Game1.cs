@@ -109,7 +109,7 @@ namespace StarWarrior
             dt = DateTime.Now;
             frameCounter++;
 
-            world.Update(elapsed.Milliseconds,ExecutionType.UpdateSyncronous);                        
+            world.Update(elapsed.Milliseconds,ExecutionType.UpdateSynchronous);                        
             elapsedTime += elapsed;
 
             if (elapsedTime > TimeSpan.FromSeconds(1))
@@ -135,7 +135,7 @@ namespace StarWarrior
 
             GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin();
-            world.Update(gameTime.ElapsedGameTime.Milliseconds,ExecutionType.DrawSyncronous);
+            world.Update(gameTime.ElapsedGameTime.Milliseconds,ExecutionType.DrawSynchronous);
             spriteBatch.DrawString(font, fps, new Vector2(32,32), Color.Yellow);
             spriteBatch.DrawString(font, entityCount, new Vector2(32, 62), Color.Yellow);
             spriteBatch.DrawString(font, removedEntityCount, new Vector2(32, 92), Color.Yellow);

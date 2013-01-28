@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using StarWarrior.Templates;
 namespace StarWarrior.Systems
 {
-    [Artemis.Attributes.ArtemisEntitySystem(ExecutionType = ExecutionType.UpdateSyncronous)]
+    [Artemis.Attributes.ArtemisEntitySystem(ExecutionType = ExecutionType.UpdateSynchronous)]
 	public class PlayerShipControlSystem : TagSystem {
 		private SpriteBatch spriteBatch;
 		private bool moveRight;

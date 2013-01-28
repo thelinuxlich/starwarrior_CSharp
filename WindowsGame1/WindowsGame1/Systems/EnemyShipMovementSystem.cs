@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace StarWarrior.Systems
 {
-    [Artemis.Attributes.ArtemisEntitySystem(ExecutionType=ExecutionType.UpdateSyncronous)]
+    [Artemis.Attributes.ArtemisEntitySystem(ExecutionType = ExecutionType.UpdateSynchronous)]
     class EnemyShipMovementSystem : EntityProcessingSystem
     {
         private SpriteBatch spriteBatch;

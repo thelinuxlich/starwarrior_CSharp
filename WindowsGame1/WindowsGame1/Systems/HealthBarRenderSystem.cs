@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 namespace StarWarrior.Systems
 {
-    [Artemis.Attributes.ArtemisEntitySystem(ExecutionType = ExecutionType.DrawSyncronous)]
+    [Artemis.Attributes.ArtemisEntitySystem(ExecutionType = ExecutionType.DrawSynchronous)]
 	public class HealthBarRenderSystem : EntityProcessingSystem {
 		private SpriteBatch spriteBatch;
 		private ComponentMapper<Health> healthMapper;

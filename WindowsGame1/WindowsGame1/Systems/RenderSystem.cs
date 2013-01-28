@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Content;
 namespace StarWarrior.Systems	
 {
     //renderSystem = systemManager.SetSystem(new RenderSystem(GraphicsDevice,spriteBatch,Content),ExecutionType.DrawSyncronous);                        
-    [Artemis.Attributes.ArtemisEntitySystem(ExecutionType = ExecutionType.DrawSyncronous)]
+    [Artemis.Attributes.ArtemisEntitySystem(ExecutionType = ExecutionType.DrawSynchronous)]
 	public class RenderSystem : EntityProcessingSystem {
 		private ComponentMapper<SpatialForm> spatialFormMapper;
 		private ComponentMapper<Transform> transformMapper;

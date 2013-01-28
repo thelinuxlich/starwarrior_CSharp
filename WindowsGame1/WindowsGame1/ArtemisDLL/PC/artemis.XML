@@ -255,6 +255,11 @@
             Basic Unity of an Entity System
             </summary>
         </member>
+        <member name="M:Artemis.Entity.Reset">
+            <summary>
+            Resets this instance.
+            </summary>
+        </member>
         <member name="M:Artemis.Entity.AddComponent(Artemis.Component)">
             Add a component to this entity.
             @param component to add to this entity
@@ -276,6 +281,15 @@
              @return
         </member>
         <!-- Badly formed XML comment ignored for member "M:Artemis.Entity.GetComponent``1" -->
+        <member name="M:Artemis.Entity.HasComponent``1">
+            <summary>
+            Determines whether this instance has a specific component.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns>
+              <c>true</c> if this instance has a specific component; otherwise, <c>false</c>.
+            </returns>
+        </member>
         <member name="M:Artemis.Entity.Refresh">
             Refresh all changes to components for this entity. After adding or removing components, you must call
             this method. It will update all relevant systems.
@@ -289,6 +303,14 @@
              ID's are however reused so another entity may acquire this ID if the previous entity was deleted.
             
              @return id of the entity.
+        </member>
+        <member name="P:Artemis.Entity.Enabled">
+            <summary>
+            Gets or sets a value indicating whether this <see cref="T:Artemis.Entity"/> is enabled.
+            </summary>
+            <value>
+              <c>true</c> if enabled; otherwise, <c>false</c>.
+            </value>
         </member>
         <member name="P:Artemis.Entity.isActive">
             Checks if the entity has been deleted from somewhere.
@@ -307,6 +329,17 @@
         <member name="P:Artemis.Entity.Tag">
             Assign a tag to this entity. Same as World.setTag().
             @param tag of the entity.
+        </member>
+        <member name="T:Artemis.EntityManager">
+            <summary>
+            Entity Manager
+            </summary>
+        </member>
+        <member name="M:Artemis.EntityManager.#ctor(Artemis.EntityWorld)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Artemis.EntityManager"/> class.
+            </summary>
+            <param name="world">The world.</param>
         </member>
         <member name="M:Artemis.EntityManager.Create">
             <summary>
@@ -589,7 +622,7 @@
         </member>
         <member name="M:Artemis.EntityWorld.InitializeAll(System.Boolean)">
             <summary>
-            
+            Initialize the World
             </summary>
             <param name="processAttributes"></param>
         </member>
@@ -639,11 +672,52 @@
         <member name="P:Artemis.EntityWorld.PoolCleanupDelay">
             <summary>
             Interval in FrameUpdates between pools cleanup
+            Default 10
             </summary>
+        </member>
+        <member name="P:Artemis.EntityWorld.GroupManager">
+            <summary>
+            Gets the group manager.
+            </summary>
+            <value>
+            The group manager.
+            </value>
+        </member>
+        <member name="P:Artemis.EntityWorld.SystemManager">
+            <summary>
+            Gets the system manager.
+            </summary>
+            <value>
+            The system manager.
+            </value>
+        </member>
+        <member name="P:Artemis.EntityWorld.EntityManager">
+            <summary>
+            Gets the entity manager.
+            </summary>
+            <value>
+            The entity manager.
+            </value>
+        </member>
+        <member name="P:Artemis.EntityWorld.TagManager">
+            <summary>
+            Gets the tag manager.
+            </summary>
+            <value>
+            The tag manager.
+            </value>
         </member>
         <member name="P:Artemis.EntityWorld.ElapsedTime">
             Time since last game loop.
             @return delta in milliseconds.
+        </member>
+        <member name="P:Artemis.EntityWorld.CurrentState">
+            <summary>
+            Gets the current state of the workd.
+            </summary>
+            <value>
+            The state of the current.
+            </value>
         </member>
         <member name="M:Artemis.Bag`1.#ctor">
             Constructs an empty Bag with an initial capacity of 16.

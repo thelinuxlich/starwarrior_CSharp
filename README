@@ -1,3 +1,5 @@
 This is the C# port of Artemis game example, originally found here(Java): http://gamadu.com/games/starwarrior/
 
+Stable Versions: https://github.com/thelinuxlich/starwarrior_CSharp/tags
+
 We use it mostly for test purposes and to show how to use Artemis C#.

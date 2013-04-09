@@ -158,15 +158,15 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Reference Include="ArtemisPhone7">
-      <HintPath>ArtemisDLL\Phone7\ArtemisPhone7.dll</HintPath>
+    <Reference Include="ArtemisPhone7">      
+	  <HintPath>ArtemisDLL\$(Configuration)\Phone7\ArtemisPhone7.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Xna.Framework" />
     <Reference Include="Microsoft.Xna.Framework.Game" />
     <Reference Include="Microsoft.Xna.Framework.Graphics" />
     <Reference Include="mscorlib" />
-    <Reference Include="ParallelTasks">
-      <HintPath>ArtemisDLL\Phone7\ParallelTasks.dll</HintPath>
+    <Reference Include="ParallelTasks">      
+	  <HintPath>ArtemisDLL\$(Configuration)\Phone7\ParallelTasks.dll</HintPath>
     </Reference>
     <Reference Include="System.Core" />
   </ItemGroup>

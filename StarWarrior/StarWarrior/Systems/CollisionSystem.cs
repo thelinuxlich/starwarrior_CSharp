@@ -84,6 +84,7 @@ namespace StarWarrior.Systems
             Bag<Entity> ships = this.EntityWorld.GroupManager.GetEntities("SHIPS");
             if (bullets != null && ships != null)
             {
+                ///being brutal !!!
                 for (int shipIndex = 0; ships.Count > shipIndex; ++shipIndex)
                 {
                     Entity ship = ships.Get(shipIndex);

@@ -107,34 +107,30 @@ namespace StarWarrior.Systems
                     this.transformComponent.X < this.spriteBatch.GraphicsDevice.Viewport.Width &&
                     this.transformComponent.Y < this.spriteBatch.GraphicsDevice.Viewport.Height)
                 {
-                    this.CreateSpatial();
+                    ///very naive render ...
+                    if (string.Compare("PlayerShip", this.spatialName, StringComparison.InvariantCultureIgnoreCase) == 0)
+                    {
+                        PlayerShip.Render(this.spriteBatch, this.contentManager, this.transformComponent);
+                    }
+                    else if (string.Compare("Missile", this.spatialName, StringComparison.InvariantCultureIgnoreCase) == 0)
+                    {
+                        Missile.Render(this.spriteBatch, this.contentManager, this.transformComponent);
+                    }
+                    else if (string.Compare("EnemyShip", this.spatialName, StringComparison.InvariantCultureIgnoreCase) == 0)
+                    {
+                        EnemyShip.Render(this.spriteBatch, this.contentManager, this.transformComponent);
+                    }
+                    else if (string.Compare("BulletExplosion", this.spatialName, StringComparison.InvariantCultureIgnoreCase) == 0)
+                    {
+                        Explosion.Render(this.spriteBatch, this.contentManager, this.transformComponent, Color.Red, 10);
+                    }
+                    else if (string.Compare("ShipExplosion", this.spatialName, StringComparison.InvariantCultureIgnoreCase) == 0)
+                    {
+                        ShipExplosion.Render(this.spriteBatch, this.contentManager, this.transformComponent, Color.Yellow, 30);
+                    }
                 }
             }
         }
 
-        /// <summary>The create spatial.</summary>
-        private void CreateSpatial()
-        {
-            if (string.Compare("PlayerShip", this.spatialName, StringComparison.InvariantCultureIgnoreCase) == 0)
-            {
-                PlayerShip.Render(this.spriteBatch, this.contentManager, this.transformComponent);
-            }
-            else if (string.Compare("Missile", this.spatialName, StringComparison.InvariantCultureIgnoreCase) == 0)
-            {
-                Missile.Render(this.spriteBatch, this.contentManager, this.transformComponent);
-            }
-            else if (string.Compare("EnemyShip", this.spatialName, StringComparison.InvariantCultureIgnoreCase) == 0)
-            {
-                EnemyShip.Render(this.spriteBatch, this.contentManager, this.transformComponent);
-            }
-            else if (string.Compare("BulletExplosion", this.spatialName, StringComparison.InvariantCultureIgnoreCase) == 0)
-            {
-                Explosion.Render(this.spriteBatch, this.contentManager, this.transformComponent, Color.Red, 10);
-            }
-            else if (string.Compare("ShipExplosion", this.spatialName, StringComparison.InvariantCultureIgnoreCase) == 0)
-            {
-                ShipExplosion.Render(this.spriteBatch, this.contentManager, this.transformComponent, Color.Yellow, 30);
-            }
-        }
     }
 }

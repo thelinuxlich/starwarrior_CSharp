@@ -142,15 +142,15 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Reference Include="ArtemisXbox">
-      <HintPath>ArtemisDLL\Xbox360\ArtemisXbox360.dll</HintPath>
+    <Reference Include="ArtemisXbox">		
+       <HintPath>ArtemisDLL\$(Configuration)\Xbox360\ArtemisXbox360.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Xna.Framework" />
     <Reference Include="Microsoft.Xna.Framework.Game" />
     <Reference Include="Microsoft.Xna.Framework.Graphics" />
     <Reference Include="mscorlib" />
-    <Reference Include="ParallelTasks">
-      <HintPath>ArtemisDLL\Xbox360\ParallelTasks.dll</HintPath>
+    <Reference Include="ParallelTasks">      
+	  <HintPath>ArtemisDLL\$(Configuration)\Xbox360\ParallelTasks.dll</HintPath>
     </Reference>
     <Reference Include="System.Core" />
   </ItemGroup>

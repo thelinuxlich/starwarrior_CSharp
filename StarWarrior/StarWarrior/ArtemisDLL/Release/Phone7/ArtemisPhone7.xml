@@ -354,11 +354,13 @@
         <member name="F:Artemis.Manager.EntityManager.componentsByType">
             <summary>The components by type.</summary>
         </member>
-        <member name="F:Artemis.Manager.EntityManager.entityComponents">
-            <summary>The entity components. Added for debug support.</summary>
-        </member>
         <member name="F:Artemis.Manager.EntityManager.removedAndAvailable">
             <summary>The removed and available.</summary>
+        </member>
+        <member name="F:Artemis.Manager.EntityManager.uniqueIdToEntities">
+            <summary>
+            Map uniqueid to entities
+            </summary>
         </member>
         <member name="F:Artemis.Manager.EntityManager.entityWorld">
             <summary>The entity world.</summary>
@@ -370,9 +372,14 @@
             <summary>Initializes a new instance of the <see cref="T:Artemis.Manager.EntityManager"/> class.</summary>
             <param name="entityWorld">The entity world.</param>
         </member>
-        <member name="M:Artemis.Manager.EntityManager.Create">
-            <summary>Create a new, "blank" entity.</summary>
-            <returns>New entity</returns>
+        <member name="M:Artemis.Manager.EntityManager.Create(System.Nullable{System.Int64})">
+            <summary>
+            Create a new, "blank" entity.
+            </summary>
+            <param name="uniqueid">The uniqueid.</param>
+            <returns>
+            New entity
+            </returns>
         </member>
         <member name="M:Artemis.Manager.EntityManager.GetComponents(Artemis.Entity)">
             <summary>Get all components assigned to an entity.</summary>
@@ -388,6 +395,13 @@
             <summary>Get the entity for the given entityId</summary>
             <param name="entityId">Desired EntityId</param>
             <returns>The specified Entity.</returns>
+        </member>
+        <member name="M:Artemis.Manager.EntityManager.GetEntityByUniqueID(System.Int32)">
+            <summary>
+            Gets the entity by unique ID. (note that UniqueID is different from ID)
+            </summary>
+            <param name="entityUniqueId">The entity unique id.</param>
+            <returns></returns>
         </member>
         <member name="M:Artemis.Manager.EntityManager.IsActive(System.Int32)">
             <summary>Check if this entity is active, or has been deleted, within the framework.</summary>
@@ -666,7 +680,11 @@
             <summary>The entity world.</summary>
         </member>
         <member name="F:Artemis.Entity.uniqueId">
-            <summary>The unique id.</summary>
+            <summary>
+            The unique id.
+            This ID is unique in Artemis (even if the Entity is reused)
+            This value can be SET when building the Entity (passed as a parameter to EntityWorld.CreateEntity)
+            </summary>
         </member>
         <member name="M:Artemis.Entity.#ctor(Artemis.EntityWorld,System.Int32)">
             <summary>Initializes a new instance of the <see cref="T:Artemis.Entity"/> class.</summary>
@@ -979,15 +997,28 @@
         <member name="M:Artemis.EntityWorld.Clear">
             <summary>Clears this instance.</summary>
         </member>
-        <member name="M:Artemis.EntityWorld.CreateEntity">
-            <summary>Creates the entity.</summary>
-            <returns>A new entity.</returns>
+        <member name="M:Artemis.EntityWorld.CreateEntity(System.Nullable{System.Int64})">
+            <summary>
+            Creates the entity.
+            </summary>
+            <param name="id">The desired unique id of this Entity. if null, artemis will create an unique ID.
+            This value can be accessed by using the property uniqueID of the Entity
+            </param>
+            <returns>
+            A new entity.
+            </returns>
         </member>
-        <member name="M:Artemis.EntityWorld.CreateEntityFromTemplate(System.String,System.Object[])">
-            <summary>Creates a entity from template.</summary>
+        <member name="M:Artemis.EntityWorld.CreateEntityFromTemplate(System.String,System.Nullable{System.Int64},System.Object[])">
+            <summary>
+            Creates a entity from template.
+            </summary>
             <param name="entityTemplateTag">The entity template tag.</param>
+            <param name="entityUniqueId">The entity unique id. (artemis can provide this value)</param>
             <param name="templateArgs">The template args.</param>
-            <returns>The created entity.</returns>
+            <returns>
+            The created entity.
+            </returns>
+            <exception cref="!:System.Exception">EntityTemplate for the tag  + entityTemplateTag +  was not registered.</exception>
             <exception cref="T:System.Exception">EntityTemplate for the tag "entityTemplateTag" was not registered.</exception>
         </member>
         <member name="M:Artemis.EntityWorld.DeleteEntity(Artemis.Entity)">

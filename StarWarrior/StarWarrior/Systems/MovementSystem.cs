@@ -51,36 +51,14 @@ namespace StarWarrior.Systems
 
     /// <summary>The movement system.</summary>
     [ArtemisEntitySystem(GameLoopType = GameLoopType.Update, Layer = 1)]
-    public class MovementSystem : EntityProcessingSystem
+    public class MovementSystem : EntityProcessingSystem<TransformComponent,VelocityComponent>
     {
-        /// <summary>The transform mapper.</summary>
-        private ComponentMapper<TransformComponent> transformMapper;
-
-        /// <summary>The velocity mapper.</summary>
-        private ComponentMapper<VelocityComponent> velocityMapper;
-
-        /// <summary>Initializes a new instance of the <see cref="MovementSystem" /> class.</summary>
-        public MovementSystem()
-            : base(typeof(TransformComponent), typeof(VelocityComponent))
-        {
-        }
-
-        /// <summary>Override to implement code that gets executed when systems are initialized.</summary>
-        public override void LoadContent()
-        {
-            this.velocityMapper = new ComponentMapper<VelocityComponent>(this.EntityWorld);
-            this.transformMapper = new ComponentMapper<TransformComponent>(this.EntityWorld);
-        }
-
         /// <summary>Processes the specified entity.</summary>
         /// <param name="entity">The entity.</param>
-        public override void Process(Entity entity)
+        public override void Process(Entity entity,TransformComponent transformComponent,VelocityComponent velocityComponent)
         {
-            VelocityComponent velocityComponent = this.velocityMapper.Get(entity);
             if (velocityComponent != null)
             {
-                TransformComponent transformComponent = this.transformMapper.Get(entity);
-
                 if (transformComponent != null)
                 {
                     float ms = TimeSpan.FromTicks(this.EntityWorld.Delta).Milliseconds;

@@ -87,8 +87,6 @@ namespace StarWarrior.Systems
 
             entity.GetComponent<VelocityComponent>().Speed = 0.05f;
             entity.GetComponent<VelocityComponent>().Angle = this.random.Next() % 2 == 0 ? 0 : 180;
-
-            entity.Refresh();
         }
     }
 }

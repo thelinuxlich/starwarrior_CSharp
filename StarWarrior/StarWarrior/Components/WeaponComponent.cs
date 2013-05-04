@@ -43,7 +43,7 @@ namespace StarWarrior.Components
     #endregion
 
     /// <summary>The weapon.</summary>
-    internal class WeaponComponent : IComponent
+    public class WeaponComponent : IComponent
     {
         /// <summary>Initializes a new instance of the <see cref="WeaponComponent"/> class.</summary>
         public WeaponComponent()

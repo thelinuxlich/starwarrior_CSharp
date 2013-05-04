@@ -185,13 +185,10 @@ namespace StarWarrior
             for (int index = 0; 2 > index; ++index)
             {
                 Entity entity = this.entityWorld.CreateEntityFromTemplate(EnemyShipTemplate.Name);
-
                 entity.GetComponent<TransformComponent>().X = random.Next(this.GraphicsDevice.Viewport.Width - 100) + 50;
                 entity.GetComponent<TransformComponent>().Y = random.Next((int)((this.GraphicsDevice.Viewport.Height * 0.75) + 0.5)) + 50;
                 entity.GetComponent<VelocityComponent>().Speed = 0.05f;
                 entity.GetComponent<VelocityComponent>().Angle = random.Next() % 2 == 0 ? 0 : 180;
-
-                entity.Refresh();
             }
         }
 
@@ -208,8 +205,6 @@ namespace StarWarrior
             entity.GetComponent<TransformComponent>().X = this.GraphicsDevice.Viewport.Width * 0.5f;
             entity.GetComponent<TransformComponent>().Y = this.GraphicsDevice.Viewport.Height - 50;
             entity.Tag = "PLAYER";
-
-            entity.Refresh();
         }
     }
 }

@@ -45,7 +45,7 @@ namespace StarWarrior.Components
     #endregion
 
     /// <summary>The velocity.</summary>
-    internal class VelocityComponent : IComponent
+    public class VelocityComponent : IComponent
     {
         /// <summary>To radians.</summary>
         private const float ToRadians = (float)(Math.PI / 180.0);

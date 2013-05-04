@@ -57,23 +57,10 @@ namespace StarWarrior.Systems
     [ArtemisEntitySystem(GameLoopType = GameLoopType.Update, Layer = 1)]
     internal class CollisionSystem : EntitySystem
     {
-        /// <summary>The health mapper.</summary>
-        private ComponentMapper<HealthComponent> healthMapper;
-
-        /// <summary>The transform mapper.</summary>
-        private ComponentMapper<TransformComponent> transformMapper;
-
         /// <summary>Initializes a new instance of the <see cref="CollisionSystem" /> class.</summary>
         public CollisionSystem()
             : base(Aspect.All(typeof(TransformComponent)))
         {
-        }
-
-        /// <summary>Override to implement code that gets executed when systems are initialized.</summary>
-        public override void LoadContent()
-        {
-            this.transformMapper = new ComponentMapper<TransformComponent>(this.EntityWorld);
-            this.healthMapper = new ComponentMapper<HealthComponent>(this.EntityWorld);
         }
 
         /// <summary>Processes the entities.</summary>
@@ -94,18 +81,18 @@ namespace StarWarrior.Systems
 
                         if (this.CollisionExists(bullet, ship))
                         {
-                            TransformComponent bulletTransform = this.transformMapper.Get(bullet);
+                            TransformComponent bulletTransform = bullet.GetComponent<TransformComponent>();
                             Entity bulletExplosion = this.EntityWorld.CreateEntityFromTemplate(BulletExplosionTemplate.Name);
                             bulletExplosion.GetComponent<TransformComponent>().Position = bulletTransform.Position;
                             bulletExplosion.Refresh();
                             bullet.Delete();
 
-                            HealthComponent healthComponent = this.healthMapper.Get(ship);
+                            HealthComponent healthComponent = ship.GetComponent<HealthComponent>();
                             healthComponent.AddDamage(4);
 
                             if (!healthComponent.IsAlive)
                             {
-                                TransformComponent shipTransform = this.transformMapper.Get(ship);
+                                TransformComponent shipTransform = ship.GetComponent<TransformComponent>();
                                 Entity shipExplosion = this.EntityWorld.CreateEntityFromTemplate(ShipExplosionTemplate.Name);
                                 shipExplosion.GetComponent<TransformComponent>().Position = shipTransform.Position;
                                 shipExplosion.Refresh();
@@ -124,7 +111,7 @@ namespace StarWarrior.Systems
         /// <returns>The <see cref="bool" />.</returns>
         private bool CollisionExists(Entity entity1, Entity entity2)
         {
-            return Vector2.Distance(this.transformMapper.Get(entity1).Position, this.transformMapper.Get(entity2).Position) < 20;
+            return Vector2.Distance(entity1.GetComponent<TransformComponent>().Position, entity2.GetComponent<TransformComponent>().Position) < 20;
         }
     }
 }

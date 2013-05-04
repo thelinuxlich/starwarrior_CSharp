@@ -61,9 +61,6 @@ namespace StarWarrior.Systems
         /// <summary>The missile launch timer.</summary>
         private readonly Timer missileLaunchTimer;
 
-        /// <summary>The transform mapper.</summary>
-        private ComponentMapper<TransformComponent> transformMapper;
-
         /// <summary>The graphics device.</summary>
         private GraphicsDevice graphicsDevice;
 
@@ -77,7 +74,6 @@ namespace StarWarrior.Systems
         /// <summary>Override to implement code that gets executed when systems are initialized.</summary>
         public override void LoadContent()
         {
-            this.transformMapper = new ComponentMapper<TransformComponent>(this.EntityWorld);
             this.graphicsDevice = BlackBoard.GetEntry<GraphicsDevice>("GraphicsDevice");
         }
 
@@ -85,7 +81,7 @@ namespace StarWarrior.Systems
         /// <param name="entity">The entity.</param>
         public override void Process(Entity entity)
         {
-            TransformComponent transformComponent = this.transformMapper.Get(entity);
+            TransformComponent transformComponent = entity.GetComponent<TransformComponent>();
             KeyboardState keyboardState = Keyboard.GetState();
             float keyMoveSpeed = 0.3f * TimeSpan.FromTicks(this.EntityWorld.Delta).Milliseconds;
             if (keyboardState.IsKeyDown(Keys.A) || keyboardState.IsKeyDown(Keys.Left))
@@ -129,8 +125,6 @@ namespace StarWarrior.Systems
 
             missile.GetComponent<VelocityComponent>().Speed = -0.5f;
             missile.GetComponent<VelocityComponent>().Angle = angle;
-
-            missile.Refresh();
         }
     }
 }

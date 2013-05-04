@@ -50,41 +50,25 @@ namespace StarWarrior.Systems
     #endregion
 
     /// <summary>The enemy ship movement system.</summary>
-    [ArtemisEntitySystem(GameLoopType = GameLoopType.Update, Layer = 0)]
-    internal class EnemyShipMovementSystem : EntityProcessingSystem
+    [ArtemisEntitySystem(GameLoopType = GameLoopType.Draw,Layer = 0)]
+    internal class EnemyShipMovementSystem : EntityProcessingSystem<TransformComponent,VelocityComponent,EnemyComponent>
     {
         /// <summary>The sprite batch.</summary>
         private SpriteBatch spriteBatch;
-
-        /// <summary>The transform mapper.</summary>
-        private ComponentMapper<TransformComponent> transformMapper;
-
-        /// <summary>The velocity mapper.</summary>
-        private ComponentMapper<VelocityComponent> velocityMapper;
-
-        /// <summary>Initializes a new instance of the <see cref="EnemyShipMovementSystem" /> class.</summary>
-        public EnemyShipMovementSystem()
-            : base(typeof(TransformComponent), typeof(VelocityComponent), typeof(EnemyComponent))
-        {
-        }
 
         /// <summary>Override to implement code that gets executed when systems are initialized.</summary>
         public override void LoadContent()
         {
             this.spriteBatch = BlackBoard.GetEntry<SpriteBatch>("SpriteBatch");
-            this.transformMapper = new ComponentMapper<TransformComponent>(this.EntityWorld);
-            this.velocityMapper = new ComponentMapper<VelocityComponent>(this.EntityWorld);
         }
 
         /// <summary>Processes the specified entity.</summary>
         /// <param name="entity">The entity.</param>
-        public override void Process(Entity entity)
+        public override void Process(Entity entity,TransformComponent transformComponent,VelocityComponent velocityComponent,EnemyComponent enemyComponent)
         {
-            TransformComponent transformComponent = this.transformMapper.Get(entity);
-
             if (transformComponent != null && (transformComponent.X < 0 || transformComponent.X > this.spriteBatch.GraphicsDevice.Viewport.Width))
             {
-                this.velocityMapper.Get(entity).AddAngle(180);
+                velocityComponent.AddAngle(180);
             }
         }
     }

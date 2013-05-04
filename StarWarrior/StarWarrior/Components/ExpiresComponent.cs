@@ -43,7 +43,7 @@ namespace StarWarrior.Components
     #endregion
 
     /// <summary>The expires.</summary>
-    internal class ExpiresComponent : IComponent
+    public class ExpiresComponent : IComponent
     {
         /// <summary>Initializes a new instance of the <see cref="ExpiresComponent" /> class.</summary>
         public ExpiresComponent() 

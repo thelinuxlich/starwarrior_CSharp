@@ -50,28 +50,12 @@ namespace StarWarrior.Systems
 
     /// <summary>The expiration system.</summary>
     [ArtemisEntitySystem]
-    public class ExpirationSystem : EntityProcessingSystem
+    public class ExpirationSystem : EntityProcessingSystem<ExpiresComponent>
     {
-        /// <summary>The expires mapper.</summary>
-        private ComponentMapper<ExpiresComponent> expiresMapper;
-
-        /// <summary>Initializes a new instance of the <see cref="ExpirationSystem" /> class.</summary>
-        public ExpirationSystem()
-            : base(typeof(ExpiresComponent))
-        {
-        }
-
-        /// <summary>Override to implement code that gets executed when systems are initialized.</summary>
-        public override void LoadContent()
-        {
-            this.expiresMapper = new ComponentMapper<ExpiresComponent>(this.EntityWorld);
-        }
-
         /// <summary>Processes the specified entity.</summary>
         /// <param name="entity">The entity.</param>
-        public override void Process(Entity entity)
+        public override void Process(Entity entity,ExpiresComponent expiresComponent)
         {
-            ExpiresComponent expiresComponent = this.expiresMapper.Get(entity);
             if (expiresComponent != null)
             {
                 float ms = TimeSpan.FromTicks(this.EntityWorld.Delta).Milliseconds;

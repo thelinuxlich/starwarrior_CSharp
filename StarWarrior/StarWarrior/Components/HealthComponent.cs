@@ -45,7 +45,7 @@ namespace StarWarrior.Components
     #endregion
 
     /// <summary>The health.</summary>
-    internal class HealthComponent : IComponent
+    public class HealthComponent : IComponent
     {
         /// <summary>Initializes a new instance of the <see cref="HealthComponent"/> class.</summary>
         public HealthComponent() 

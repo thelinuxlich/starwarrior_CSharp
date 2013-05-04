@@ -52,44 +52,27 @@ namespace StarWarrior.Systems
 
     /// <summary>The health bar render system.</summary>
     [ArtemisEntitySystem(GameLoopType = GameLoopType.Draw, Layer = 0)]
-    public class HealthBarRenderSystem : EntityProcessingSystem
+    public class HealthBarRenderSystem : EntityProcessingSystem<HealthComponent,TransformComponent>
     {
         /// <summary>The font.</summary>
         private SpriteFont font;
 
-        /// <summary>The health mapper.</summary>
-        private ComponentMapper<HealthComponent> healthMapper;
-
         /// <summary>The sprite batch.</summary>
         private SpriteBatch spriteBatch;
-
-        /// <summary>The transform mapper.</summary>
-        private ComponentMapper<TransformComponent> transformMapper;
-
-        /// <summary>Initializes a new instance of the <see cref="HealthBarRenderSystem" /> class.</summary>
-        public HealthBarRenderSystem()
-            : base(typeof(HealthComponent), typeof(TransformComponent))
-        {
-        }
 
         /// <summary>Override to implement code that gets executed when systems are initialized.</summary>
         public override void LoadContent()
         {
             this.spriteBatch = BlackBoard.GetEntry<SpriteBatch>("SpriteBatch");
             this.font = BlackBoard.GetEntry<SpriteFont>("SpriteFont");
-            this.healthMapper = new ComponentMapper<HealthComponent>(this.EntityWorld);
-            this.transformMapper = new ComponentMapper<TransformComponent>(this.EntityWorld);
         }
 
         /// <summary>Processes the specified entity.</summary>
         /// <param name="entity">The entity.</param>
-        public override void Process(Entity entity)
+        public override void Process(Entity entity,HealthComponent healthComponent,TransformComponent transformComponent)
         {
-            HealthComponent healthComponent = this.healthMapper.Get(entity);
-
             if (healthComponent != null)
             {
-                TransformComponent transformComponent = this.transformMapper.Get(entity);
                 if (transformComponent != null)
                 {
                     string text = healthComponent.HealthPercentage + "%";

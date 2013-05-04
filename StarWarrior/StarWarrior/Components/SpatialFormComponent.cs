@@ -43,7 +43,7 @@ namespace StarWarrior.Components
     #endregion
 
     /// <summary>The spatial form.</summary>
-    internal class SpatialFormComponent : IComponent
+    public class SpatialFormComponent : IComponent
     {
         /// <summary>Initializes a new instance of the <see cref="SpatialFormComponent" /> class.</summary>
         public SpatialFormComponent() 

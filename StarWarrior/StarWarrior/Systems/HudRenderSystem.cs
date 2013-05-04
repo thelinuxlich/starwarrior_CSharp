@@ -57,9 +57,6 @@ namespace StarWarrior.Systems
         /// <summary>The font.</summary>
         private SpriteFont font;
 
-        /// <summary>The health mapper.</summary>
-        private ComponentMapper<HealthComponent> healthMapper;
-
         /// <summary>The sprite batch.</summary>
         private SpriteBatch spriteBatch;
 
@@ -74,14 +71,13 @@ namespace StarWarrior.Systems
         {
             this.spriteBatch = BlackBoard.GetEntry<SpriteBatch>("SpriteBatch");
             this.font = BlackBoard.GetEntry<SpriteFont>("SpriteFont");
-            this.healthMapper = new ComponentMapper<HealthComponent>(this.EntityWorld);
         }
 
         /// <summary>Processes the specified entity.</summary>
         /// <param name="entity">The entity.</param>
         public override void Process(Entity entity)
         {
-            HealthComponent healthComponent = this.healthMapper.Get(entity);
+            HealthComponent healthComponent = entity.GetComponent<HealthComponent>();
             Vector2 textPosition = new Vector2(20, this.spriteBatch.GraphicsDevice.Viewport.Height);
             this.spriteBatch.DrawString(this.font, "Health: " + healthComponent.HealthPercentage + "%", textPosition, Color.White);
         }

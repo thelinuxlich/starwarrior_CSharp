@@ -56,13 +56,10 @@ namespace StarWarrior.Systems
 
     /// <summary>The render system.</summary>
     [ArtemisEntitySystem(GameLoopType = GameLoopType.Draw, Layer = 0)]
-    public class RenderSystem : EntityProcessingSystem
+    public class RenderSystem : EntityProcessingSystem<SpatialFormComponent,TransformComponent>
     {
         /// <summary>The content manager.</summary>
         private ContentManager contentManager;
-
-        /// <summary>The spatial form mapper.</summary>
-        private ComponentMapper<SpatialFormComponent> spatialFormMapper;
 
         /// <summary>The spatial name.</summary>
         private string spatialName;
@@ -70,63 +67,46 @@ namespace StarWarrior.Systems
         /// <summary>The sprite batch.</summary>
         private SpriteBatch spriteBatch;
 
-        /// <summary>The TransformComponent.</summary>
-        private TransformComponent transformComponent;
-
-        /// <summary>The transform mapper.</summary>
-        private ComponentMapper<TransformComponent> transformMapper;
-
-        /// <summary>Initializes a new instance of the <see cref="RenderSystem" /> class.</summary>
-        public RenderSystem()
-            : base(typeof(TransformComponent), typeof(SpatialFormComponent))
-        {
-        }
-
         /// <summary>Override to implement code that gets executed when systems are initialized.</summary>
         public override void LoadContent()
         {
             this.spriteBatch = BlackBoard.GetEntry<SpriteBatch>("SpriteBatch");
             this.contentManager = BlackBoard.GetEntry<ContentManager>("ContentManager");
-            this.spatialFormMapper = new ComponentMapper<SpatialFormComponent>(this.EntityWorld);
-            this.transformMapper = new ComponentMapper<TransformComponent>(this.EntityWorld);
         }
 
         /// <summary>Processes the specified entity.</summary>
         /// <param name="entity">The entity.</param>
-        public override void Process(Entity entity)
+        public override void Process(Entity entity,SpatialFormComponent spatialFormComponent,TransformComponent transformComponent)
         {
-            this.transformComponent = this.transformMapper.Get(entity);
-            SpatialFormComponent spatialFormComponent = this.spatialFormMapper.Get(entity);
-
             if (spatialFormComponent != null)
             {
                 this.spatialName = spatialFormComponent.SpatialFormFile;
 
-                if (this.transformComponent.X >= 0 &&
-                    this.transformComponent.Y >= 0 &&
-                    this.transformComponent.X < this.spriteBatch.GraphicsDevice.Viewport.Width &&
-                    this.transformComponent.Y < this.spriteBatch.GraphicsDevice.Viewport.Height)
+                if (transformComponent.X >= 0 &&
+                    transformComponent.Y >= 0 &&
+                    transformComponent.X < this.spriteBatch.GraphicsDevice.Viewport.Width &&
+                    transformComponent.Y < this.spriteBatch.GraphicsDevice.Viewport.Height)
                 {
                     ///very naive render ...
                     if (string.Compare("PlayerShip", this.spatialName, StringComparison.InvariantCultureIgnoreCase) == 0)
                     {
-                        PlayerShip.Render(this.spriteBatch, this.contentManager, this.transformComponent);
+                        PlayerShip.Render(this.spriteBatch, this.contentManager, transformComponent);
                     }
                     else if (string.Compare("Missile", this.spatialName, StringComparison.InvariantCultureIgnoreCase) == 0)
                     {
-                        Missile.Render(this.spriteBatch, this.contentManager, this.transformComponent);
+                        Missile.Render(this.spriteBatch, this.contentManager, transformComponent);
                     }
                     else if (string.Compare("EnemyShip", this.spatialName, StringComparison.InvariantCultureIgnoreCase) == 0)
                     {
-                        EnemyShip.Render(this.spriteBatch, this.contentManager, this.transformComponent);
+                        EnemyShip.Render(this.spriteBatch, this.contentManager, transformComponent);
                     }
                     else if (string.Compare("BulletExplosion", this.spatialName, StringComparison.InvariantCultureIgnoreCase) == 0)
                     {
-                        Explosion.Render(this.spriteBatch, this.contentManager, this.transformComponent, Color.Red, 10);
+                        Explosion.Render(this.spriteBatch, this.contentManager, transformComponent, Color.Red, 10);
                     }
                     else if (string.Compare("ShipExplosion", this.spatialName, StringComparison.InvariantCultureIgnoreCase) == 0)
                     {
-                        ShipExplosion.Render(this.spriteBatch, this.contentManager, this.transformComponent, Color.Yellow, 30);
+                        ShipExplosion.Render(this.spriteBatch, this.contentManager, transformComponent, Color.Yellow, 30);
                     }
                 }
             }

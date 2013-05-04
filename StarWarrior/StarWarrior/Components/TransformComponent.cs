@@ -49,7 +49,7 @@ namespace StarWarrior.Components
     /// just to show how to use the pool =P 
     /// (just add this annotation and extend ArtemisComponentPool =P)
     [ArtemisComponentPool(InitialSize = 5, IsResizable = true, ResizeSize = 20, IsSupportMultiThread = false)]
-    internal class TransformComponent : ComponentPoolable
+    public class TransformComponent : ComponentPoolable
     {
         /// <summary>Initializes a new instance of the <see cref="TransformComponent" /> class.</summary>
         public TransformComponent()

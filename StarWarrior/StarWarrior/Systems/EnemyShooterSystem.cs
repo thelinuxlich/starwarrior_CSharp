@@ -53,42 +53,21 @@ namespace StarWarrior.Systems
 
     /// <summary>The enemy shooter system.</summary>
     [ArtemisEntitySystem(GameLoopType = GameLoopType.Update, Layer = 1)]
-    public class EnemyShooterSystem : EntityProcessingSystem
+    public class EnemyShooterSystem : EntityProcessingSystem<TransformComponent,WeaponComponent,EnemyComponent>
     {
         /// <summary>The two seconds ticks.</summary>
         private static readonly long TwoSecondsTicks = TimeSpan.FromSeconds(2).Ticks;
 
-        /// <summary>The transform mapper.</summary>
-        private ComponentMapper<TransformComponent> transformMapper;
-
-        /// <summary>The weapon mapper.</summary>
-        private ComponentMapper<WeaponComponent> weaponMapper;
-
-        /// <summary>Initializes a new instance of the <see cref="EnemyShooterSystem" /> class.</summary>
-        public EnemyShooterSystem()
-            : base(typeof(TransformComponent), typeof(WeaponComponent), typeof(EnemyComponent))
-        {
-        }
-
         /// <summary>Override to implement code that gets executed when systems are initialized.</summary>
-        public override void LoadContent()
-        {
-            this.weaponMapper = new ComponentMapper<WeaponComponent>(this.EntityWorld);
-            this.transformMapper = new ComponentMapper<TransformComponent>(this.EntityWorld);
-        }
 
         /// <summary>Processes the specified entity.</summary>
         /// <param name="entity">The entity.</param>
-        public override void Process(Entity entity)
+        public override void Process(Entity entity,TransformComponent transformComponent,WeaponComponent weaponComponent,EnemyComponent enemyComponent)
         {
-            WeaponComponent weaponComponent = this.weaponMapper.Get(entity);
-
             if (weaponComponent != null)
             {
                 if ((weaponComponent.ShotAt + TwoSecondsTicks) < FastDateTime.Now.Ticks)
                 {
-                    TransformComponent transformComponent = this.transformMapper.Get(entity);
-
                     Entity missile = this.EntityWorld.CreateEntityFromTemplate(MissileTemplate.Name);
 
                     missile.GetComponent<TransformComponent>().X = transformComponent.X;
@@ -96,9 +75,6 @@ namespace StarWarrior.Systems
 
                     missile.GetComponent<VelocityComponent>().Speed = -0.5f;
                     missile.GetComponent<VelocityComponent>().Angle = 270;
-
-                    missile.Refresh();
-
                     weaponComponent.ShotAt = FastDateTime.Now.Ticks;
                 }
             }

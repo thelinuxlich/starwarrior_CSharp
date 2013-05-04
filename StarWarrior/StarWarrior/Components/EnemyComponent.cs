@@ -43,7 +43,7 @@ namespace StarWarrior.Components
     #endregion
 
     /// <summary>The enemy.</summary>
-    internal class EnemyComponent : IComponent
+    public class EnemyComponent : IComponent
     {
     }
 }

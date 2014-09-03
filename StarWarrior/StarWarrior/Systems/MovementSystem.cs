@@ -55,7 +55,7 @@ namespace StarWarrior.Systems
     {
         /// <summary>Processes the specified entity.</summary>
         /// <param name="entity">The entity.</param>
-        public override void Process(Entity entity,TransformComponent transformComponent,VelocityComponent velocityComponent)
+        protected override void Process(Entity entity,TransformComponent transformComponent,VelocityComponent velocityComponent)
         {
             if (velocityComponent != null)
             {
